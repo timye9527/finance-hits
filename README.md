@@ -1,21 +1,29 @@
 # 粤语财经 YouTube 爆款周报
 
-## 云端分享链接(给同事看这个)
-**https://claude.ai/code/artifact/97b4cba4-9842-4024-84d2-950426edf357**
+## 网站(分享这个链接,不用登录直接打开)
+**https://timye9527.github.io/finance-hits/**
 
-单文件、图片已内嵌、公网可访问。首次分享要去页面右上角的分享菜单切成「公开」——Artifact
-默认私密,只有主动分享过链接的人能看。往期报告以「往期存档」折叠面板的形式收在同一页底部,
-点开期数即可展开,不需要来回跳转。
+真·公开网站,GitHub Pages 托管,谁都能直接打开,不需要 GitHub 账号也不需要 claude.ai 账号。
+页头期数卡片可以在各期之间跳转(每期是独立页面 `weeks/<周>.html`),缩略图直接从 YouTube 加载。
+源码仓库(公开):https://github.com/timye9527/finance-hits
 
 **每期更新只需三步:**
 ```bash
 cd ~/finance-hits
-python3 collect.py && python3 build.py && python3 build_artifact.py
+python3 collect.py && python3 build.py
+git add -A && git commit -m "第 <周数> 周" && git push
 ```
-跑完最后一步会在 `cloud/report.html` 生成新的单文件页面,然后调用 Artifact 工具重新发布
-到**同一个 URL**(参数里带上 `url: "https://claude.ai/code/artifact/97b4cba4-9842-4024-84d2-950426edf357"`,
-不带这个参数会生成一个新链接,分享出去的旧链接就失效了)。发给 Claude 的话直接说「更新一下上周
-的,记得发到云端」就行,它有这份 README。
+`git push` 之后 GitHub Pages 会自动重新部署,通常 30–60 秒内生效,不需要额外操作。发给
+Claude 的话直接说「更新一下上周的,记得发到网上」就行,它有这份 README、且已经登录过
+`gh`(GitHub CLI),`git push` 不需要重新授权。
+
+### 备用:claude.ai 分享链接(单文件版,含往期折叠存档)
+**https://claude.ai/code/artifact/97b4cba4-9842-4024-84d2-950426edf357**
+
+GitHub Pages 部署前做的第一版,单文件、缩略图内嵌成 base64,往期折叠收在同一页底部。默认私密,
+要分享得去页面右上角分享菜单切成「公开」,而且访客可能需要 claude.ai 账号——不如 GitHub Pages
+直接。保留是因为「所有历史一页看完」这个形态有它的价值,更新方法见 `build_artifact.py` 顶部注释,
+两个版本可以都更新也可以只更新 GitHub Pages 那个。
 
 ## 本地入口(自己看,不分享的话用这个)
 双击桌面的「📊 粤语财经爆款周报」,浏览器会打开最新一期;页头的期数卡片可切换往期。
@@ -82,3 +90,5 @@ build 不会拿它们当「发酵增量」的基线(否则会误报成播放停�
 - Chart-reader CUP(@chartreadercup)链接 404,待更新 handle
 - 周五至周日发布的视频统计时可能未发酵完,下期复查补录
 - 名单频道见 collect.py 里的 CHANNELS(改名单直接编辑它)
+- 仓库是公开的:`data/`、`curation/`、源码都在里面。内容是 YouTube 公开数据 + 我们自己写的
+  运营分析,不含任何密钥或私人信息,公开无妨;但如果哪期拆解写了不方便公开的内容,发布前提醒 Claude 处理。
