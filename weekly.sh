@@ -11,10 +11,18 @@
 set -uo pipefail
 cd "$(dirname "$0")" || exit 1
 
-export PATH="/opt/homebrew/bin:/usr/local/bin:/opt/anaconda3/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
+# 必须写死这个解释器:yt_dlp 和 jieba 只装在 anaconda 这个 Python 里,
+# 而 launchd 的 PATH 跟登录 shell 不一样,靠 `python3` 会解析到没装依赖的那个。
+PY=/opt/anaconda3/bin/python3
+if ! "$PY" -c "import yt_dlp, jieba" 2>/dev/null; then
+  osascript -e 'display notification "缺 yt_dlp 或 jieba,跟 Claude 说一声" with title "周报跑不了"' 2>/dev/null
+  echo "!!! $PY 缺依赖,中止"; exit 1
+fi
 
 mkdir -p logs
-WEEK=$(python3 -c "import datetime;i=(datetime.date.today()-datetime.timedelta(days=7)).isocalendar();print(f'{i[0]}-W{i[1]:02d}')")
+WEEK=$("$PY" -c "import datetime;i=(datetime.date.today()-datetime.timedelta(days=7)).isocalendar();print(f'{i[0]}-W{i[1]:02d}')")
 LOG="logs/${WEEK}.log"
 ln -sf "${WEEK}.log" logs/latest.log
 exec > >(tee "$LOG") 2>&1
@@ -27,19 +35,19 @@ notify() {  # $1=标题 $2=正文
 
 # --- 1. 采集 ---
 echo; echo "--- 采集 ---"
-python3 collect.py
-ERRS=$(grep -c "vid ERR" "$LOG" 2>/dev/null || echo 0)
+"$PY" collect.py
+ERRS=$(grep -c "vid ERR" "$LOG" 2>/dev/null); ERRS=${ERRS:-0}
 echo "抓取失败条数: $ERRS"
 
 # --- 2. 失败多就补抓(YouTube 反爬会整片丢频道) ---
 if [ "$ERRS" -gt 5 ]; then
   echo; echo "--- 失败 $ERRS 条,启动补抓 ---"
-  python3 backfill.py "$WEEK"
+  "$PY" backfill.py "$WEEK"
 fi
 
 # --- 3. 生成网页 ---
 echo; echo "--- 生成网页 ---"
-if ! python3 build.py; then
+if ! "$PY" build.py; then
   notify "周报更新失败" "build.py 出错,看 logs/latest.log"
   echo "!!! build 失败,中止"; exit 1
 fi
@@ -60,7 +68,7 @@ else
 fi
 
 # --- 5. 提醒补拆解 ---
-HITS=$(python3 - <<PY 2>/dev/null || echo "?"
+HITS=$("$PY" - <<PY 2>/dev/null || echo "?"
 import json,datetime
 w="$WEEK"; y,n=w.split("-W")
 mon=datetime.date.fromisocalendar(int(y),int(n),1).strftime("%Y%m%d")

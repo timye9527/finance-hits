@@ -7,15 +7,32 @@
 页头期数卡片可以在各期之间跳转(每期是独立页面 `weeks/<周>.html`),缩略图直接从 YouTube 加载。
 源码仓库(公开):https://github.com/timye9527/finance-hits
 
-**每期更新只需三步:**
+## 每周一 09:05 自动更新(已配置好,不用管)
+系统会自动跑采集 → 生成网页 → 推送到网站,跑完弹一条 macOS 通知告诉你结果。
+
+**但拆解要我写。** 脚本只做「数据 + 网页 + 发布」,运营分析(`curation/<周>.json`)还是得找
+Claude——这部分是判断,不是流程。所以每周一你会看到两种通知之一:
+- 「周报数据已就绪」→ 数据在网上了,但还没有分析文字。跟 Claude 说**「补一下这周的拆解」**
+- 「周报更新失败」→ 看 `logs/latest.log`,大概率是 YouTube 限流,跟 Claude 说一声就行
+
+```bash
+cat ~/finance-hits/logs/latest.log     # 看上次跑的完整日志
+bash ~/finance-hits/weekly.sh          # 想立刻手动跑一次
+launchctl list | grep finance-hits     # 确认定时任务还在
+```
+
+定时任务定义在 `~/Library/LaunchAgents/com.timye.finance-hits.weekly.plist`。电脑周一 9 点
+关机或睡眠的话,launchd 会在下次开机后补跑,不会整周漏掉。要暂停就
+`launchctl unload ~/Library/LaunchAgents/com.timye.finance-hits.weekly.plist`。
+
+**手动更新(想自己跑的话):**
 ```bash
 cd ~/finance-hits
 python3 collect.py && python3 build.py
 git add -A && git commit -m "第 <周数> 周" && git push
 ```
-`git push` 之后 GitHub Pages 会自动重新部署,通常 30–60 秒内生效,不需要额外操作。发给
-Claude 的话直接说「更新一下上周的,记得发到网上」就行,它有这份 README、且已经登录过
-`gh`(GitHub CLI),`git push` 不需要重新授权。
+`git push` 之后 GitHub Pages 会自动重新部署,通常 30–60 秒内生效。`gh`(GitHub CLI)已经
+登录过,`git push` 不需要重新授权。
 
 ### 备用:claude.ai 分享链接(单文件版,含往期折叠存档)
 **https://claude.ai/code/artifact/97b4cba4-9842-4024-84d2-950426edf357**
