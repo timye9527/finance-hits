@@ -33,11 +33,38 @@ notify() {  # $1=标题 $2=正文
   osascript -e "display notification \"$2\" with title \"$1\"" 2>/dev/null || true
 }
 
+# --- 0. 等网络 ---
+# 2026-08-24 09:05 就栽在这:笔记本刚唤醒、WiFi 还没连上,DNS 全解析不了,
+# 结果抓到 0 条、拿空数据盖掉了好页面。开跑前必须先确认真能出网。
+echo; echo "--- 等网络 ---"
+NET_OK=0
+for i in $(seq 1 20); do            # 最多等 10 分钟
+  if curl -sI https://www.youtube.com --max-time 8 -o /dev/null; then
+    echo "第 $i 次尝试:网络就绪"; NET_OK=1; break
+  fi
+  echo "第 $i 次尝试:还没网,30 秒后重试"
+  sleep 30
+done
+if [ "$NET_OK" -ne 1 ]; then
+  notify "周报跳过" "等了 10 分钟还没网,本周没跑。联网后手动跑 weekly.sh"
+  echo "!!! 10 分钟内没等到网络,中止(没有改动任何文件)"; exit 1
+fi
+
 # --- 1. 采集 ---
 echo; echo "--- 采集 ---"
 "$PY" collect.py
 ERRS=$(grep -c "vid ERR" "$LOG" 2>/dev/null); ERRS=${ERRS:-0}
 echo "抓取失败条数: $ERRS"
+
+# --- 1b. 数据健全性检查 ---
+# 光看 collect.py 的退出码不够:它抓到 0 条也会「成功」退出并存一个空文件。
+# 空数据喂给 build.py 会生成一个空报告、盖掉现有的好页面——必须在 build 之前拦住。
+GOT=$("$PY" -c "import json;print(len(json.load(open('data/$WEEK.json'))['videos']))" 2>/dev/null || echo 0)
+echo "入库视频数: $GOT"
+if [ "$GOT" -lt 10 ]; then
+  notify "周报数据异常" "只抓到 $GOT 条,已中止未覆盖网页。看 logs/latest.log"
+  echo "!!! 只抓到 $GOT 条(正常 30+),中止以免空数据盖掉好页面"; exit 1
+fi
 
 # --- 2. 失败多就补抓(YouTube 反爬会整片丢频道) ---
 if [ "$ERRS" -gt 5 ]; then
