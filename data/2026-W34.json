@@ -1,0 +1,111 @@
+{
+ "generated": "2026-08-24T09:05:07.513691",
+ "cutoff": "20260810",
+ "channels": [
+  {
+   "channel": "華盛証券",
+   "error": "ERROR: [youtube:tab] @vbrokers_app/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x106822d80>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname"
+  },
+  {
+   "channel": "老虎证券",
+   "error": "ERROR: [youtube:tab] @tigerbrokershk/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x106820c20>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servna"
+  },
+  {
+   "channel": "光大证券国际",
+   "error": "ERROR: [youtube:tab] @everbrightsecuritiesintl/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x106866b10>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename "
+  },
+  {
+   "channel": "漲樂全球通 ZL Global",
+   "error": "ERROR: [youtube:tab] @zlglobal_hk/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x1068645c0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname "
+  },
+  {
+   "channel": "致富 CHIEF",
+   "error": "ERROR: [youtube:tab] @ChiefGroup/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x106803650>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname p"
+  },
+  {
+   "channel": "富途牛牛",
+   "error": "ERROR: [youtube:tab] @futuhk/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x106867cb0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provi"
+  },
+  {
+   "channel": "Finance730",
+   "error": "ERROR: [youtube:tab] @Finance730hk/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x10786f8f0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname"
+  },
+  {
+   "channel": "张志云Papa",
+   "error": "ERROR: [youtube:tab] @ChiefPaPa/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x10785b170>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname pr"
+  },
+  {
+   "channel": "小Lin说",
+   "error": "ERROR: [youtube:tab] @xiao_lin_shuo/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x10785af30>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servnam"
+  },
+  {
+   "channel": "AASTOCKS",
+   "error": "ERROR: [youtube:tab] @AASTOCKS_AATV/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x106fec6e0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servnam"
+  },
+  {
+   "channel": "财自FM",
+   "error": "ERROR: [youtube:tab] @fmchoyg/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x10786fad0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname prov"
+  },
+  {
+   "channel": "加密大漂亮",
+   "error": "ERROR: [youtube:tab] @GiantCutie-CH/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x10786f7d0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servnam"
+  },
+  {
+   "channel": "30岁财务自由",
+   "error": "ERROR: [youtube:tab] @30FinancialFreedomByAge30/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109c1ce60>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename"
+  },
+  {
+   "channel": "RainIsHere",
+   "error": "ERROR: [youtube:tab] @RainIsHere/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109c1e210>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname p"
+  },
+  {
+   "channel": "Homily小金-投资有道",
+   "error": "ERROR: [youtube:tab] @homilycharthk1998/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109c6ac00>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor ser"
+  },
+  {
+   "channel": "阿豬 Ah Ju",
+   "error": "ERROR: [youtube:tab] @ahju/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109c1e150>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provide"
+  },
+  {
+   "channel": "東網Money18",
+   "error": "ERROR: [youtube:tab] @Money18-oncc/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109c6b140>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname"
+  },
+  {
+   "channel": "Chart-reader CUP",
+   "error": "ERROR: [youtube:tab] @chartreadercup/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109c6bc50>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servna"
+  },
+  {
+   "channel": "RagaFinance財經台",
+   "error": "ERROR: [youtube:tab] @RagaFinance/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109f31a30>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname "
+  },
+  {
+   "channel": "菠蘿包工作室 BoLoo",
+   "error": "ERROR: [youtube:tab] @BolooFinance/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109f32210>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname"
+  },
+  {
+   "channel": "InvesTalk 講投資",
+   "error": "ERROR: [youtube:tab] @InvesTalk/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109f31580>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname pr"
+  },
+  {
+   "channel": "etnet經濟通",
+   "error": "ERROR: [youtube:tab] @etnethk/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109f33a40>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname prov"
+  },
+  {
+   "channel": "熊麗萍Conita",
+   "error": "ERROR: [youtube:tab] @conita3706/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109c70890>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname p"
+  },
+  {
+   "channel": "All-In Podcast",
+   "error": "ERROR: [youtube:tab] @allin/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109f53440>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provid"
+  },
+  {
+   "channel": "BG2 Pod",
+   "error": "ERROR: [youtube:tab] @BG2Pod/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109f791c0>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provi"
+  },
+  {
+   "channel": "The Compound",
+   "error": "ERROR: [youtube:tab] @TheCompoundNews/videos: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x109c3ec60>: Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servn"
+  }
+ ],
+ "videos": []
+}
