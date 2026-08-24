@@ -18,8 +18,14 @@ Claude——这部分是判断,不是流程。所以每周一你会看到两种�
 ```bash
 cat ~/finance-hits/logs/latest.log     # 看上次跑的完整日志
 bash ~/finance-hits/weekly.sh          # 想立刻手动跑一次
-launchctl list | grep finance-hits     # 确认定时任务还在
+launchctl list | grep finance-hits     # 第二列是上次退出码,0=成功
 ```
+
+**最常见的失败:9:05 时电脑还没联网。** 2026-08-24 就栽过一次——任务准时触发,但笔记本刚
+唤醒 WiFi 没连上,DNS 全解析失败,抓到 0 条还用空数据盖掉了本地网页。现在有两道防线:开跑前
+先探测网络(最多等 10 分钟,每 30 秒重试),以及抓完检查入库条数(少于 10 条直接中止)。
+两种情况都会**干净退出、不碰任何文件**,并弹通知告诉你。看到「周报跳过」的通知,联网后手动
+跑一次 `bash ~/finance-hits/weekly.sh` 就行。
 
 定时任务定义在 `~/Library/LaunchAgents/com.timye.finance-hits.weekly.plist`。电脑周一 9 点
 关机或睡眠的话,launchd 会在下次开机后补跑,不会整周漏掉。要暂停就
