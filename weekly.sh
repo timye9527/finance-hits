@@ -23,11 +23,29 @@ fi
 
 mkdir -p logs
 WEEK=$("$PY" -c "import datetime;i=(datetime.date.today()-datetime.timedelta(days=7)).isocalendar();print(f'{i[0]}-W{i[1]:02d}')")
+
+# --- 幂等闸门 ---
+# 这个脚本被三种事件触发(周一定时 / 开机登录 / 网络变化),一周内会被叫很多次。
+# 用一个「本周已完成」的戳来保证只真跑一次;戳不匹配才继续,所以电脑周一没开、
+# 周三才开机也能自动补跑。WEEK 在每周一零点自然翻页,戳随之失效。
+STAMP="logs/.last_done"
+if [ -f "$STAMP" ] && [ "$(cat "$STAMP" 2>/dev/null)" = "$WEEK" ]; then
+  exit 0                                    # 本周已完成,静默退出(不写日志、不弹通知)
+fi
+
+# --- 防并发 ---
+# 采集要跑 8 分钟,期间网络一抖就可能再次触发。mkdir 是原子操作,抢不到就退出。
+LOCK="logs/.lock"
+if ! mkdir "$LOCK" 2>/dev/null; then
+  exit 0                                    # 已有一个实例在跑
+fi
+trap 'rmdir "$LOCK" 2>/dev/null' EXIT
+
 LOG="logs/${WEEK}.log"
 ln -sf "${WEEK}.log" logs/latest.log
 exec > >(tee "$LOG") 2>&1
 
-echo "=== $(date '+%Y-%m-%d %H:%M:%S') 开始跑 $WEEK ==="
+echo "=== $(date '+%Y-%m-%d %H:%M:%S') 开始跑 $WEEK (触发源: ${TRIGGER:-手动}) ==="
 
 notify() {  # $1=标题 $2=正文
   osascript -e "display notification \"$2\" with title \"$1\"" 2>/dev/null || true
@@ -93,6 +111,9 @@ else
     echo "!!! push 失败"; exit 1
   fi
 fi
+
+# 走到这里说明数据、网页、推送都成功了,盖戳。之后本周再被触发都会静默跳过。
+echo "$WEEK" > "$STAMP"
 
 # --- 5. 提醒补拆解 ---
 HITS=$("$PY" - <<PY 2>/dev/null || echo "?"
