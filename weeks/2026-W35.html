@@ -4,6 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>粤语财经爆款周报 · 2026 年第 35 周</title>
+<meta name="description" content="每周追踪粤语财经频道的真实爆款、投流信号、选题机会与可执行建议。">
+<meta property="og:title" content="粤语财经爆款周报 · 2026 年第 35 周">
+<meta property="og:description" content="真实爆款、投流信号、选题机会与下周行动，一页完成复盘。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://timye9527.github.io/finance-hits/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="粤语财经爆款周报 · 2026 年第 35 周">
+<meta name="twitter:description" content="真实爆款、投流信号、选题机会与下周行动，一页完成复盘。">
+<meta name="twitter:image" content="https://timye9527.github.io/finance-hits/og.png">
 <style>
 :root {
   color-scheme: light dark;
@@ -25,6 +34,7 @@
 * { box-sizing: border-box; margin: 0; }
 body { background: var(--bg); color: var(--ink); font: 15px/1.65 system-ui, -apple-system, "PingFang SC", "Segoe UI", sans-serif; }
 a { color: inherit; }
+a:focus-visible, summary:focus-visible { outline: 3px solid color-mix(in srgb, var(--c-hit) 45%, transparent); outline-offset: 3px; border-radius: 4px; }
 .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 20px 80px; }
 header.top { padding: 34px 0 10px; }
 .kicker { color: var(--c-hit); font-weight: 700; letter-spacing: .12em; font-size: 13px; }
@@ -46,9 +56,45 @@ h1 { font-size: 34px; line-height: 1.25; margin: 6px 0 10px; }
 .wk.cur { border-color: var(--c-hit); box-shadow: inset 0 0 0 1px var(--c-hit); }
 .wk.cur b { color: var(--c-hit); }
 a.wk:hover { border-color: var(--c-hit); transform: translateY(-1px); }
+.jumpbar { position: sticky; top: 0; z-index: 10; margin: 18px -20px 0; padding: 9px 20px;
+            background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(14px);
+            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.jumpnav { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.jumpnav::-webkit-scrollbar { display: none; }
+.jumpnav a { flex: 0 0 auto; text-decoration: none; color: var(--ink2); font-size: 12.5px; font-weight: 650;
+              padding: 5px 10px; border-radius: 999px; }
+.jumpnav a:hover { color: var(--c-hit); background: var(--hit-bg); }
+section { scroll-margin-top: 58px; }
 h2 { font-size: 22px; margin: 54px 0 6px; }
 h2 .cnt { color: var(--muted); font-weight: 400; font-size: 15px; margin-left: 8px; }
 .secdesc { color: var(--ink2); margin-bottom: 18px; max-width: 78ch; font-size: 14px; }
+/* executive brief */
+.brief { scroll-margin-top: 58px; }
+.brief h2 { margin-top: 34px; }
+.eyebrow { color: var(--c-hit); font-size: 12px; font-weight: 800; letter-spacing: .1em; margin-bottom: -48px; }
+.statgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }
+.stat { display: grid; grid-template-columns: auto 1fr; column-gap: 10px; align-items: baseline;
+         background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }
+.stat b { grid-row: 1 / span 2; font-size: 28px; line-height: 1; color: var(--c-hit); font-variant-numeric: tabular-nums; }
+.stat span { font-weight: 750; font-size: 13.5px; line-height: 1.2; }
+.stat small { color: var(--muted); font-size: 11.5px; line-height: 1.3; }
+.stat.paidstat b { color: var(--c-paid); } .stat.growthstat b { color: var(--c-good); font-size: 24px; }
+.verdict { margin-top: 12px; padding: 20px 22px; border-radius: 16px; color: #fff;
+            background: linear-gradient(125deg, #10243e, #1f5799); box-shadow: 0 12px 30px rgba(20,66,116,.16); }
+.verdict .label { display: inline-block; color: #bcd9ff; font-size: 12px; font-weight: 800; letter-spacing: .08em; margin-bottom: 5px; }
+.verdict h3 { font-size: 20px; line-height: 1.4; }
+.verdict p { color: #dceaff; margin-top: 5px; font-size: 14px; max-width: 78ch; }
+/* action board */
+.actiongrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+.action { display: flex; flex-direction: column; min-height: 220px; background: var(--surface); border: 1px solid var(--border);
+           border-top: 3px solid var(--c-hit); border-radius: 14px; padding: 16px 18px; }
+.actionmeta { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; }
+.priority { color: var(--c-hit); background: var(--hit-bg); font-weight: 800; border-radius: 999px; padding: 2px 8px; }
+.action h3 { font-size: 16px; line-height: 1.4; margin: 12px 0 6px; }
+.action p { color: var(--ink2); font-size: 13.5px; }
+.proof { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: auto; padding-top: 14px; font-size: 11.5px; }
+.proof b { color: var(--muted); margin-right: 2px; }
+.proof a { color: var(--c-hit); text-decoration: none; background: var(--hit-bg); border-radius: 5px; padding: 2px 6px; }
 /* tldr */
 .tgrid { display: grid; gap: 12px; margin-top: 16px; }
 .tcard { display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }
@@ -121,8 +167,10 @@ svg { width: 100%; height: auto; display: block; }
 .dot { stroke: var(--surface); stroke-width: 2; }
 .ref { stroke: var(--axisc); stroke-dasharray: 5 4; stroke-width: 1.4; }
 .ref.danger { stroke: var(--c-paid); opacity: .75; }
+.ref.breakout { stroke: var(--c-hit); opacity: .8; stroke-dasharray: 2 4; }
 .reflabel { fill: var(--muted); font-size: 12px; font-weight: 600; }
 .reflabel.danger { fill: var(--c-paid); }
+.reflabel.breakout { fill: var(--c-hit); }
 /* themes & patterns */
 .themes { display: grid; gap: 12px; }
 .theme { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }
@@ -141,6 +189,7 @@ table { border-collapse: collapse; width: 100%; min-width: 880px; font-size: 13.
 th, td { text-align: left; padding: 9px 12px; border-top: 1px solid var(--grid); vertical-align: top; }
 thead th { border-top: none; color: var(--muted); font-size: 12.5px; white-space: nowrap; position: sticky; top: 0; background: var(--surface); }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.paidnum { color: var(--c-paid); font-weight: 700; }
 td.dim { color: var(--muted); white-space: nowrap; }
 td a { text-decoration: none; font-weight: 600; }
 .notecell { color: var(--ink2); font-size: 12.8px; min-width: 300px; }
@@ -153,9 +202,32 @@ td a { text-decoration: none; font-weight: 600; }
 .method code { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 1px 7px; font-size: 12.5px; }
 footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
 @media (max-width: 720px) {
+  .wrap { padding: 16px 14px 64px; }
+  header.top { padding-top: 22px; }
+  .jumpbar { margin-left: -14px; margin-right: -14px; padding-left: 14px; padding-right: 14px; }
+  .statgrid { grid-template-columns: repeat(2, 1fr); }
+  .stat { padding: 12px; } .stat b { font-size: 24px; }
+  .stat.growthstat b { font-size: 20px; }
+  .actiongrid { grid-template-columns: 1fr; }
+  .action { min-height: 0; }
   .card { flex-direction: column; }
   .thumbwrap { width: 100%; flex: none; }
   h1 { font-size: 26px; }
+  h2 { font-size: 20px; scroll-margin-top: 54px; }
+  h2 .cnt { display: block; margin-left: 0; margin-top: 2px; font-size: 13px; }
+  .eyebrow { margin-bottom: -46px; }
+  .tcard { padding: 14px; gap: 10px; }
+  .tnum { flex-basis: 26px; width: 26px; height: 26px; }
+  .verdict { padding: 17px; } .verdict h3 { font-size: 17px; }
+  .chartbox { overflow-x: auto; }
+  .chartbox svg { min-width: 680px; }
+}
+@media print {
+  :root { color-scheme: light; --bg:#fff; --surface:#fff; --ink:#000; --ink2:#333; --muted:#666; }
+  .wrap { max-width: none; padding: 0; } .weeks, .jumpbar { display: none; }
+  header.top { padding-top: 0; } section, article, .tcard, .stat, .theme, .pat { break-inside: avoid; }
+  .verdict { background: #eef5ff; color: #10243e; box-shadow: none; }
+  .verdict .label, .verdict p { color: #254e7f; } a { text-decoration: none; }
 }
 </style>
 </head>
@@ -168,25 +240,46 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
   <p class="sub">统计窗口 2026.08.24 – 08.30(上周 2026.08.17 – 08.23 做对照)。榜单以粤语频道为主,普通话账号打标对照,英文 Podcast 顶流单列为选题预警雷达。</p>
   <div class="badges">
     <span class="badge">爆款标准:播放 ≥ <b>3w</b> · 评论 ≥ <b>20</b> · 点赞 ≥ <b>1k</b></span>
-    <span class="badge">投流红线:赞/千播 &lt; <b>8</b></span>
+    <span class="badge">基础投流红线:赞/千播 &lt; <b>8</b></span>
     <span class="badge">监测频道 <b>26</b> 个 · 入库视频 <b>50</b> 条</span>
     <span class="badge">数据采集 <b>2026.08.31</b></span>
   </div>
-  <nav class="weeks"><span class="wklab">期数</span><span class="wk cur"><b>35 周<span class="wknew">最新</span></b><span class="wkr">08.24 – 08.30</span><span class="wkh">4 条爆款</span></span><a class="wk" href="2026-W34.html"><b>34 周</b><span class="wkr">08.17 – 08.23</span><span class="wkh">4 条爆款</span></a><a class="wk" href="2026-W33.html"><b>33 周</b><span class="wkr">08.10 – 08.16</span><span class="wkh">3 条爆款</span></a><a class="wk" href="2026-W32.html"><b>32 周</b><span class="wkr">08.03 – 08.09</span><span class="wkh">2 条爆款</span></a><a class="wk" href="2026-W31.html"><b>31 周</b><span class="wkr">07.27 – 08.02</span><span class="wkh">7 条爆款</span></a><a class="wk" href="2026-W30.html"><b>30 周</b><span class="wkr">07.20 – 07.26</span><span class="wkh">4 条爆款</span></a><a class="wk" href="2026-W29.html"><b>29 周</b><span class="wkr">07.13 – 07.19</span><span class="wkh">4 条爆款</span></a></nav>
+  <nav class="weeks"><span class="wklab">期数</span><a class="wk" href="2026-W36.html"><b>36 周<span class="wknew">最新</span></b><span class="wkr">08.31 – 09.06</span><span class="wkh">5 条爆款</span></a><span class="wk cur"><b>35 周</b><span class="wkr">08.24 – 08.30</span><span class="wkh">4 条爆款</span></span><a class="wk" href="2026-W34.html"><b>34 周</b><span class="wkr">08.17 – 08.23</span><span class="wkh">4 条爆款</span></a><a class="wk" href="2026-W33.html"><b>33 周</b><span class="wkr">08.10 – 08.16</span><span class="wkh">3 条爆款</span></a><a class="wk" href="2026-W32.html"><b>32 周</b><span class="wkr">08.03 – 08.09</span><span class="wkh">2 条爆款</span></a><a class="wk" href="2026-W31.html"><b>31 周</b><span class="wkr">07.27 – 08.02</span><span class="wkh">7 条爆款</span></a><a class="wk" href="2026-W30.html"><b>30 周</b><span class="wkr">07.20 – 07.26</span><span class="wkh">4 条爆款</span></a><a class="wk" href="2026-W29.html"><b>29 周</b><span class="wkr">07.13 – 07.19</span><span class="wkh">4 条爆款</span></a></nav>
 </header>
 
-<section>
-  <h2>本周结论 TL;DR</h2>
-  <div class="tgrid"><div class="tcard"><div class="tnum">1</div><div><h4>《名人說》一次访谈拆两期,而「讲人生」那期比「讲行情」那期高 6 倍</h4><p>郭思治 EP20《输过成副身家!我唔骗人唔害人》26.16w,EP19《唔好只睇指数做人》4.28w。这**不是同一个人做了两次、第二次做得更好**——两期的简介里都写着「拍摄日期:2026 年 8 月 4 号」,是同一场访谈剪成两期。这是《名人說》的固定模式:一次到访,一期偏理念与人生经历、一期偏当下观点与策略。雷鼎鸣 EP17/EP18 也是这么拆的。真正的信号是**同一场素材、同一个人,偏人生的那期打得远远更开**。</p></div></div><div class="tcard"><div class="tnum">2</div><div><h4>两组配对指向同一条规律:让嘉宾讲他擅长的,别让他讲他不擅长的</h4><p>雷鼎鸣 EP17(经济学家为什么不炒楼、香港楼市见底了吗——本地议题 + 生活理念)3.24w,EP18(英伟达、台积电被低估、美股降息——不是他的主场)2.18w。郭思治 EP19(恒指观点为主)4.28w,EP20(半世纪人生 + 人格 + 独门心法 + 灵异经历)26.16w。**两位嘉宾、两组配对,结论一致:偏人生经历和本地议题的那期赢,偏美股行情的那期扑街。** 对港股背景的老前辈尤其如此——美股本来就没什么可讲的,硬讲反而暴露短板;人生经历是他们真正稀缺、且已被反复验证的富矿。</p></div></div><div class="tcard"><div class="tnum">3</div><div><h4>小Lin说 148.7w 再破纪录,但赞/千播跌到 8.6 的历史新低</h4><p>《日元创 40 年新低,美国突然出手》148.65w,又一次刷新纪录。但赞/千播只有 8.6——对比它自己:特朗普收入 22.4、王健林 13.1、这条 8.6。**播放一路新高,互动率一路新低**,这是破圈的代价:内容被推给越来越多的泛人群,他们看完就走。787 条评论对 148 万播放也偏低。值得记下来:当一条内容开始吃到核心圈层以外的流量,单看播放会高估它的实际影响力。</p></div></div><div class="tcard"><div class="tnum">4</div><div><h4>Finance730 六期以来首次出现多条投流,而且有一条是招牌栏目</h4><p>本周它有 3 条落进投流区:第三次世界大战 15.72w(赞/千播 6.4)、时代巨变 7.60w(7.8)、新加坡派钱 4.92w(5.7)。参照它自然内容的区间是 13–42,这三条明显不一样。最值得注意的是《时代巨变》——这是《得嫻讲经》出品,而这个栏目此前是评论收割机(721、725、291 条),这次 7.6w 播放只换来 53 条评论。**同一个栏目,自然跑和买量跑,评论密度差一个量级。**</p></div></div><div class="tcard"><div class="tnum">5</div><div><h4>AI 估值是本周中英共同主线,而且英文区在讲末日</h4><p>英伟达财报周点燃两边:All-In《Nvidia&#x27;s Historic Quarter》47.62w、The Compound《AI 天启四骑士》13.55w(1200 条评论)、张志云Papa《2 位投资大师罕见同声:美股最危险时刻》4.17w、Finance730《NVIDIA 2029 财年料一万亿营收》6.39w。差异很清楚:**英文区在系统地讲「哪四件事会让 AI 叙事崩掉」,粤语区还在讲「营收多震撼」。** 泡沫题的下一层(崩了会怎样、谁先死)粤语区仍然空着。</p></div></div><div class="tcard"><div class="tnum">6</div><div><h4>老虎证券赞/千播 1.3,券商投流又刷新下限</h4><p>《美股高位点拣股?NVIDIA、MU 点样拣?》6.60w 播放只有 **83 个赞**,赞/千播 1.3;另一条温杰讲港股部署 4.54w / 133 赞 / 2.9。加上富途银债那条 5.08w / 5.3,本周券商号四条高播放内容全在投流区。这已经是连续第六期同样的结论了——**券商号不缺钱也不缺选题,缺的是有人愿意为它点一下赞。**</p></div></div><div class="tcard"><div class="tnum">7</div><div><h4>熊丽萍首次破 3w(4.16w),但赞/千播同步从 73 掉到 43.7</h4><p>连续六期卡在 3w 线下方(最近两次差 71 和 742 个播放),这周终于以 4.16w 冲过去。代价和小Lin说是同一个:赞/千播从长期的 61–77 掉到 43.7。**这不是内容变差,是观众结构变了。** 对这类人设号,破圈和高互动本来就是一对矛盾,该盯的还是赞/千播的长期趋势线,而不是某一周的排名。</p></div></div></div>
+<div class="jumpbar"><nav class="jumpnav" aria-label="页面快捷导航">
+  <a href="#brief">30 秒复盘</a><a href="#hits">爆款证据</a><a href="#topics">选题与标题</a><a href="#radar">趋势雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
+</nav></div>
+
+<section id="brief" class="brief">
+  <div class="eyebrow">EXECUTIVE BRIEF</div>
+  <h2>30 秒复盘</h2>
+  <div class="statgrid">
+  <div class="stat"><b>4</b><span>自然爆款</span><small>三项全达标</small></div>
+  <div class="stat paidstat"><b>6</b><span>疑似投流</span><small>本周新增内容</small></div>
+  <div class="stat"><b>6</b><span>可测试样本</span><small>中腰部 + 差一口气</small></div>
+  <div class="stat growthstat"><b>+5.3w</b><span>长尾冠军</span><small>Finance730 单条周增量</small></div></div>
+  <div class="verdict">
+    <span class="label">本周判断</span>
+    <h3>本周录得 4 条自然爆款、6 条疑似投流；先看真实增长，再看表面播放。</h3>
+    <p>下周优先从已经被数据验证、但粤语区仍未充分供给的角度里选一个做小成本测试。</p>
+  </div>
 </section>
 
-<section>
+
+
+<section id="signals">
+  <h2>关键变化<span class="cnt">支撑本周判断的 6 条信号</span></h2>
+  <div class="tgrid"><div class="tcard"><div class="tnum">1</div><div><h4>《名人說》一次访谈拆两期,而「讲人生」那期比「讲行情」那期高 6 倍</h4><p>郭思治 EP20《输过成副身家!我唔骗人唔害人》26.16w,EP19《唔好只睇指数做人》4.28w。这<strong>不是同一个人做了两次、第二次做得更好</strong>——两期的简介里都写着「拍摄日期:2026 年 8 月 4 号」,是同一场访谈剪成两期。这是《名人說》的固定模式:一次到访,一期偏理念与人生经历、一期偏当下观点与策略。雷鼎鸣 EP17/EP18 也是这么拆的。真正的信号是<strong>同一场素材、同一个人,偏人生的那期打得远远更开</strong>。</p></div></div><div class="tcard"><div class="tnum">2</div><div><h4>两组配对指向同一条规律:让嘉宾讲他擅长的,别让他讲他不擅长的</h4><p>雷鼎鸣 EP17(经济学家为什么不炒楼、香港楼市见底了吗——本地议题 + 生活理念)3.24w,EP18(英伟达、台积电被低估、美股降息——不是他的主场)2.18w。郭思治 EP19(恒指观点为主)4.28w,EP20(半世纪人生 + 人格 + 独门心法 + 灵异经历)26.16w。<strong>两位嘉宾、两组配对,结论一致:偏人生经历和本地议题的那期赢,偏美股行情的那期扑街。</strong> 对港股背景的老前辈尤其如此——美股本来就没什么可讲的,硬讲反而暴露短板;人生经历是他们真正稀缺、且已被反复验证的富矿。</p></div></div><div class="tcard"><div class="tnum">3</div><div><h4>小Lin说 148.7w 再破纪录,但赞/千播跌到 8.6 的历史新低</h4><p>《日元创 40 年新低,美国突然出手》148.65w,又一次刷新纪录。但赞/千播只有 8.6——对比它自己:特朗普收入 22.4、王健林 13.1、这条 8.6。<strong>播放一路新高,互动率一路新低</strong>,这是破圈的代价:内容被推给越来越多的泛人群,他们看完就走。787 条评论对 148 万播放也偏低。值得记下来:当一条内容开始吃到核心圈层以外的流量,单看播放会高估它的实际影响力。</p></div></div><div class="tcard"><div class="tnum">4</div><div><h4>Finance730 六期以来首次出现多条投流,而且有一条是招牌栏目</h4><p>本周它有 3 条落进投流区:第三次世界大战 15.72w(赞/千播 6.4)、时代巨变 7.60w(7.8)、新加坡派钱 4.92w(5.7)。参照它自然内容的区间是 13–42,这三条明显不一样。最值得注意的是《时代巨变》——这是《得嫻讲经》出品,而这个栏目此前是评论收割机(721、725、291 条),这次 7.6w 播放只换来 53 条评论。<strong>同一个栏目,自然跑和买量跑,评论密度差一个量级。</strong></p></div></div><div class="tcard"><div class="tnum">5</div><div><h4>AI 估值是本周中英共同主线,而且英文区在讲末日</h4><p>英伟达财报周点燃两边:All-In《Nvidia&#x27;s Historic Quarter》47.62w、The Compound《AI 天启四骑士》13.55w(1200 条评论)、张志云Papa《2 位投资大师罕见同声:美股最危险时刻》4.17w、Finance730《NVIDIA 2029 财年料一万亿营收》6.39w。差异很清楚:<strong>英文区在系统地讲「哪四件事会让 AI 叙事崩掉」,粤语区还在讲「营收多震撼」。</strong> 泡沫题的下一层(崩了会怎样、谁先死)粤语区仍然空着。</p></div></div><div class="tcard"><div class="tnum">6</div><div><h4>老虎证券赞/千播 1.3,券商投流又刷新下限</h4><p>《美股高位点拣股?NVIDIA、MU 点样拣?》6.60w 播放只有 <strong>83 个赞</strong>,赞/千播 1.3;另一条温杰讲港股部署 4.54w / 133 赞 / 2.9。加上富途银债那条 5.08w / 5.3,本周券商号四条高播放内容全在投流区。这已经是连续第六期同样的结论了——<strong>券商号不缺钱也不缺选题,缺的是有人愿意为它点一下赞。</strong></p></div></div><div class="tcard"><div class="tnum">7</div><div><h4>熊丽萍首次破 3w(4.16w),但赞/千播同步从 73 掉到 43.7</h4><p>连续六期卡在 3w 线下方(最近两次差 71 和 742 个播放),这周终于以 4.16w 冲过去。代价和小Lin说是同一个:赞/千播从长期的 61–77 掉到 43.7。<strong>这不是内容变差,是观众结构变了。</strong> 对这类人设号,破圈和高互动本来就是一对矛盾,该盯的还是赞/千播的长期趋势线,而不是某一周的排名。</p></div></div></div>
+</section>
+
+<section id="hits">
   <h2>本周爆款榜<span class="cnt">2026.08.24 – 08.30 · 三项全达标 4 条</span></h2>
   <p class="secdesc">同时满足播放 ≥3w、评论 ≥20、点赞 ≥1k 的中文内容,按播放量排序。</p>
   <div class="cards">
     <article class="card hero st-hit">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=8BN8p5xDkzw" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/8BN8p5xDkzw/hq720.jpg" alt="" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/8BN8p5xDkzw/mqdefault.jpg'">
+        <img loading="lazy" src="https://i.ytimg.com/vi/8BN8p5xDkzw/hq720.jpg" alt="日元创40年新低，美国突然出手，怎么回事儿？" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/8BN8p5xDkzw/mqdefault.jpg'">
         <span class="rank">1</span>
       </a>
       <div class="cbody">
@@ -194,17 +287,17 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
           <span class="chip hit">爆款</span><span class="chip lang">普通话</span>
           <span class="chip ghost">小Lin说</span>
           <span class="chip ghost">8.28</span>
-          
+
         </div>
         <h3><a href="https://www.youtube.com/watch?v=8BN8p5xDkzw" target="_blank" rel="noopener">日元创40年新低，美国突然出手，怎么回事儿？</a></h3>
         <div class="metrics"><span class="m"><b>148.7w</b> 播放</span><span class="m"><b>1.3w</b> 赞</span><span class="m"><b>787</b> 评论</span><span class="m lpk"><b>8.6</b> 赞/千播</span></div>
         <div class="tags"><span class="tag">破纪录</span><span class="tag">破圈代价</span><span class="tag">汇率</span></div>
-        <p class="note">148.65w,再破自己纪录。但赞/千播 8.6 是它的历史新低(特朗普 22.4 → 王健林 13.1 → 这条 8.6),787 条评论对 148 万播放也明显偏低。日元创 40 年新低是硬新闻,标题《怎么回事儿?》延续它一贯的白话提问风格。**播放新高 + 互动新低,说明流量已经吃到核心圈层之外**——这类数据要小心解读,别把泛人群的划过当成影响力。</p>
+        <p class="note">148.65w,再破自己纪录。但赞/千播 8.6 是它的历史新低(特朗普 22.4 → 王健林 13.1 → 这条 8.6),787 条评论对 148 万播放也明显偏低。日元创 40 年新低是硬新闻,标题《怎么回事儿?》延续它一贯的白话提问风格。<strong>播放新高 + 互动新低,说明流量已经吃到核心圈层之外</strong>——这类数据要小心解读,别把泛人群的划过当成影响力。</p>
       </div>
     </article>
     <article class="card  st-hit">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=0XRGVNNcVik" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/0XRGVNNcVik/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/0XRGVNNcVik/mqdefault.jpg" alt="【名人說】郭思治：輸過成副身家！｜入行半世紀：我唔騙人，唔害人！｜自研「波幅睇市法」｜靈異奇遇：半夜見黑影飄入屋？｜EP20" >
         <span class="rank">2</span>
       </a>
       <div class="cbody">
@@ -212,17 +305,17 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
           <span class="chip hit">爆款</span>
           <span class="chip ghost">光大证券国际</span>
           <span class="chip ghost">8.26</span>
-          
+
         </div>
         <h3><a href="https://www.youtube.com/watch?v=0XRGVNNcVik" target="_blank" rel="noopener">【名人說】郭思治：輸過成副身家！｜入行半世紀：我唔騙人，唔害人！｜自研「波幅睇市法」｜靈異奇遇：半夜見黑影飄入屋？｜EP20</a></h3>
         <div class="metrics"><span class="m"><b>26.2w</b> 播放</span><span class="m"><b>2,309</b> 赞</span><span class="m"><b>128</b> 评论</span><span class="m lpk"><b>8.8</b> 赞/千播</span></div>
         <div class="tags"><span class="tag">人物故事</span><span class="tag">一访两期</span><span class="tag">破纪录</span></div>
-        <p class="note">26.16w、赞/千播 8.8、128 条评论。关键事实先说清:它和 EP19(4.28w)是**同一场访谈的两期**——两条简介都写着「拍摄日期:2026 年 8 月 4 号」。所以这不是「第二次做得更好」,是同一批素材按内容属性拆开后,偏人生的这期跑赢偏行情的那期 6 倍。这期里装的是:「输到只剩万几蚊」的惨痛、「我唔骗人唔害人」的人格宣言、5% 黄灯 10% 止损的独门心法、给电影《金手指》当顾问的花絮、半夜见黑影飘入屋的灵异经历。赞/千播 8.8 偏低,可能有投放助推。</p>
+        <p class="note">26.16w、赞/千播 8.8、128 条评论。关键事实先说清:它和 EP19(4.28w)是<strong>同一场访谈的两期</strong>——两条简介都写着「拍摄日期:2026 年 8 月 4 号」。所以这不是「第二次做得更好」,是同一批素材按内容属性拆开后,偏人生的这期跑赢偏行情的那期 6 倍。这期里装的是:「输到只剩万几蚊」的惨痛、「我唔骗人唔害人」的人格宣言、5% 黄灯 10% 止损的独门心法、给电影《金手指》当顾问的花絮、半夜见黑影飘入屋的灵异经历。赞/千播 8.8 偏低,可能有投放助推。</p>
       </div>
     </article>
     <article class="card  st-hit">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=ROsTl25vSy4" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/ROsTl25vSy4/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/ROsTl25vSy4/mqdefault.jpg" alt="特朗普推右走左，解放軍挺進中東，睇吓以色列惡得幾耐！丨經濟戰丨二級制裁 丨特朗普丨霍爾木茲海峽丨中東三國演義丨遜尼三小強丨沙中線丨新冷戰丨中美競合丨解放軍丨油價丨通脹丨楨觀天下丨許楨" >
         <span class="rank">3</span>
       </a>
       <div class="cbody">
@@ -230,7 +323,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
           <span class="chip hit">爆款</span>
           <span class="chip ghost">Finance730</span>
           <span class="chip ghost">8.28</span>
-          
+
         </div>
         <h3><a href="https://www.youtube.com/watch?v=ROsTl25vSy4" target="_blank" rel="noopener">特朗普推右走左，解放軍挺進中東，睇吓以色列惡得幾耐！丨經濟戰丨二級制裁 丨特朗普丨霍爾木茲海峽丨中東三國演義丨遜尼三小強丨沙中線丨新冷戰丨中美競合丨解放軍丨油價丨通脹丨楨觀天下丨許楨</a></h3>
         <div class="metrics"><span class="m"><b>13.8w</b> 播放</span><span class="m"><b>2,172</b> 赞</span><span class="m"><b>33</b> 评论</span><span class="m lpk"><b>15.7</b> 赞/千播</span></div>
@@ -240,7 +333,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
     </article>
     <article class="card  st-hit">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=t5BbioEVV5w" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/t5BbioEVV5w/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/t5BbioEVV5w/mqdefault.jpg" alt="熊麗萍—股動萍台：九月份港股能否突破？業績後公司動作可跟炒？阿里/騰訊/建滔/建滔積層板;中人壽上半年業績優於同業 (29/8/2026)" >
         <span class="rank">4</span>
       </a>
       <div class="cbody">
@@ -248,17 +341,17 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
           <span class="chip hit">爆款</span>
           <span class="chip ghost">熊麗萍Conita</span>
           <span class="chip ghost">8.29</span>
-          
+
         </div>
         <h3><a href="https://www.youtube.com/watch?v=t5BbioEVV5w" target="_blank" rel="noopener">熊麗萍—股動萍台：九月份港股能否突破？業績後公司動作可跟炒？阿里/騰訊/建滔/建滔積層板;中人壽上半年業績優於同業 (29/8/2026)</a></h3>
         <div class="metrics"><span class="m"><b>4.2w</b> 播放</span><span class="m"><b>1,817</b> 赞</span><span class="m"><b>76</b> 评论</span><span class="m lpk"><b>43.7</b> 赞/千播</span></div>
         <div class="tags"><span class="tag">盘后点评</span><span class="tag">首次破3w</span><span class="tag">破圈代价</span></div>
-        <p class="note">4.16w,连续六期卡在 3w 线下方后首次冲过。但赞/千播从长期的 61–77 掉到 43.7,和小Lin说是同一个规律:**破圈必然稀释互动浓度**。对人设型账号来说这不是坏事,只是要接受两个指标不可能同时创新高。</p>
+        <p class="note">4.16w,连续六期卡在 3w 线下方后首次冲过。但赞/千播从长期的 61–77 掉到 43.7,和小Lin说是同一个规律:<strong>破圈必然稀释互动浓度</strong>。对人设型账号来说这不是坏事,只是要接受两个指标不可能同时创新高。</p>
       </div>
     </article></div>
 </section>
 
-<section>
+<section id="topics">
   <h2>中腰部选题池<span class="cnt">2026.08.24 – 08.30 · 2 条</span></h2>
   <p class="secdesc">播放 ≥1.5w、点赞 ≥500、评论 ≥10 —— 达不到爆款量级,但数据真实、题材成立。这一层看的不是「怎么打爆」,而是<b>「大家在做什么题」</b>:可复用的选题、可借的角度、可测试的方向都在这里。</p>
   <div class="rows">
@@ -423,7 +516,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
   <div class="cards">
     <article class="card  st-near">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=J75cVjiJUqc" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/J75cVjiJUqc/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/J75cVjiJUqc/mqdefault.jpg" alt="貝森特救債市招數全失效？規模只得0.1%根本係杯水車薪！王榮昆James、李浩德拆解財政部力挽狂瀾的殘酷現實！｜股壇C見（Part 1/2）｜20260828" >
         
       </a>
       <div class="cbody">
@@ -441,7 +534,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
     </article>
     <article class="card  st-near">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=H0v76YAPXsw" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/H0v76YAPXsw/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/H0v76YAPXsw/mqdefault.jpg" alt="【突發】2位投資大師罕見同聲：美股最危險時刻來了？AI估值太貴，美元資產正在被重新定價… #黃金 #比特幣 #美債" >
         
       </a>
       <div class="cbody">
@@ -459,7 +552,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
     </article>
     <article class="card  st-near">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=Uk1B_qeQA08" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/Uk1B_qeQA08/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/Uk1B_qeQA08/mqdefault.jpg" alt="【每週HOT Talk🔥】9月恒指迎轉機？阿里急挫！NVDA繼續爆升？｜BTC破8萬！美債警報｜阿里巴巴 英偉達 金價 比特幣 中國神華 華潤置地｜EP67" >
         
       </a>
       <div class="cbody">
@@ -472,12 +565,12 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
         <h3><a href="https://www.youtube.com/watch?v=Uk1B_qeQA08" target="_blank" rel="noopener">【每週HOT Talk🔥】9月恒指迎轉機？阿里急挫！NVDA繼續爆升？｜BTC破8萬！美債警報｜阿里巴巴 英偉達 金價 比特幣 中國神華 華潤置地｜EP67</a></h3>
         <div class="metrics"><span class="m"><b>2.9w</b> 播放</span><span class="m"><b>643</b> 赞</span><span class="m"><b>28</b> 评论</span><span class="m lpk"><b>22.5</b> 赞/千播</span></div>
         <div class="tags"><span class="tag">每周栏目</span><span class="tag">高互动</span></div>
-        <p class="note">2.86w、赞/千播 22.5,光大的常规大盘复盘。和同期郭思治那条(26.16w)放在一起看很清楚:**同一个号,一期讲人 26w、一期讲盘 2.9w。** 但要注意这不是同一场素材的对比——郭思治那条是《名人說》访谈,这条是每周固定的行情栏目,两者定位本来就不同。真正的对照在 EP19/EP20 之间。</p>
+        <p class="note">2.86w、赞/千播 22.5,光大的常规大盘复盘。和同期郭思治那条(26.16w)放在一起看很清楚:<strong>同一个号,一期讲人 26w、一期讲盘 2.9w。</strong> 但要注意这不是同一场素材的对比——郭思治那条是《名人說》访谈,这条是每周固定的行情栏目,两者定位本来就不同。真正的对照在 EP19/EP20 之间。</p>
       </div>
     </article>
     <article class="card  st-near">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=NTTwEbHmme0" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/NTTwEbHmme0/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/NTTwEbHmme0/mqdefault.jpg" alt="AI帶挈賺到瀉！建滔張國榮豪言未來兩三年唔愁生意 論盡港股現時超抵買？" >
         
       </a>
       <div class="cbody">
@@ -495,9 +588,9 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
     </article></div>
 </section>
 
-<section>
+<section id="radar">
   <h2>播放 × 互动:一张图识别投流</h2>
-  <p class="secdesc">每个点是一条近两周播放 ≥2w 的中文视频。横轴播放量(对数),纵轴赞/千播。右下角=高播放低互动,基本可判定买量;右上角才是真爆款。悬停查看明细。</p>
+  <p class="secdesc">每个点是一条近两周播放 ≥2w 的中文视频。横轴播放量(对数),纵轴赞/千播。右下角=高播放低互动,基本可判定买量;5w 观察线用于提醒:内容进入泛人群推荐池后,互动浓度下滑不一定代表内容变差。悬停查看明细。</p>
   <div class="chartbox">
     <div class="legend">
       <span><i style="background:var(--c-hit)"></i>爆款</span>
@@ -510,6 +603,8 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <line x1="64.0" y1="18" x2="64.0" y2="384" class="grid"/><text x="64.0" y="402" class="tick" text-anchor="middle">2w</text><line x1="134.73418223672803" y1="18" x2="134.73418223672803" y2="384" class="grid"/><text x="134.73418223672803" y="402" class="tick" text-anchor="middle">3w</text><line x1="223.84871278472963" y1="18" x2="223.84871278472963" y2="384" class="grid"/><text x="223.84871278472963" y="402" class="tick" text-anchor="middle">5w</text><line x1="344.76959600292764" y1="18" x2="344.76959600292764" y2="384" class="grid"/><text x="344.76959600292764" y="402" class="tick" text-anchor="middle">10w</text><line x1="465.69047922112566" y1="18" x2="465.69047922112566" y2="384" class="grid"/><text x="465.69047922112566" y="402" class="tick" text-anchor="middle">20w</text><line x1="625.5391920058553" y1="18" x2="625.5391920058553" y2="384" class="grid"/><text x="625.5391920058553" y="402" class="tick" text-anchor="middle">50w</text><line x1="64" y1="384.0" x2="840" y2="384.0" class="grid"/><text x="56" y="388.0" class="tick" text-anchor="end">0</text><line x1="64" y1="287.03094531581183" x2="840" y2="287.03094531581183" class="grid"/><text x="56" y="291.03094531581183" class="tick" text-anchor="end">20</text><line x1="64" y1="190.0618906316236" x2="840" y2="190.0618906316236" class="grid"/><text x="56" y="194.0618906316236" class="tick" text-anchor="end">40</text><line x1="64" y1="93.09283594743539" x2="840" y2="93.09283594743539" class="grid"/><text x="56" y="97.09283594743539" class="tick" text-anchor="end">60</text>
       <line x1="134.73418223672803" y1="18" x2="134.73418223672803" y2="384" class="ref"/>
       <text x="140.73418223672803" y="32" class="reflabel">爆款播放门槛 3w</text>
+      <line x1="223.84871278472963" y1="18" x2="223.84871278472963" y2="384" class="ref breakout"/>
+      <text x="229.84871278472963" y="49" class="reflabel breakout">破圈观察线 5w</text>
       <line x1="64" y1="345.2123781263247" x2="840" y2="345.2123781263247" class="ref danger"/>
       <text x="836" y="339.2123781263247" class="reflabel danger" text-anchor="end">赞/千播 &lt; 8 → 投流红线</text>
       <line x1="64" y1="384" x2="840" y2="384" class="axis"/>
@@ -530,7 +625,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
         <a href="https://www.youtube.com/watch?v=IzrP9L_GkYg" target="_blank" rel="noopener">第三次世界大戰一觸即發？美急派CIA局長赴俄警告勿打北約 英國成下個目標？ 紐時：現時與二戰驚人相似</a>
         <span class="rmeta">Finance730 · 8.28 · 15.7w 播放 · 1,007 赞 · 134 评论 · 赞/千播 6.4</span>
         
-        <p class="note sm">15.72w 但赞/千播只有 6.4,落进投流区。8 分钟懒人包讲第三次世界大战风险(CIA 局长赴俄、纽时称与二战惊人相似)。同期它的自然内容《解放军挺进中东》13.81w 赞/千播 15.7——**两条都是地缘题、播放接近,互动率差 2.5 倍**,这个对照本身就是投流的证据。</p>
+        <p class="note sm">15.72w 但赞/千播只有 6.4,落进投流区。8 分钟懒人包讲第三次世界大战风险(CIA 局长赴俄、纽时称与二战惊人相似)。同期它的自然内容《解放军挺进中东》13.81w 赞/千播 15.7——<strong>两条都是地缘题、播放接近,互动率差 2.5 倍</strong>,这个对照本身就是投流的证据。</p>
       </div>
     </div>
     <div class="row st-paid">
@@ -539,7 +634,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
         <a href="https://www.youtube.com/watch?v=sh_Q-pjawyo" target="_blank" rel="noopener">時代巨變！香港舊成功方程式已顛覆性改變？探討急速變化下社會背後深層次焦慮︱嘉賓：李立峯︱阮穎嫻︱得嫻講經 Vera&#x27;s talk︱#podcast #範式轉移</a>
         <span class="rmeta">Finance730 · 8.27 · 7.6w 播放 · 590 赞 · 53 评论 · 赞/千播 7.8</span>
         
-        <p class="note sm">本期最反常的一条。《得嫻讲经》此前三次出手评论数是 721、725、291,这次 7.60w 播放只有 53 条评论,赞/千播 7.8 落进投流区。74 分钟长播客请中大李立峯教授讲「香港旧成功方程式已被颠覆」,选题和嘉宾都对——**问题是买来的流量不会评论**。同一个栏目自然跑和买量跑,评论密度差一个量级,这条是最好的对照样本。</p>
+        <p class="note sm">本期最反常的一条。《得嫻讲经》此前三次出手评论数是 721、725、291,这次 7.60w 播放只有 53 条评论,赞/千播 7.8 落进投流区。74 分钟长播客请中大李立峯教授讲「香港旧成功方程式已被颠覆」,选题和嘉宾都对——<strong>问题是买来的流量不会评论</strong>。同一个栏目自然跑和买量跑,评论密度差一个量级,这条是最好的对照样本。</p>
       </div>
     </div>
     <div class="row st-paid">
@@ -548,7 +643,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
         <a href="https://www.youtube.com/watch?v=5YvDWE1-c2U" target="_blank" rel="noopener">【美股高位點揀股？】NVIDIA、MU點樣揀？「三不買」教你避開太貴太急股！</a>
         <span class="rmeta">老虎证券 · 8.27 · 6.6w 播放 · 83 赞 · 10 评论 · 赞/千播 1.3</span>
         
-        <p class="note sm">6.60w 播放 / **83 个赞** / 10 条评论,赞/千播 1.3,是本周最极端的一条。内容其实有方法论(「三不买」教你避开太贵太急的股),但 6.6 万人看过只有 83 个人点赞。券商号连续六期同一个结论:不缺钱不缺选题,缺的是有人愿意为它点赞。</p>
+        <p class="note sm">6.60w 播放 / <strong>83 个赞</strong> / 10 条评论,赞/千播 1.3,是本周最极端的一条。内容其实有方法论(「三不买」教你避开太贵太急的股),但 6.6 万人看过只有 83 个人点赞。券商号连续六期同一个结论:不缺钱不缺选题,缺的是有人愿意为它点赞。</p>
       </div>
     </div>
     <div class="row st-paid">
@@ -587,19 +682,19 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
     <div class="thead"><h4>访谈节目的差异化:一访两期,人生那期赢行情那期</h4>
       <span class="chip ghost">双周 2 条</span>
       <span class="chip emo">共情 + 猎奇</span></div>
-    <p>《名人說》的固定模式是一次到访剪成两期,一期偏理念人生、一期偏当下观点。郭思治 EP20(人生)26.16w vs EP19(恒指观点)4.28w,6.1 倍;雷鼎鸣 EP17(不炒楼/香港楼市)3.24w vs EP18(英伟达/台积电/美股)2.18w,同样是本地与理念那期赢。**两组配对同一个结论:让嘉宾讲他真正稀缺的东西。** 港股背景的老前辈讲美股本就没什么可讲,硬讲反而暴露短板;而半世纪的行业人生是别人复制不了的。访谈类内容的竞争已经不在行情解读上了。</p>
+    <p>《名人說》的固定模式是一次到访剪成两期,一期偏理念人生、一期偏当下观点。郭思治 EP20(人生)26.16w vs EP19(恒指观点)4.28w,6.1 倍;雷鼎鸣 EP17(不炒楼/香港楼市)3.24w vs EP18(英伟达/台积电/美股)2.18w,同样是本地与理念那期赢。<strong>两组配对同一个结论:让嘉宾讲他真正稀缺的东西。</strong> 港股背景的老前辈讲美股本就没什么可讲,硬讲反而暴露短板;而半世纪的行业人生是别人复制不了的。访谈类内容的竞争已经不在行情解读上了。</p>
   </div>
   <div class="theme">
     <div class="thead"><h4>AI 估值与泡沫(中英同周,英文区已在讲末日)</h4>
       <span class="chip ghost">双周 4 条</span>
       <span class="chip emo">亢奋转警惕</span></div>
-    <p>英伟达财报周点燃双语区。但处理层次差一档:英文区做《AI 天启四骑士》(把崩盘拆成四个具体因素,1200 条评论),粤语区做「2029 财年一万亿营收震撼华尔街」。**泡沫题的下一层——崩了会怎样、谁先死——粤语区空了六期。**</p>
+    <p>英伟达财报周点燃双语区。但处理层次差一档:英文区做《AI 天启四骑士》(把崩盘拆成四个具体因素,1200 条评论),粤语区做「2029 财年一万亿营收震撼华尔街」。<strong>泡沫题的下一层——崩了会怎样、谁先死——粤语区空了六期。</strong></p>
   </div>
   <div class="theme">
     <div class="thead"><h4>破圈的代价:播放新高、互动新低</h4>
       <span class="chip ghost">双周 2 条</span>
       <span class="chip emo">—</span></div>
-    <p>小Lin说 148.65w 但赞/千播跌到 8.6(历史新低),熊丽萍首次破 3w 但赞/千播从 73 掉到 43.7。两个完全不同量级的账号,同一周出现同一个规律:**流量吃到核心圈层之外,互动浓度必然稀释**。看数据时要把这层考虑进去,别把泛人群的划过当成影响力。</p>
+    <p>小Lin说 148.65w 但赞/千播跌到 8.6(历史新低),熊丽萍首次破 3w 但赞/千播从 73 掉到 43.7。两个完全不同量级的账号,同一周出现同一个规律:<strong>流量吃到核心圈层之外,互动浓度必然稀释</strong>。看数据时要把这层考虑进去,别把泛人群的划过当成影响力。</p>
   </div>
   <div class="theme">
     <div class="thead"><h4>Finance730 的投流周</h4>
@@ -640,7 +735,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
   <div class="cards">
     <article class="card  st-hit">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=yJp39_V16Vg" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/yJp39_V16Vg/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/yJp39_V16Vg/mqdefault.jpg" alt="印度為何複製不了中國奇蹟？蘋果、小米都中伏 背後隱藏甚麼可怕問題？｜世界工廠｜KellyMarket EP9" >
         <span class="rank">1</span>
       </a>
       <div class="cbody">
@@ -648,7 +743,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
           <span class="chip hit">爆款</span>
           <span class="chip ghost">Finance730</span>
           <span class="chip ghost">8.17</span>
-          
+
         </div>
         <h3><a href="https://www.youtube.com/watch?v=yJp39_V16Vg" target="_blank" rel="noopener">印度為何複製不了中國奇蹟？蘋果、小米都中伏 背後隱藏甚麼可怕問題？｜世界工廠｜KellyMarket EP9</a></h3>
         <div class="metrics"><span class="m"><b>24w</b> 播放</span><span class="m"><b>3,532</b> 赞</span><span class="m"><b>692</b> 评论</span><span class="m lpk"><b>14.7</b> 赞/千播</span><span class="m grow">较上期 <b>+5.3w</b> 播放</span></div>
@@ -658,7 +753,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
     </article>
     <article class="card  st-hit">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=q--KWIW-LUQ" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/q--KWIW-LUQ/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/q--KWIW-LUQ/mqdefault.jpg" alt="2026年最大股災 投資者注意⚠️ 20分鐘學懂研究市場  [中文ENG]" >
         <span class="rank">2</span>
       </a>
       <div class="cbody">
@@ -666,7 +761,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
           <span class="chip hit">爆款</span>
           <span class="chip ghost">RainIsHere</span>
           <span class="chip ghost">8.17</span>
-          
+
         </div>
         <h3><a href="https://www.youtube.com/watch?v=q--KWIW-LUQ" target="_blank" rel="noopener">2026年最大股災 投資者注意⚠️ 20分鐘學懂研究市場  [中文ENG]</a></h3>
         <div class="metrics"><span class="m"><b>16.9w</b> 播放</span><span class="m"><b>6,026</b> 赞</span><span class="m"><b>181</b> 评论</span><span class="m lpk"><b>35.6</b> 赞/千播</span><span class="m grow">较上期 <b>+8,046</b> 播放</span></div>
@@ -676,7 +771,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
     </article>
     <article class="card  st-hit">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=xz6kuJrz4e0" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/xz6kuJrz4e0/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/xz6kuJrz4e0/mqdefault.jpg" alt="美債「灰犀牛」危機殺到！全球資金拒當接盤俠，中國釜底抽薪 美國陷入恐怖惡性循環？施永青：食退燒藥都退唔到燒｜債務危機｜貝森特｜特朗普｜美股｜黃金｜股壇C見（Part 1/2）｜20260820" >
         <span class="rank">3</span>
       </a>
       <div class="cbody">
@@ -684,7 +779,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
           <span class="chip hit">爆款</span>
           <span class="chip ghost">Finance730</span>
           <span class="chip ghost">8.20</span>
-          
+
         </div>
         <h3><a href="https://www.youtube.com/watch?v=xz6kuJrz4e0" target="_blank" rel="noopener">美債「灰犀牛」危機殺到！全球資金拒當接盤俠，中國釜底抽薪 美國陷入恐怖惡性循環？施永青：食退燒藥都退唔到燒｜債務危機｜貝森特｜特朗普｜美股｜黃金｜股壇C見（Part 1/2）｜20260820</a></h3>
         <div class="metrics"><span class="m"><b>7.4w</b> 播放</span><span class="m"><b>1,894</b> 赞</span><span class="m"><b>160</b> 评论</span><span class="m lpk"><b>25.7</b> 赞/千播</span><span class="m grow">较上期 <b>+4,851</b> 播放</span></div>
@@ -694,7 +789,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
     </article>
     <article class="card  st-hit">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=r0KOROXoUKE" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/r0KOROXoUKE/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/r0KOROXoUKE/mqdefault.jpg" alt="三大信號揭中東新戰國時代來臨，美俄相繼撤出引爆權力真空？許楨拆局：天下大亂誰來話事？丨中東新戰國丨以色列丨內塔尼亞胡丨以色列大選丨伊朗革命衛隊丨穆杰塔巴丨敘利亞丨伊拉克丨沙特丨楨觀天下丨許楨" >
         <span class="rank">4</span>
       </a>
       <div class="cbody">
@@ -702,7 +797,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
           <span class="chip hit">爆款</span>
           <span class="chip ghost">Finance730</span>
           <span class="chip ghost">8.19</span>
-          
+
         </div>
         <h3><a href="https://www.youtube.com/watch?v=r0KOROXoUKE" target="_blank" rel="noopener">三大信號揭中東新戰國時代來臨，美俄相繼撤出引爆權力真空？許楨拆局：天下大亂誰來話事？丨中東新戰國丨以色列丨內塔尼亞胡丨以色列大選丨伊朗革命衛隊丨穆杰塔巴丨敘利亞丨伊拉克丨沙特丨楨觀天下丨許楨</a></h3>
         <div class="metrics"><span class="m"><b>4.4w</b> 播放</span><span class="m"><b>1,525</b> 赞</span><span class="m"><b>21</b> 评论</span><span class="m lpk"><b>35.0</b> 赞/千播</span><span class="m grow">较上期 <b>+4,691</b> 播放</span></div>
@@ -712,7 +807,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
     </article>
     <article class="card  st-hit">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=cmNZE6mwPQ4" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/cmNZE6mwPQ4/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/cmNZE6mwPQ4/mqdefault.jpg" alt="【每週HOT Talk🔥】恒指反彈到26000，乘勝追擊定見好就收？｜阿里、泡泡瑪特、快手、百度 業績全解析｜美國債息抽升｜長飛光纖 平保 創科實業｜EP66" >
         <span class="rank">5</span>
       </a>
       <div class="cbody">
@@ -720,7 +815,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
           <span class="chip hit">爆款</span>
           <span class="chip ghost">光大证券国际</span>
           <span class="chip ghost">8.21</span>
-          
+
         </div>
         <h3><a href="https://www.youtube.com/watch?v=cmNZE6mwPQ4" target="_blank" rel="noopener">【每週HOT Talk🔥】恒指反彈到26000，乘勝追擊定見好就收？｜阿里、泡泡瑪特、快手、百度 業績全解析｜美國債息抽升｜長飛光纖 平保 創科實業｜EP66</a></h3>
         <div class="metrics"><span class="m"><b>3.3w</b> 播放</span><span class="m"><b>1,163</b> 赞</span><span class="m"><b>20</b> 评论</span><span class="m lpk"><b>34.9</b> 赞/千播</span><span class="m grow">较上期 <b>+1.2w</b> 播放</span></div>
@@ -730,7 +825,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
     </article>
     <article class="card  st-hit">
       <a class="thumbwrap" href="https://www.youtube.com/watch?v=PZdXNbLY29Q" target="_blank" rel="noopener">
-        <img loading="lazy" src="https://i.ytimg.com/vi/PZdXNbLY29Q/mqdefault.jpg" alt="" >
+        <img loading="lazy" src="https://i.ytimg.com/vi/PZdXNbLY29Q/mqdefault.jpg" alt="熊麗萍—股動萍台：恆指再升要靠金融股？業績後股價升跌有啟示：阿里巴巴/平保/友邦/中聯通/中電信/中移動 （22/8/2026）" >
         <span class="rank">6</span>
       </a>
       <div class="cbody">
@@ -738,7 +833,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
           <span class="chip hit">爆款</span>
           <span class="chip ghost">熊麗萍Conita</span>
           <span class="chip ghost">8.22</span>
-          
+
         </div>
         <h3><a href="https://www.youtube.com/watch?v=PZdXNbLY29Q" target="_blank" rel="noopener">熊麗萍—股動萍台：恆指再升要靠金融股？業績後股價升跌有啟示：阿里巴巴/平保/友邦/中聯通/中電信/中移動 （22/8/2026）</a></h3>
         <div class="metrics"><span class="m"><b>3.2w</b> 播放</span><span class="m"><b>2,174</b> 赞</span><span class="m"><b>124</b> 评论</span><span class="m lpk"><b>67.4</b> 赞/千播</span><span class="m grow">较上期 <b>+3,012</b> 播放</span></div>
@@ -849,7 +944,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
         <a href="https://www.youtube.com/watch?v=y84ypzELP_s" target="_blank" rel="noopener">Eric Weinstein: The State of American Science, Breakthrough Coverups, and the Danger of Physics</a>
         <span class="rmeta">All-In Podcast · 8.27 · 36.4w 播放 · 5,904 赞 · 1,000 评论 · 赞/千播 16.2</span>
         
-        <p class="note sm">36.38w、1000 条评论。Eric Weinstein 谈美国科学现状——纯议题型长访谈,没有任何行情内容却拿到英文区第二。再次印证:**评论量看议题,不看财经专业度。**</p>
+        <p class="note sm">36.38w、1000 条评论。Eric Weinstein 谈美国科学现状——纯议题型长访谈,没有任何行情内容却拿到英文区第二。再次印证:<strong>评论量看议题,不看财经专业度。</strong></p>
       </div>
     </div>
     <div class="row st-hit">
@@ -858,7 +953,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
         <a href="https://www.youtube.com/watch?v=yoCkR0pn0ns" target="_blank" rel="noopener">The Four Horsemen of the AI Apocalypse | TCAF 257</a>
         <span class="rmeta">The Compound · 8.28 · 13.6w 播放 · 2,430 赞 · 1,200 评论 · 赞/千播 17.9</span>
         
-        <p class="note sm">13.55w、1200 条评论。《AI 天启四骑士》——把「AI 叙事可能怎么崩」拆成四个具体因素,这是标准的结构化空头论证。粤语区在 AI 泡沫这条线上一直只做恐慌和跟涨,**「崩了会怎样、谁先死」这一层空了六期没人碰**,而它恰恰是最容易做出差异化的位置。</p>
+        <p class="note sm">13.55w、1200 条评论。《AI 天启四骑士》——把「AI 叙事可能怎么崩」拆成四个具体因素,这是标准的结构化空头论证。粤语区在 AI 泡沫这条线上一直只做恐慌和跟涨,<strong>「崩了会怎样、谁先死」这一层空了六期没人碰</strong>,而它恰恰是最容易做出差异化的位置。</p>
       </div>
     </div>
     <div class="row st-hit">
@@ -917,23 +1012,25 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
     </div></div>
 </section>
 
-<section>
+<section id="channels">
   <h2>频道体检表<span class="cnt">26 个监测位</span></h2>
   <div class="tblwrap"><table>
-    <thead><tr><th>类型</th><th>频道</th><th class="num">订阅</th><th class="num">本周爆款</th><th class="num">上周爆款</th><th class="num">双周最高播放</th><th>运营观察</th></tr></thead>
+    <thead><tr><th>类型</th><th>频道</th><th class="num">订阅</th><th class="num">本周自然爆款</th><th class="num">上周自然爆款</th><th class="num">本周疑似投流</th><th class="num">双周自然最高</th><th>运营观察</th></tr></thead>
     <tbody><tr>
       <td class="dim">直接竞品</td>
       <td><a href="https://www.youtube.com/@futuhk" target="_blank" rel="noopener">富途牛牛</a></td>
       <td class="num">10.8w</td>
       <td class="num">·</td>
       <td class="num">·</td>
-      <td class="num">5.1w</td>
+      <td class="num paidnum">1</td>
+      <td class="num">·</td>
       <td class="notecell">银债攻略 5.08w、赞/千播 5.3、仅 5 条评论。工具型内容投流的性价比最差——既不涨粉也不沉淀。</td></tr><tr>
       <td class="dim">直接竞品</td>
       <td><a href="https://www.youtube.com/@ChiefGroup" target="_blank" rel="noopener">致富 CHIEF</a></td>
       <td class="num">3.6w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">·</td>
       <td class="notecell">本周无内容上榜。</td></tr><tr>
       <td class="dim">直接竞品</td>
@@ -941,6 +1038,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">3.4w</td>
       <td class="num">1</td>
       <td class="num">1</td>
+      <td class="num paidnum">·</td>
       <td class="num">26.2w</td>
       <td class="notecell">本期最大发现:《名人說》郭思治 EP20 打出 26.16w。要点不是「同一个人做两次」——EP19/EP20 简介都注明拍摄日期为 8 月 4 号,是一场访谈拆成两期,偏人生的 EP20 跑赢偏行情的 EP19 六倍。同样的拆法在雷鼎鸣 EP17/EP18 上也成立,而且同样是本地议题/生活理念那期赢。这个栏目已经跑通了人物访谈的差异化路线,建议按嘉宾的稀缺性来分配每期主题。</td></tr><tr>
       <td class="dim">直接竞品</td>
@@ -948,13 +1046,15 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">2.8w</td>
       <td class="num">·</td>
       <td class="num">·</td>
-      <td class="num">6.6w</td>
+      <td class="num paidnum">2</td>
+      <td class="num">·</td>
       <td class="notecell">两条投流,赞/千播 1.3 和 2.9。6.6 万播放只有 83 个赞,是六期最极端值。</td></tr><tr>
       <td class="dim">直接竞品</td>
       <td><a href="https://www.youtube.com/@vbrokers_app" target="_blank" rel="noopener">華盛証券</a></td>
       <td class="num">2.8w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">·</td>
       <td class="notecell">连续七期无破 2w 自然内容。</td></tr><tr>
       <td class="dim">直接竞品</td>
@@ -962,6 +1062,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">2.5w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">·</td>
       <td class="notecell">本周无内容达线。</td></tr><tr>
       <td class="dim">财经APP</td>
@@ -969,6 +1070,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">16.4w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">1.2w</td>
       <td class="notecell">本周无内容达线。</td></tr><tr>
       <td class="dim">中文财经顶流</td>
@@ -976,6 +1078,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">281w</td>
       <td class="num">1</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">148.7w</td>
       <td class="notecell">148.65w 再破纪录,但赞/千播 8.6 是历史新低(22.4 → 13.1 → 8.6)。播放新高、互动新低,是典型的破圈代价。</td></tr><tr>
       <td class="dim">财经垂类(主持类)</td>
@@ -983,6 +1086,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">27.2w</td>
       <td class="num">1</td>
       <td class="num">3</td>
+      <td class="num paidnum">3</td>
       <td class="num">24w</td>
       <td class="notecell">六期以来首次出现 3 条投流(第三次世界大战 6.4、时代巨变 7.8、新加坡派钱 5.7)。自然内容仍然强(解放军挺进中东 13.81w、赞/千播 15.7),上期印度题也涨到 24.04w。要注意的是招牌栏目《得嫻讲经》这次也在投流之列,评论密度掉到自然状态的十分之一。</td></tr><tr>
       <td class="dim">财经垂类(主持类)</td>
@@ -990,6 +1094,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">4.8w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">2.9w</td>
       <td class="notecell">罗家聪 1.65w 且 0 条评论。多议题并列的标题问题连续三期没改。</td></tr><tr>
       <td class="dim">自媒体</td>
@@ -997,6 +1102,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">41.2w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">·</td>
       <td class="notecell">连续六期无新片。</td></tr><tr>
       <td class="dim">自媒体</td>
@@ -1004,6 +1110,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">30.6w</td>
       <td class="num">·</td>
       <td class="num">1</td>
+      <td class="num paidnum">·</td>
       <td class="num">16.9w</td>
       <td class="notecell">上期复活那条本周 16.93w(+8046),长尾比 Finance730 的内容短——教学类爆发快、衰减也快。</td></tr><tr>
       <td class="dim">自媒体</td>
@@ -1011,6 +1118,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">28.7w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">4.2w</td>
       <td class="notecell">4.17w、赞/千播 16.3。「2 位投资大师罕见同声」的权威共振包装很好,而且这周终于没在非突发内容上挂【突發】。</td></tr><tr>
       <td class="dim">自媒体</td>
@@ -1018,6 +1126,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">25w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">2.6w</td>
       <td class="notecell">《生活日常》2.59w 是本周最好成绩,旗舰/泛话题内容仍是它的强项,日更切片稳定在 1.3–1.6w。</td></tr><tr>
       <td class="dim">自媒体</td>
@@ -1025,6 +1134,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">22.9w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">2.3w</td>
       <td class="notecell">陶冬专访 2.34w 但仅 8 条评论。标题《然后呢?》太含蓄,没给观众可站队或转述的点。</td></tr><tr>
       <td class="dim">自媒体</td>
@@ -1032,6 +1142,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">14.9w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">·</td>
       <td class="notecell">本周无内容达线。</td></tr><tr>
       <td class="dim">自媒体</td>
@@ -1039,6 +1150,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">14.4w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">·</td>
       <td class="notecell">连续七期无内容达线。</td></tr><tr>
       <td class="dim">自媒体</td>
@@ -1046,6 +1158,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">12.7w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">1.5w</td>
       <td class="notecell">六期来首次进入视野:《财经快闪讲》1.48w、赞/千播 29.9,但 0 条评论。多嘉宾快评形式互动天然弱。</td></tr><tr>
       <td class="dim">自媒体</td>
@@ -1053,6 +1166,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">12w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">1.4w</td>
       <td class="notecell">六期来首次有内容达 1.3w,个股复盘形式,赞/千播 16.2。</td></tr><tr>
       <td class="dim">自媒体</td>
@@ -1060,6 +1174,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">5.7w</td>
       <td class="num">1</td>
       <td class="num">1</td>
+      <td class="num paidnum">·</td>
       <td class="num">4.2w</td>
       <td class="notecell">连续六期卡线后首次破 3w(4.16w),但赞/千播从 61–77 区间掉到 43.7。破圈和高互动是一对矛盾,长期趋势线比单周排名有意义。</td></tr><tr>
       <td class="dim">自媒体</td>
@@ -1067,6 +1182,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">5.2w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">·</td>
       <td class="notecell">连续七期无破 2w 内容。</td></tr><tr>
       <td class="dim">自媒体</td>
@@ -1074,6 +1190,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">2.5w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">·</td>
       <td class="notecell">连续七期无破 2w 内容。</td></tr><tr>
       <td class="dim">英文Podcast顶流</td>
@@ -1081,6 +1198,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">111w</td>
       <td class="num">3</td>
       <td class="num">1</td>
+      <td class="num paidnum">·</td>
       <td class="num">47.6w</td>
       <td class="notecell">3 条爆款,英伟达财报周 47.62w 是全场最大。Eric Weinstein 那条纯议题长访谈 36.38w / 1000 条评论,再次印证评论量看议题不看财经度。</td></tr><tr>
       <td class="dim">英文Podcast顶流</td>
@@ -1088,6 +1206,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">24.4w</td>
       <td class="num">2</td>
       <td class="num">1</td>
+      <td class="num paidnum">·</td>
       <td class="num">13.6w</td>
       <td class="notecell">《AI 天启四骑士》13.55w / 1200 条评论——把崩盘拆成四个具体因素,是粤语区空了六期的位置。</td></tr><tr>
       <td class="dim">英文Podcast顶流</td>
@@ -1095,25 +1214,24 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">10.3w</td>
       <td class="num">·</td>
       <td class="num">·</td>
+      <td class="num paidnum">·</td>
       <td class="num">·</td>
       <td class="notecell">连续七期无窗口内新片,建议正式移出名单换人。</td></tr></tbody>
   </table></div>
   <p class="excl">⚠ Chart-reader CUP:频道链接连续七期 404(@chartreadercup 已失效),需要新 handle。</p>
 </section>
 
-<section>
-  <h2>方法论与周更流程</h2>
+<section id="method">
+  <h2>口径说明</h2>
   <div class="method">
     <h4>爆款判定</h4>
-    <p>播放 ≥ 30,000 且 评论 ≥ 20 且 点赞 ≥ 1,000,三项同时满足。单看播放会被投流骗:本期 42.6w 播放的视频只有 8 个赞。辅助指标「赞/千播」:真爆款均 ≥14,&lt;8 判疑似投流,8–14 为混合区。</p>
+    <p>播放 ≥ 30,000 且 评论 ≥ 20 且 点赞 ≥ 1,000,三项同时满足。单看播放会被投流骗:本期 42.6w 播放的视频只有 8 个赞。辅助指标「赞/千播」采用分档红线:常规量级 &lt;8、10w 以上 &lt;7、50w 以上 &lt;4 判疑似投流;评论 ≤5 仍是全量级强信号。这样可避免把百万级自然破圈后的互动稀释误判成买量。</p>
     <h4>采集口径</h4>
-    <p>每频道取最新 40 条常规视频(不含 Shorts),播放 ≥2w 的抓取完整互动数据。周五至周日发布的视频可能尚未发酵完,下一期复查补录。本期定时任务完全按设计工作:09:05 触发时仍未联网,网络等待循环重试到第 9 次(约 4 分钟后)才就绪,随后采集 49 条、构建、推送全部成功。上期加的两道防线(等网络、查条数)首次实战生效。</p>
-    <h4>周更操作(每周一上午)</h4>
-    <p><code>cd ~/finance-hits && python3 collect.py && python3 build.py</code>,然后让 Claude 补当周运营拆解(curation/当周.json)即可重新生成本页。</p>
+    <p>每频道取最新 40 条常规视频(不含 Shorts),先以播放 ≥1.2w 预筛,再抓取完整互动数据。周五至周日发布的视频可能尚未发酵完,下一期复查补录。采集与维护步骤保留在项目说明中,不占用周报阅读路径。</p>
   </div>
 </section>
 
-<footer>粤语财经爆款周报 · 2026-W35 · 数据来自 YouTube 公开页面,采集于 2026.08.31 · 仅供内部选题参考</footer>
+<footer>粤语财经爆款周报 · 2026-W35 · 数据来自 YouTube 公开页面,采集于 2026.08.31 · 供内容策划参考</footer>
 </div>
 </body>
 </html>
