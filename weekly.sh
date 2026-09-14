@@ -90,6 +90,16 @@ if [ "$ERRS" -gt 5 ]; then
   "$PY" backfill.py "$WEEK"
 fi
 
+# --- 2b. 先同步远端 ---
+# 2026-09-14 教训:仓库不止这台机器在推(9/7 叶润推了 build.py 与页面改版)。不先拉取就会
+# 用旧 build.py 生成页面,推送时还会被拒。只允许快进;快进不了说明两边都改过同一段历史,
+# 需要人工合并——这里不自动处理,中止并通知(数据文件已落盘,不会丢)。
+echo; echo "--- 同步远端 ---"
+if ! git pull -q --ff-only; then
+  notify "周报需要人工合并" "远端有新提交且无法快进,已中止。跟 Claude 说一声"
+  echo "!!! git pull --ff-only 失败,中止(未生成页面、未推送)"; exit 1
+fi
+
 # --- 3. 生成网页 ---
 echo; echo "--- 生成网页 ---"
 if ! "$PY" build.py; then

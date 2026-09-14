@@ -57,8 +57,12 @@ def classify(v):
        mid  = 中腰部    播放≥1.5w · 赞≥500 · 评论≥10   (选题/关键词参考层)
        paid = 疑似投流  高播放但互动断崖 — 判定优先于 hit/mid"""
     vc, lc, cc = v.get("view_count") or 0, v.get("like_count") or 0, v.get("comment_count") or 0
-    if (vc >= 30000 and (lpk(v) < 8 or cc <= 5)) or (vc >= 25000 and lpk(v) < 4) \
-       or (vc >= 15000 and lpk(v) < 6):
+    # A flat <8 rule mislabels million-view organic breakouts: once content crosses
+    # into a broad recommendation pool, likes per 1k naturally dilute. Keep 8 as the
+    # normal red line, but lower it at larger scales; near-zero comments stays a strong
+    # paid-reach signal at any scale.
+    paid_floor = 4 if vc >= 500000 else 7 if vc >= 100000 else 8 if vc >= 30000 else 6
+    if (vc >= 15000 and lpk(v) < paid_floor) or (vc >= 30000 and cc <= 5):
         return "paid"
     if vc >= 30000 and lc >= 1000 and cc >= 20:
         return "hit"
@@ -96,6 +100,10 @@ STATUS_META = {
 
 def esc(s):
     return html.escape(str(s or ""))
+
+def rich(s):
+    """Render the one inline convention used by curation without accepting raw HTML."""
+    return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", esc(s))
 
 def fmt(n):
     if n is None:
@@ -240,7 +248,7 @@ def video_card(v, rank=None, hero=False):
     return f"""
     <article class="card {'hero' if hero else ''} st-{st_cls}">
       <a class="thumbwrap" href="{url}" target="_blank" rel="noopener">
-        <img loading="lazy" src="{thumb}" alt="" {'onerror="' + fallback + '"' if fallback else ''}>
+        <img loading="lazy" src="{thumb}" alt="{esc(v['title'])}" {'onerror="' + fallback + '"' if fallback else ''}>
         {f'<span class="rank">{rank}</span>' if rank else ''}
       </a>
       <div class="cbody">
@@ -248,12 +256,12 @@ def video_card(v, rank=None, hero=False):
           <span class="chip {st_cls}">{st_label}</span>{lang_chip}
           <span class="chip ghost">{esc(v["channel_name"])}</span>
           <span class="chip ghost">{date_md(v)}</span>
-          {f'<span class="chip gap">{reason}</span>' if reason else ''}
+{f'          <span class="chip gap">{reason}</span>' if reason else ''}
         </div>
         <h3><a href="{url}" target="_blank" rel="noopener">{esc(v["title"])}</a></h3>
         <div class="metrics">{metrics_row(v)}</div>
         {f'<div class="tags">{tag_chips(v)}</div>' if tag_chips(v) else ''}
-        {f'<p class="note">{esc(note)}</p>' if note else ''}
+        {f'<p class="note">{rich(note)}</p>' if note else ''}
       </div>
     </article>"""
 
@@ -268,7 +276,7 @@ def compact_row(v):
         <a href="{url}" target="_blank" rel="noopener">{esc(v["title"])}</a>
         <span class="rmeta">{esc(v["channel_name"])} · {date_md(v)} · {fmt(v["view_count"])} 播放 · {fmt(v["like_count"])} 赞 · {fmt(v["comment_count"])} 评论 · 赞/千播 {v["lpk"]}{" · 数据截至上期" if v.get("_stale") else ""}</span>
         {f'<div class="rdelta">{delta_badge(v)}</div>' if delta_badge(v) else ''}
-        {f'<p class="note sm">{esc(note)}</p>' if note else ''}
+        {f'<p class="note sm">{rich(note)}</p>' if note else ''}
       </div>
     </div>"""
 
@@ -314,6 +322,8 @@ def scatter_svg():
       {gx}{gy}
       <line x1="{X(30000)}" y1="{T}" x2="{X(30000)}" y2="{H-B}" class="ref"/>
       <text x="{X(30000)+6}" y="{T+14}" class="reflabel">爆款播放门槛 3w</text>
+      <line x1="{X(50000)}" y1="{T}" x2="{X(50000)}" y2="{H-B}" class="ref breakout"/>
+      <text x="{X(50000)+6}" y="{T+31}" class="reflabel breakout">破圈观察线 5w</text>
       <line x1="{L}" y1="{Y(8)}" x2="{W-R}" y2="{Y(8)}" class="ref danger"/>
       <text x="{W-R-4}" y="{Y(8)-6}" class="reflabel danger" text-anchor="end">赞/千播 &lt; 8 → 投流红线</text>
       <line x1="{L}" y1="{H-B}" x2="{W-R}" y2="{H-B}" class="axis"/>
@@ -326,9 +336,21 @@ def scatter_svg():
 hits_this = [v for v in cn_this if v["status"] == "hit"]
 mid_this = [v for v in cn_this if v["status"] == "mid"]
 near_this = [v for v in cn_this if v["status"] == "near"]
+paid_this = [v for v in cn_this if v["status"] == "paid"]
 paid_all = [v for v in CN if v["status"] == "paid"]
 hits_prev = [v for v in cn_prev if v["status"] == "hit"]
 rest_prev = [v for v in cn_prev if v["status"] not in ("hit", "paid")]
+
+# Long-tail growth is a first-class signal: it distinguishes a durable hit from a
+# launch-week spike and gives leaders one comparable number at the top of the report.
+growth = []
+for v in CN:
+    p = prev_metrics.get(v["id"])
+    if p and p.get("view_count") and not v.get("_stale"):
+        delta = (v.get("view_count") or 0) - p["view_count"]
+        if delta > 0:
+            growth.append((delta, v))
+longtail_delta, longtail_video = max(growth, default=(0, None), key=lambda x: x[0])
 
 # Issues collected before the 中腰部 tier existed used a 2w fetch threshold, so their
 # 1.5–2w band is simply missing — say so rather than let it read as "nobody made any".
@@ -341,8 +363,48 @@ KW_POOL = [v for v in CN if v["status"] != "paid"]
 TOPICS, HOOK_ROWS = mine_keywords(KW_POOL)
 
 tldr_html = "".join(
-    f'<div class="tcard"><div class="tnum">{i+1}</div><div><h4>{esc(t["t"])}</h4><p>{esc(t["d"])}</p></div></div>'
+    f'<div class="tcard"><div class="tnum">{i+1}</div><div><h4>{esc(t["t"])}</h4><p>{rich(t["d"])}</p></div></div>'
     for i, t in enumerate(cur.get("tldr", [])))
+
+brief = cur.get("brief", {})
+brief_verdict = brief.get(
+    "verdict",
+    f"本周录得 {len(hits_this)} 条自然爆款、{len(paid_this)} 条疑似投流；先看真实增长，再看表面播放。",
+)
+brief_focus = brief.get(
+    "focus",
+    "下周优先从已经被数据验证、但粤语区仍未充分供给的角度里选一个做小成本测试。",
+)
+longtail_value = f"+{fmt(longtail_delta)}" if longtail_delta else "—"
+longtail_desc = (f"{esc(longtail_video['channel_name'])} 单条周增量" if longtail_video else "暂无可比基线")
+stats_html = f"""
+  <div class="stat"><b>{len(hits_this)}</b><span>自然爆款</span><small>三项全达标</small></div>
+  <div class="stat paidstat"><b>{len(paid_this)}</b><span>疑似投流</span><small>本周新增内容</small></div>
+  <div class="stat"><b>{len(mid_this) + len(near_this)}</b><span>可测试样本</span><small>中腰部 + 差一口气</small></div>
+  <div class="stat growthstat"><b>{longtail_value}</b><span>长尾冠军</span><small>{longtail_desc}</small></div>"""
+
+by_id = {v["id"]: v for v in data["videos"]}
+
+def action_sources(action):
+    links = []
+    for vid in action.get("vids", []):
+        v = by_id.get(vid)
+        if not v:
+            continue
+        links.append(
+            f'<a href="https://www.youtube.com/watch?v={v["id"]}" target="_blank" rel="noopener">'
+            f'{esc(v["channel_name"])} · {fmt(v.get("view_count"))}</a>'
+        )
+    return "".join(links)
+
+actions = cur.get("actions", [])
+actions_html = "".join(f"""
+  <article class="action">
+    <div class="actionmeta"><span class="priority">{esc(a.get("priority", "建议"))}</span><span>{esc(a.get("role", "运营"))}</span></div>
+    <h3>{esc(a.get("title", ""))}</h3>
+    <p>{esc(a.get("why", ""))}</p>
+    {f'<div class="proof"><b>证据</b>{action_sources(a)}</div>' if action_sources(a) else ''}
+  </article>""" for a in actions)
 
 hero_html = "".join(video_card(v, rank=i + 1, hero=(i == 0)) for i, v in enumerate(hits_this))
 mid_html = "".join(compact_row(v) for v in sort_v(mid_this))
@@ -378,7 +440,7 @@ themes_html = "".join(f"""
     <div class="thead"><h4>{esc(t["name"])}</h4>
       <span class="chip ghost">双周 {len(t["vids"])} 条</span>
       <span class="chip emo">{esc(t["emotion"])}</span></div>
-    <p>{esc(t["note"])}</p>
+    <p>{rich(t["note"])}</p>
   </div>""" for t in cur.get("themes", []))
 
 patterns_html = "".join(f"""
@@ -399,7 +461,9 @@ for c in sorted(data["channels"], key=lambda c: (CAT_ORDER.index(c.get("cat")) i
     vs = by_ch.get(c["channel"], [])
     h_this = sum(1 for v in vs if v["status"] == "hit" and v["week"] == "this")
     h_prev = sum(1 for v in vs if v["status"] == "hit" and v["week"] == "prev")
-    mx = max((v["view_count"] or 0) for v in vs) if vs else 0
+    p_this = sum(1 for v in vs if v["status"] == "paid" and v["week"] == "this")
+    natural = [v for v in vs if v["status"] != "paid"]
+    mx = max((v["view_count"] or 0) for v in natural) if natural else 0
     note = ch_notes.get(c["channel"], "")
     rows.append(f"""<tr>
       <td class="dim">{esc(c["cat"])}</td>
@@ -407,11 +471,15 @@ for c in sorted(data["channels"], key=lambda c: (CAT_ORDER.index(c.get("cat")) i
       <td class="num">{fmt(c.get("subs"))}</td>
       <td class="num">{h_this or "·"}</td>
       <td class="num">{h_prev or "·"}</td>
+      <td class="num paidnum">{p_this or "·"}</td>
       <td class="num">{fmt(mx) if mx else "·"}</td>
       <td class="notecell">{esc(note)}</td></tr>""")
 excluded_html = "".join(f'<p class="excl">⚠ {esc(e["name"])}:{esc(e["reason"])}</p>' for e in cur.get("excluded", []))
 
-gen_date = datetime.date.today().strftime("%Y.%m.%d")
+try:
+    gen_date = datetime.datetime.fromisoformat(data.get("generated", "")).strftime("%Y.%m.%d")
+except (TypeError, ValueError):
+    gen_date = datetime.date.today().strftime("%Y.%m.%d")
 
 # week switcher — __NAV__ is filled per output location (root vs weeks/)
 all_weeks = sorted((p.stem for p in (ROOT / "data").glob("*.json")), reverse=True)
@@ -444,12 +512,29 @@ def nav(prefix):
                      else f'<a class="wk" href="{prefix}{w}.html">{inner}</a>')
     return f'<nav class="weeks"><span class="wklab">期数</span>{"".join(items)}</nav>'
 
+action_jump = '<a href="#actions">下周动作</a>' if actions else ""
+actions_section = f"""
+<section id="actions">
+  <h2>下周行动板<span class="cnt">把洞察直接交给选题、包装与剪辑</span></h2>
+  <p class="secdesc">每条建议都附了本周证据。周会先决定做不做，再讨论由谁落地；避免把时间耗在复述榜单。</p>
+  <div class="actiongrid">{actions_html}</div>
+</section>""" if actions else ""
+
 page = f"""<!doctype html>
 <html lang="zh-Hans">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>粤语财经爆款周报 · {esc(cur.get("label", WEEK))}</title>
+<meta name="description" content="每周追踪粤语财经频道的真实爆款、投流信号、选题机会与可执行建议。">
+<meta property="og:title" content="粤语财经爆款周报 · {esc(cur.get("label", WEEK))}">
+<meta property="og:description" content="真实爆款、投流信号、选题机会与下周行动，一页完成复盘。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://timye9527.github.io/finance-hits/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="粤语财经爆款周报 · {esc(cur.get("label", WEEK))}">
+<meta name="twitter:description" content="真实爆款、投流信号、选题机会与下周行动，一页完成复盘。">
+<meta name="twitter:image" content="https://timye9527.github.io/finance-hits/og.png">
 <style>
 :root {{
   color-scheme: light dark;
@@ -471,6 +556,7 @@ page = f"""<!doctype html>
 * {{ box-sizing: border-box; margin: 0; }}
 body {{ background: var(--bg); color: var(--ink); font: 15px/1.65 system-ui, -apple-system, "PingFang SC", "Segoe UI", sans-serif; }}
 a {{ color: inherit; }}
+a:focus-visible, summary:focus-visible {{ outline: 3px solid color-mix(in srgb, var(--c-hit) 45%, transparent); outline-offset: 3px; border-radius: 4px; }}
 .wrap {{ max-width: 1100px; margin: 0 auto; padding: 28px 20px 80px; }}
 header.top {{ padding: 34px 0 10px; }}
 .kicker {{ color: var(--c-hit); font-weight: 700; letter-spacing: .12em; font-size: 13px; }}
@@ -492,9 +578,45 @@ h1 {{ font-size: 34px; line-height: 1.25; margin: 6px 0 10px; }}
 .wk.cur {{ border-color: var(--c-hit); box-shadow: inset 0 0 0 1px var(--c-hit); }}
 .wk.cur b {{ color: var(--c-hit); }}
 a.wk:hover {{ border-color: var(--c-hit); transform: translateY(-1px); }}
+.jumpbar {{ position: sticky; top: 0; z-index: 10; margin: 18px -20px 0; padding: 9px 20px;
+            background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(14px);
+            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }}
+.jumpnav {{ display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }}
+.jumpnav::-webkit-scrollbar {{ display: none; }}
+.jumpnav a {{ flex: 0 0 auto; text-decoration: none; color: var(--ink2); font-size: 12.5px; font-weight: 650;
+              padding: 5px 10px; border-radius: 999px; }}
+.jumpnav a:hover {{ color: var(--c-hit); background: var(--hit-bg); }}
+section {{ scroll-margin-top: 58px; }}
 h2 {{ font-size: 22px; margin: 54px 0 6px; }}
 h2 .cnt {{ color: var(--muted); font-weight: 400; font-size: 15px; margin-left: 8px; }}
 .secdesc {{ color: var(--ink2); margin-bottom: 18px; max-width: 78ch; font-size: 14px; }}
+/* executive brief */
+.brief {{ scroll-margin-top: 58px; }}
+.brief h2 {{ margin-top: 34px; }}
+.eyebrow {{ color: var(--c-hit); font-size: 12px; font-weight: 800; letter-spacing: .1em; margin-bottom: -48px; }}
+.statgrid {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }}
+.stat {{ display: grid; grid-template-columns: auto 1fr; column-gap: 10px; align-items: baseline;
+         background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }}
+.stat b {{ grid-row: 1 / span 2; font-size: 28px; line-height: 1; color: var(--c-hit); font-variant-numeric: tabular-nums; }}
+.stat span {{ font-weight: 750; font-size: 13.5px; line-height: 1.2; }}
+.stat small {{ color: var(--muted); font-size: 11.5px; line-height: 1.3; }}
+.stat.paidstat b {{ color: var(--c-paid); }} .stat.growthstat b {{ color: var(--c-good); font-size: 24px; }}
+.verdict {{ margin-top: 12px; padding: 20px 22px; border-radius: 16px; color: #fff;
+            background: linear-gradient(125deg, #10243e, #1f5799); box-shadow: 0 12px 30px rgba(20,66,116,.16); }}
+.verdict .label {{ display: inline-block; color: #bcd9ff; font-size: 12px; font-weight: 800; letter-spacing: .08em; margin-bottom: 5px; }}
+.verdict h3 {{ font-size: 20px; line-height: 1.4; }}
+.verdict p {{ color: #dceaff; margin-top: 5px; font-size: 14px; max-width: 78ch; }}
+/* action board */
+.actiongrid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }}
+.action {{ display: flex; flex-direction: column; min-height: 220px; background: var(--surface); border: 1px solid var(--border);
+           border-top: 3px solid var(--c-hit); border-radius: 14px; padding: 16px 18px; }}
+.actionmeta {{ display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; }}
+.priority {{ color: var(--c-hit); background: var(--hit-bg); font-weight: 800; border-radius: 999px; padding: 2px 8px; }}
+.action h3 {{ font-size: 16px; line-height: 1.4; margin: 12px 0 6px; }}
+.action p {{ color: var(--ink2); font-size: 13.5px; }}
+.proof {{ display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: auto; padding-top: 14px; font-size: 11.5px; }}
+.proof b {{ color: var(--muted); margin-right: 2px; }}
+.proof a {{ color: var(--c-hit); text-decoration: none; background: var(--hit-bg); border-radius: 5px; padding: 2px 6px; }}
 /* tldr */
 .tgrid {{ display: grid; gap: 12px; margin-top: 16px; }}
 .tcard {{ display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }}
@@ -567,8 +689,10 @@ svg {{ width: 100%; height: auto; display: block; }}
 .dot {{ stroke: var(--surface); stroke-width: 2; }}
 .ref {{ stroke: var(--axisc); stroke-dasharray: 5 4; stroke-width: 1.4; }}
 .ref.danger {{ stroke: var(--c-paid); opacity: .75; }}
+.ref.breakout {{ stroke: var(--c-hit); opacity: .8; stroke-dasharray: 2 4; }}
 .reflabel {{ fill: var(--muted); font-size: 12px; font-weight: 600; }}
 .reflabel.danger {{ fill: var(--c-paid); }}
+.reflabel.breakout {{ fill: var(--c-hit); }}
 /* themes & patterns */
 .themes {{ display: grid; gap: 12px; }}
 .theme {{ background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }}
@@ -587,6 +711,7 @@ table {{ border-collapse: collapse; width: 100%; min-width: 880px; font-size: 13
 th, td {{ text-align: left; padding: 9px 12px; border-top: 1px solid var(--grid); vertical-align: top; }}
 thead th {{ border-top: none; color: var(--muted); font-size: 12.5px; white-space: nowrap; position: sticky; top: 0; background: var(--surface); }}
 td.num, th.num {{ text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }}
+.paidnum {{ color: var(--c-paid); font-weight: 700; }}
 td.dim {{ color: var(--muted); white-space: nowrap; }}
 td a {{ text-decoration: none; font-weight: 600; }}
 .notecell {{ color: var(--ink2); font-size: 12.8px; min-width: 300px; }}
@@ -599,9 +724,32 @@ td a {{ text-decoration: none; font-weight: 600; }}
 .method code {{ background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 1px 7px; font-size: 12.5px; }}
 footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
 @media (max-width: 720px) {{
+  .wrap {{ padding: 16px 14px 64px; }}
+  header.top {{ padding-top: 22px; }}
+  .jumpbar {{ margin-left: -14px; margin-right: -14px; padding-left: 14px; padding-right: 14px; }}
+  .statgrid {{ grid-template-columns: repeat(2, 1fr); }}
+  .stat {{ padding: 12px; }} .stat b {{ font-size: 24px; }}
+  .stat.growthstat b {{ font-size: 20px; }}
+  .actiongrid {{ grid-template-columns: 1fr; }}
+  .action {{ min-height: 0; }}
   .card {{ flex-direction: column; }}
   .thumbwrap {{ width: 100%; flex: none; }}
   h1 {{ font-size: 26px; }}
+  h2 {{ font-size: 20px; scroll-margin-top: 54px; }}
+  h2 .cnt {{ display: block; margin-left: 0; margin-top: 2px; font-size: 13px; }}
+  .eyebrow {{ margin-bottom: -46px; }}
+  .tcard {{ padding: 14px; gap: 10px; }}
+  .tnum {{ flex-basis: 26px; width: 26px; height: 26px; }}
+  .verdict {{ padding: 17px; }} .verdict h3 {{ font-size: 17px; }}
+  .chartbox {{ overflow-x: auto; }}
+  .chartbox svg {{ min-width: 680px; }}
+}}
+@media print {{
+  :root {{ color-scheme: light; --bg:#fff; --surface:#fff; --ink:#000; --ink2:#333; --muted:#666; }}
+  .wrap {{ max-width: none; padding: 0; }} .weeks, .jumpbar {{ display: none; }}
+  header.top {{ padding-top: 0; }} section, article, .tcard, .stat, .theme, .pat {{ break-inside: avoid; }}
+  .verdict {{ background: #eef5ff; color: #10243e; box-shadow: none; }}
+  .verdict .label, .verdict p {{ color: #254e7f; }} a {{ text-decoration: none; }}
 }}
 </style>
 </head>
@@ -614,25 +762,42 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
   <p class="sub">统计窗口 {esc(cur.get("range", ""))}(上周 {esc(cur.get("prev_range", ""))} 做对照)。榜单以粤语频道为主,普通话账号打标对照,英文 Podcast 顶流单列为选题预警雷达。</p>
   <div class="badges">
     <span class="badge">爆款标准:播放 ≥ <b>3w</b> · 评论 ≥ <b>20</b> · 点赞 ≥ <b>1k</b></span>
-    <span class="badge">投流红线:赞/千播 &lt; <b>8</b></span>
+    <span class="badge">基础投流红线:赞/千播 &lt; <b>8</b></span>
     <span class="badge">监测频道 <b>{len(data["channels"])}</b> 个 · 入库视频 <b>{len(data["videos"])}</b> 条</span>
     <span class="badge">数据采集 <b>{gen_date}</b></span>
   </div>
   __NAV__
 </header>
 
-<section>
-  <h2>本周结论 TL;DR</h2>
+<div class="jumpbar"><nav class="jumpnav" aria-label="页面快捷导航">
+  <a href="#brief">30 秒复盘</a>{action_jump}<a href="#hits">爆款证据</a><a href="#topics">选题与标题</a><a href="#radar">趋势雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
+</nav></div>
+
+<section id="brief" class="brief">
+  <div class="eyebrow">EXECUTIVE BRIEF</div>
+  <h2>30 秒复盘</h2>
+  <div class="statgrid">{stats_html}</div>
+  <div class="verdict">
+    <span class="label">本周判断</span>
+    <h3>{esc(brief_verdict)}</h3>
+    <p>{esc(brief_focus)}</p>
+  </div>
+</section>
+
+{actions_section}
+
+<section id="signals">
+  <h2>关键变化<span class="cnt">支撑本周判断的 6 条信号</span></h2>
   <div class="tgrid">{tldr_html}</div>
 </section>
 
-<section>
+<section id="hits">
   <h2>本周爆款榜<span class="cnt">{esc(cur.get("range", ""))} · 三项全达标 {len(hits_this)} 条</span></h2>
   <p class="secdesc">同时满足播放 ≥3w、评论 ≥20、点赞 ≥1k 的中文内容,按播放量排序。</p>
   <div class="cards">{hero_html}</div>
 </section>
 
-<section>
+<section id="topics">
   <h2>中腰部选题池<span class="cnt">{esc(cur.get("range", ""))} · {len(mid_this)} 条</span></h2>
   <p class="secdesc">播放 ≥1.5w、点赞 ≥500、评论 ≥10 —— 达不到爆款量级,但数据真实、题材成立。这一层看的不是「怎么打爆」,而是<b>「大家在做什么题」</b>:可复用的选题、可借的角度、可测试的方向都在这里。{legacy_note}</p>
   <div class="rows">{mid_html}</div>
@@ -659,9 +824,9 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
   <div class="cards">{near_html}</div>
 </section>
 
-<section>
+<section id="radar">
   <h2>播放 × 互动:一张图识别投流</h2>
-  <p class="secdesc">每个点是一条近两周播放 ≥2w 的中文视频。横轴播放量(对数),纵轴赞/千播。右下角=高播放低互动,基本可判定买量;右上角才是真爆款。悬停查看明细。</p>
+  <p class="secdesc">每个点是一条近两周播放 ≥2w 的中文视频。横轴播放量(对数),纵轴赞/千播。右下角=高播放低互动,基本可判定买量;5w 观察线用于提醒:内容进入泛人群推荐池后,互动浓度下滑不一定代表内容变差。悬停查看明细。</p>
   <div class="chartbox">
     <div class="legend">
       <span><i style="background:var(--c-hit)"></i>爆款</span>
@@ -701,28 +866,26 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
   <div class="rows">{en_html}</div>
 </section>
 
-<section>
+<section id="channels">
   <h2>频道体检表<span class="cnt">{len(data["channels"])} 个监测位</span></h2>
   <div class="tblwrap"><table>
-    <thead><tr><th>类型</th><th>频道</th><th class="num">订阅</th><th class="num">本周爆款</th><th class="num">上周爆款</th><th class="num">双周最高播放</th><th>运营观察</th></tr></thead>
+    <thead><tr><th>类型</th><th>频道</th><th class="num">订阅</th><th class="num">本周自然爆款</th><th class="num">上周自然爆款</th><th class="num">本周疑似投流</th><th class="num">双周自然最高</th><th>运营观察</th></tr></thead>
     <tbody>{''.join(rows)}</tbody>
   </table></div>
   {excluded_html}
 </section>
 
-<section>
-  <h2>方法论与周更流程</h2>
+<section id="method">
+  <h2>口径说明</h2>
   <div class="method">
     <h4>爆款判定</h4>
-    <p>播放 ≥ 30,000 且 评论 ≥ 20 且 点赞 ≥ 1,000,三项同时满足。单看播放会被投流骗:本期 42.6w 播放的视频只有 8 个赞。辅助指标「赞/千播」:真爆款均 ≥14,&lt;8 判疑似投流,8–14 为混合区。</p>
+    <p>播放 ≥ 30,000 且 评论 ≥ 20 且 点赞 ≥ 1,000,三项同时满足。单看播放会被投流骗:本期 42.6w 播放的视频只有 8 个赞。辅助指标「赞/千播」采用分档红线:常规量级 &lt;8、10w 以上 &lt;7、50w 以上 &lt;4 判疑似投流;评论 ≤5 仍是全量级强信号。这样可避免把百万级自然破圈后的互动稀释误判成买量。</p>
     <h4>采集口径</h4>
-    <p>每频道取最新 40 条常规视频(不含 Shorts),播放 ≥2w 的抓取完整互动数据。周五至周日发布的视频可能尚未发酵完,下一期复查补录。{esc(cur.get("workflow_note", ""))}</p>
-    <h4>周更操作(每周一上午)</h4>
-    <p><code>cd ~/finance-hits && python3 collect.py && python3 build.py</code>,然后让 Claude 补当周运营拆解(curation/当周.json)即可重新生成本页。</p>
+    <p>每频道取最新 40 条常规视频(不含 Shorts),先以播放 ≥1.2w 预筛,再抓取完整互动数据。周五至周日发布的视频可能尚未发酵完,下一期复查补录。采集与维护步骤保留在项目说明中,不占用周报阅读路径。</p>
   </div>
 </section>
 
-<footer>粤语财经爆款周报 · {WEEK} · 数据来自 YouTube 公开页面,采集于 {gen_date} · 仅供内部选题参考</footer>
+<footer>粤语财经爆款周报 · {WEEK} · 数据来自 YouTube 公开页面,采集于 {gen_date} · 供内容策划参考</footer>
 </div>
 </body>
 </html>"""
