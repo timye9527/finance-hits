@@ -61,8 +61,12 @@ def classify(v):
     # into a broad recommendation pool, likes per 1k naturally dilute. Keep 8 as the
     # normal red line, but lower it at larger scales; near-zero comments stays a strong
     # paid-reach signal at any scale.
+    # Low likes alone isn't enough: news recaps and long interviews run a low like rate
+    # yet keep normal comment density and keep growing the next week. Bought reach shows
+    # low likes AND almost no comments (institutional channels sit at <=0.2 per 1k).
     paid_floor = 4 if vc >= 500000 else 7 if vc >= 100000 else 8 if vc >= 30000 else 6
-    if (vc >= 15000 and lpk(v) < paid_floor) or (vc >= 30000 and cc <= 5):
+    cpk = cc / max(vc, 1) * 1000
+    if (vc >= 15000 and lpk(v) < paid_floor and cpk < 0.5) or (vc >= 30000 and cc <= 5):
         return "paid"
     if vc >= 30000 and lc >= 1000 and cc >= 20:
         return "hit"
@@ -826,7 +830,7 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
 
 <section id="radar">
   <h2>播放 × 互动:一张图识别投流</h2>
-  <p class="secdesc">每个点是一条近两周播放 ≥2w 的中文视频。横轴播放量(对数),纵轴赞/千播。右下角=高播放低互动,基本可判定买量;5w 观察线用于提醒:内容进入泛人群推荐池后,互动浓度下滑不一定代表内容变差。悬停查看明细。</p>
+  <p class="secdesc">每个点是一条近两周播放 ≥2w 的中文视频。横轴播放量(对数),纵轴赞/千播。右下角=高播放低赞率,是否买量还要看评论密度(页面「疑似投流」要求赞率与评论密度同时偏低);5w 观察线用于提醒:内容进入泛人群推荐池后,互动浓度下滑不一定代表内容变差。悬停查看明细。</p>
   <div class="chartbox">
     <div class="legend">
       <span><i style="background:var(--c-hit)"></i>爆款</span>
@@ -840,7 +844,7 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
 
 <section>
   <h2>投流观察席<span class="cnt">{len(paid_all)} 条</span></h2>
-  <p class="secdesc">高播放但互动断崖(赞/千播 &lt;8 或评论 ≤5)。这些数字不构成内容参考,但能看出谁在花钱、钱花在什么题材上。</p>
+  <p class="secdesc">高播放但赞率与评论密度同时断崖(赞/千播低于分档红线且评论/千播 &lt;0.5),或 3w 以上评论 ≤5。这是由公开数据形态推出的信号,无法外部核实;这些内容的数字不作选题参考。</p>
   <div class="rows">{paid_html}</div>
 </section>
 
@@ -879,7 +883,7 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
   <h2>口径说明</h2>
   <div class="method">
     <h4>爆款判定</h4>
-    <p>播放 ≥ 30,000 且 评论 ≥ 20 且 点赞 ≥ 1,000,三项同时满足。单看播放会被投流骗:本期 42.6w 播放的视频只有 8 个赞。辅助指标「赞/千播」采用分档红线:常规量级 &lt;8、10w 以上 &lt;7、50w 以上 &lt;4 判疑似投流;评论 ≤5 仍是全量级强信号。这样可避免把百万级自然破圈后的互动稀释误判成买量。</p>
+    <p>播放 ≥ 30,000 且 评论 ≥ 20 且 点赞 ≥ 1,000,三项同时满足。单看播放会被投流骗:本期 42.6w 播放的视频只有 8 个赞。辅助指标「赞/千播」采用分档红线:常规量级 &lt;8、10w 以上 &lt;7、50w 以上 &lt;4 且评论/千播 &lt;0.5 才判疑似投流;评论 ≤5 仍是全量级强信号。单看赞率会把懒人包、长访谈这类天然低赞率但评论正常的内容误判成买量;所有「疑似投流」都是公开数据推断,无法外部核实。这样可避免把百万级自然破圈后的互动稀释误判成买量。</p>
     <h4>采集口径</h4>
     <p>每频道取最新 40 条常规视频(不含 Shorts),先以播放 ≥1.2w 预筛,再抓取完整互动数据。周五至周日发布的视频可能尚未发酵完,下一期复查补录。采集与维护步骤保留在项目说明中,不占用周报阅读路径。</p>
   </div>
