@@ -63,6 +63,8 @@ GitHub Pages 部署前做的第一版,单文件、缩略图内嵌成 base64,往�
 桌面那个文件是个跳转页(`~/Desktop/📊 粤语财经爆款周报.html`),指向 `~/finance-hits/index.html` —
 换目录的话改它里面的两处路径即可。(macOS 的 .webloc 快捷方式对 file:// 已受限,所以用 HTML 跳转。)
 
+**简 / 繁切换**:页面右上角固定一个「简 | 繁」按钮。页面按简体生成,点「繁」才加载 `assets/opencc-cn2t.js`(OpenCC 词库,约 1MB,MIT/Apache-2.0,已随仓库自带,不依赖外部 CDN),转成香港繁体;点「简」还原生成时的原文,所以本来就是繁体的 YouTube 标题不会被转成简体。选择记在浏览器里,换期数也保持。逻辑在 `assets/zh.js`,build.py 每页末尾引用一行;英文版暂未做。
+
 `index.html` 永远是最新一期,直接打开也可以(数据静态嵌入,缩略图从 YouTube 加载需联网)。
 
 ## 分层标准

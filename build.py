@@ -900,14 +900,15 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
 
 <footer>粤语财经爆款周报 · {WEEK} · 数据来自 YouTube 公开页面,采集于 {gen_date} · 供内容策划参考</footer>
 </div>
+<script src="__ASSETS__zh.js" defer></script>
 </body>
 </html>"""
 
 (ROOT / "weeks").mkdir(exist_ok=True)
-(ROOT / "weeks" / f"{WEEK}.html").write_text(page.replace("__NAV__", nav("")))
+(ROOT / "weeks" / f"{WEEK}.html").write_text(page.replace("__NAV__", nav("")).replace("__ASSETS__", "../assets/"))
 outs = [f"weeks/{WEEK}.html"]
 if WEEK == all_weeks[0]:                      # newest week is also the landing page
-    (ROOT / "index.html").write_text(page.replace("__NAV__", nav("weeks/")))
+    (ROOT / "index.html").write_text(page.replace("__NAV__", nav("weeks/")).replace("__ASSETS__", "assets/"))
     outs.append("index.html")
 print(f"built {' + '.join(outs)}  ({len(page)//1024} KB) · 本周爆款 {len(hits_this)} · "
       f"差一口气 {len(near_this)} · 投流 {len(paid_all)} · 上周爆款 {len(hits_prev)}")
