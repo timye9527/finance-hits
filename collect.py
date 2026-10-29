@@ -21,16 +21,22 @@ CHANNELS = [
     ("自媒体", "30岁财务自由", "30FinancialFreedomByAge30", "粤语"),
     ("自媒体", "Homily小金-投资有道", "homilycharthk1998", "粤语"),
     ("自媒体", "阿豬 Ah Ju", "ahju", "粤语"),
-    ("自媒体", "Chart-reader CUP", "chartreadercup", "粤语"),
     ("自媒体", "東網Money18", "Money18-oncc", "粤语"),
     ("自媒体", "菠蘿包工作室 BoLoo", "BolooFinance", "粤语"),
     ("自媒体", "RagaFinance財經台", "RagaFinance", "粤语"),
     ("自媒体", "InvesTalk 講投資", "InvesTalk", "粤语"),
     ("自媒体", "etnet經濟通", "etnethk", "粤语"),
     ("自媒体", "熊麗萍Conita", "conita3706", "粤语"),
-    ("英文Podcast顶流", "All-In Podcast", "allin", "英语"),
-    ("英文Podcast顶流", "BG2 Pod", "BG2Pod", "英语"),
-    ("英文Podcast顶流", "The Compound", "TheCompoundNews", "英语"),
+    # 英文区:选题与节目形态的参考雷达,不参与中文爆款统计。2026-10-29 起移除 BG2 Pod,
+    # 按三类扩充。新加的 handle 首周要看 [chan] 日志有没有 ERROR,失效就换或删。
+    ("英文·财经市场", "All-In Podcast", "allin", "英语"),
+    ("英文·财经市场", "The Compound", "TheCompoundNews", "英语"),
+    ("英文·财经市场", "Patrick Boyle", "PBoyle1", "英语"),
+    ("英文·商业人物", "Acquired", "AcquiredFM", "英语"),
+    ("英文·商业人物", "The Diary Of A CEO", "TheDiaryOfACEO", "英语"),
+    ("英文·商业人物", "My First Million", "MyFirstMillionPod", "英语"),
+    ("英文·科技AI", "Dwarkesh Podcast", "DwarkeshPatel", "英语"),
+    ("英文·科技AI", "Lex Fridman", "lexfridman", "英语"),
 ]
 
 import pathlib
@@ -44,6 +50,8 @@ OUT = pathlib.Path(__file__).parent / "data" / f"{WEEK}.json"
 CAND_VIEWS = 12000           # flat-list view threshold to fetch full metadata
                              # (below the 1.5w 中腰部 line, so nothing near it is missed)
 MAX_CAND = 16                # max full fetches per channel
+MAX_CAND_EN = 6              # English shows post 1–3 long episodes a week; 6 covers the
+                             # two-week window without doubling the fetch load (rate limits)
 
 FLAT_OPTS = {"quiet": True, "extract_flat": True, "playlistend": 40, "no_warnings": True}
 FULL_OPTS = {"quiet": True, "skip_download": True, "no_warnings": True}
@@ -57,7 +65,8 @@ def get_channel_videos(cat, name, handle, lang):
     except Exception as e:
         return {"channel": name, "error": str(e)[:200], "candidates": []}
     entries = info.get("entries") or []
-    cands = [e for e in entries if (e.get("view_count") or 0) >= CAND_VIEWS][:MAX_CAND]
+    cap = MAX_CAND_EN if lang == "英语" else MAX_CAND
+    cands = [e for e in entries if (e.get("view_count") or 0) >= CAND_VIEWS][:cap]
     return {"cat": cat, "channel": name, "handle": handle, "lang": lang,
             "subs": info.get("channel_follower_count"),
             "n_listed": len(entries), "candidates": cands}

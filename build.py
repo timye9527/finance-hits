@@ -382,6 +382,55 @@ brief_focus = brief.get(
     "focus",
     "下周优先从已经被数据验证、但粤语区仍未充分供给的角度里选一个做小成本测试。",
 )
+# Newer issues carry a one-line conclusion plus what it means for each part of the team;
+# evidence tags belong in the sections below, not in the brief.
+def _plain(t):
+    return re.sub(r"【[^】]{2,4}】", "", t or "").strip()
+brief_head = _plain(brief.get("headline", ""))
+so_what = brief.get("so_what", [])
+if brief_head:
+    _items = "".join("<li><b>" + esc(x.get("to", "")) + "</b><span>" + esc(_plain(x.get("say", ""))) + "</span></li>"
+                     for x in so_what)
+    verdict_inner = f'<h3>{esc(brief_head)}</h3>' + (f'<ul class="sowhat">{_items}</ul>' if so_what else "")
+else:
+    verdict_inner = f"<h3>{esc(brief_verdict)}</h3>\n    <p>{esc(brief_focus)}</p>"
+
+# 上期判断复盘: last issue's calls, checked against this week's data
+STATUS_CLS = {"成立": "ok", "不成立": "bad", "待看": "wait", "部分成立": "part"}
+review = cur.get("review", [])
+review_html = "".join(f"""
+  <div class="rv"><span class="rvst {STATUS_CLS.get(r.get('status'), 'wait')}">{esc(r.get('status', '待看'))}</span>
+    <div><h4>{esc(r.get('claim', ''))}</h4><p>{rich(r.get('evidence', ''))}</p></div></div>""" for r in review)
+review_section = f"""
+<section id="review">
+  <h2>上期判断复盘<span class="cnt">说过的话要回头对账</span></h2>
+  <p class="secdesc">上一期给出的判断和建议,用本周数据逐条验证。成立的继续用,不成立的明确撤回——周报的可信度来自这里。</p>
+  <div class="rvlist">{review_html}</div>
+</section>""" if review else ""
+
+# 新节目追踪: new shows/formats followed episode by episode until they settle
+shows = cur.get("shows", [])
+def _show_card(sh):
+    eps = "".join(f'<span class="ep"><b>{esc(e.get("ep", ""))}</b>{esc(e.get("v", ""))}</span>' for e in sh.get("eps", []))
+    return f"""
+  <div class="show"><div class="showhead"><h4>{esc(sh.get('name', ''))}</h4><span class="chip ghost">{esc(sh.get('channel', ''))}</span>
+    <span class="showst">{esc(sh.get('status', ''))}</span></div>
+    <div class="eps">{eps}</div><p>{rich(sh.get('note', ''))}</p></div>"""
+shows_section = f"""
+<section id="shows">
+  <h2>新节目追踪<span class="cnt">{len(shows)} 档</span></h2>
+  <p class="secdesc">同行新开的节目和新形态,逐集跟到稳定为止:第一集爆不算数,看第二、三集守不守得住。</p>
+  <div class="showgrid">{''.join(_show_card(sh) for sh in shows)}</div>
+</section>""" if shows else ""
+
+# 英文区选题雷达: what the English shows are on, and how a Cantonese team would take it
+en_radar = cur.get("en_radar", [])
+en_radar_html = "".join(f"""
+  <div class="er"><div class="erhead"><h4>{esc(r.get('trend', ''))}</h4><span class="erst">{esc(r.get('status', ''))}</span></div>
+    <p class="erev">{rich(r.get('evidence', ''))}</p>
+    <p class="erang"><b>粤语区怎么接</b>{rich(r.get('angle', ''))}</p></div>""" for r in en_radar)
+EN_CHANNELS = [c["channel"] for c in data["channels"] if c.get("lang") == "英语" and not c.get("error")]
+
 longtail_value = f"+{fmt(longtail_delta)}" if longtail_delta else "—"
 longtail_desc = (f"{esc(longtail_video['channel_name'])} 单条周增量" if longtail_video else "暂无可比基线")
 stats_html = f"""
@@ -460,7 +509,8 @@ ch_notes = cur.get("channel_notes", {})
 by_ch = {}
 for v in CN + EN:
     by_ch.setdefault(v["channel_name"], []).append(v)
-CAT_ORDER = ["直接竞品", "财经APP", "中文财经顶流", "财经垂类(主持类)", "自媒体", "英文Podcast顶流"]
+CAT_ORDER = ["直接竞品", "财经APP", "中文财经顶流", "财经垂类(主持类)", "自媒体",
+             "英文Podcast顶流", "英文·财经市场", "英文·商业人物", "英文·科技AI"]
 rows = []
 for c in sorted(data["channels"], key=lambda c: (CAT_ORDER.index(c.get("cat")) if c.get("cat") in CAT_ORDER else 99, -(c.get("subs") or 0))):
     if c.get("error"):
@@ -619,6 +669,37 @@ h2 .cnt {{ color: var(--muted); font-weight: 400; font-size: 15px; margin-left: 
 .verdict .label {{ display: inline-block; color: #bcd9ff; font-size: 12px; font-weight: 800; letter-spacing: .08em; margin-bottom: 5px; }}
 .verdict h3 {{ font-size: 20px; line-height: 1.4; }}
 .verdict p {{ color: #dceaff; margin-top: 5px; font-size: 14px; max-width: 78ch; }}
+.sowhat {{ list-style: none; padding: 0; margin-top: 12px; display: grid; gap: 7px; }}
+.sowhat li {{ display: flex; gap: 10px; align-items: baseline; color: #dceaff; font-size: 14.5px; line-height: 1.5; }}
+.sowhat b {{ flex: 0 0 auto; font-size: 12px; color: #10243e; background: #bcd9ff; border-radius: 999px; padding: 1px 9px; }}
+/* review */
+.rvlist {{ display: grid; gap: 10px; }}
+.rv {{ display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }}
+.rvst {{ flex: 0 0 auto; align-self: flex-start; font-size: 12px; font-weight: 800; border-radius: 999px; padding: 3px 10px; }}
+.rvst.ok {{ color: var(--c-good); background: color-mix(in srgb, var(--c-good) 12%, transparent); }}
+.rvst.bad {{ color: var(--c-paid); background: var(--paid-bg); }}
+.rvst.part {{ color: var(--c-near); background: var(--near-bg); }}
+.rvst.wait {{ color: var(--muted); background: color-mix(in srgb, var(--muted) 14%, transparent); }}
+.rv h4 {{ font-size: 15px; margin-bottom: 3px; }} .rv p {{ color: var(--ink2); font-size: 13.5px; }}
+/* shows */
+.showgrid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }}
+.show {{ background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }}
+.showhead {{ display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }}
+.showhead h4 {{ font-size: 16px; }}
+.showst {{ margin-left: auto; font-size: 12px; font-weight: 800; color: var(--c-hit); }}
+.eps {{ display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 8px; }}
+.ep {{ display: flex; flex-direction: column; min-width: 64px; background: var(--hit-bg); border-radius: 8px; padding: 5px 9px; font-size: 13px; font-variant-numeric: tabular-nums; }}
+.ep b {{ font-size: 11px; color: var(--c-hit); }}
+.show p {{ color: var(--ink2); font-size: 13.5px; }}
+/* english radar */
+.ergrid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin-bottom: 16px; }}
+.er {{ background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--c-mid); border-radius: 14px; padding: 16px 18px; }}
+.erhead {{ display: flex; gap: 8px; align-items: baseline; justify-content: space-between; }}
+.erhead h4 {{ font-size: 15.5px; }}
+.erst {{ flex: 0 0 auto; font-size: 12px; font-weight: 800; color: var(--c-mid); background: var(--mid-bg); border-radius: 999px; padding: 2px 9px; }}
+.erev {{ color: var(--ink2); font-size: 13.5px; margin-top: 6px; }}
+.erang {{ font-size: 13.5px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border); }}
+.erang b {{ color: var(--c-mid); margin-right: 8px; font-size: 12px; }}
 /* action board */
 .actiongrid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }}
 .action {{ display: flex; flex-direction: column; min-height: 220px; background: var(--surface); border: 1px solid var(--border);
@@ -783,7 +864,7 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
 </header>
 
 <div class="jumpbar"><nav class="jumpnav" aria-label="页面快捷导航">
-  <a href="#brief">30 秒复盘</a>{action_jump}<a href="#hits">爆款证据</a><a href="#topics">选题与标题</a><a href="#radar">趋势雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
+  <a href="#brief">30 秒复盘</a>{action_jump}{'<a href="#review">上期复盘</a>' if review else ''}<a href="#hits">爆款证据</a>{'<a href="#shows">新节目</a>' if shows else ''}<a href="#topics">选题与标题</a><a href="#radar">投流识别</a><a href="#en">英文雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
 </nav></div>
 
 <section id="brief" class="brief">
@@ -792,17 +873,18 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
   <div class="statgrid">{stats_html}</div>
   <div class="verdict">
     <span class="label">本周判断</span>
-    <h3>{esc(brief_verdict)}</h3>
-    <p>{esc(brief_focus)}</p>
+    {verdict_inner}
   </div>
 </section>
 
 {actions_section}
+{review_section}
 
 <section id="signals">
-  <h2>关键变化<span class="cnt">支撑本周判断的 6 条信号</span></h2>
+  <h2>关键变化<span class="cnt">支撑本周判断的 {len(cur.get("tldr", []))} 条信号</span></h2>
   <div class="tgrid">{tldr_html}</div>
 </section>
+{shows_section}
 
 <section id="hits">
   <h2>本周爆款榜<span class="cnt">{esc(cur.get("range", ""))} · 三项全达标 {len(hits_this)} 条</span></h2>
@@ -873,9 +955,10 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
   <div class="rows" style="margin-top:12px">{prev_rest_html}</div>
 </section>
 
-<section>
-  <h2>英文区预警雷达<span class="cnt">All-In / BG2 / The Compound</span></h2>
-  <p class="secdesc">英文顶流的题材通常领先中文区 3–7 天。每周扫一遍,提前锁定下周粤语选题。</p>
+<section id="en">
+  <h2>英文区选题雷达<span class="cnt">{len(EN_CHANNELS)} 档英文 Podcast</span></h2>
+  <p class="secdesc">英文顶流的题材通常领先中文区 3–7 天,节目形态领先更久。上面是本周值得借的趋势和粤语区的接法,下面是原始清单。监测:{esc(" / ".join(EN_CHANNELS))}。</p>
+  {f'<div class="ergrid">{en_radar_html}</div>' if en_radar_html else ''}
   <div class="rows">{en_html}</div>
 </section>
 

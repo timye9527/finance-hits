@@ -84,6 +84,37 @@ h2 .cnt { color: var(--muted); font-weight: 400; font-size: 15px; margin-left: 8
 .verdict .label { display: inline-block; color: #bcd9ff; font-size: 12px; font-weight: 800; letter-spacing: .08em; margin-bottom: 5px; }
 .verdict h3 { font-size: 20px; line-height: 1.4; }
 .verdict p { color: #dceaff; margin-top: 5px; font-size: 14px; max-width: 78ch; }
+.sowhat { list-style: none; padding: 0; margin-top: 12px; display: grid; gap: 7px; }
+.sowhat li { display: flex; gap: 10px; align-items: baseline; color: #dceaff; font-size: 14.5px; line-height: 1.5; }
+.sowhat b { flex: 0 0 auto; font-size: 12px; color: #10243e; background: #bcd9ff; border-radius: 999px; padding: 1px 9px; }
+/* review */
+.rvlist { display: grid; gap: 10px; }
+.rv { display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }
+.rvst { flex: 0 0 auto; align-self: flex-start; font-size: 12px; font-weight: 800; border-radius: 999px; padding: 3px 10px; }
+.rvst.ok { color: var(--c-good); background: color-mix(in srgb, var(--c-good) 12%, transparent); }
+.rvst.bad { color: var(--c-paid); background: var(--paid-bg); }
+.rvst.part { color: var(--c-near); background: var(--near-bg); }
+.rvst.wait { color: var(--muted); background: color-mix(in srgb, var(--muted) 14%, transparent); }
+.rv h4 { font-size: 15px; margin-bottom: 3px; } .rv p { color: var(--ink2); font-size: 13.5px; }
+/* shows */
+.showgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.show { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }
+.showhead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.showhead h4 { font-size: 16px; }
+.showst { margin-left: auto; font-size: 12px; font-weight: 800; color: var(--c-hit); }
+.eps { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 8px; }
+.ep { display: flex; flex-direction: column; min-width: 64px; background: var(--hit-bg); border-radius: 8px; padding: 5px 9px; font-size: 13px; font-variant-numeric: tabular-nums; }
+.ep b { font-size: 11px; color: var(--c-hit); }
+.show p { color: var(--ink2); font-size: 13.5px; }
+/* english radar */
+.ergrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.er { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--c-mid); border-radius: 14px; padding: 16px 18px; }
+.erhead { display: flex; gap: 8px; align-items: baseline; justify-content: space-between; }
+.erhead h4 { font-size: 15.5px; }
+.erst { flex: 0 0 auto; font-size: 12px; font-weight: 800; color: var(--c-mid); background: var(--mid-bg); border-radius: 999px; padding: 2px 9px; }
+.erev { color: var(--ink2); font-size: 13.5px; margin-top: 6px; }
+.erang { font-size: 13.5px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border); }
+.erang b { color: var(--c-mid); margin-right: 8px; font-size: 12px; }
 /* action board */
 .actiongrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
 .action { display: flex; flex-direction: column; min-height: 220px; background: var(--surface); border: 1px solid var(--border);
@@ -248,7 +279,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
 </header>
 
 <div class="jumpbar"><nav class="jumpnav" aria-label="页面快捷导航">
-  <a href="#brief">30 秒复盘</a><a href="#actions">下周动作</a><a href="#hits">爆款证据</a><a href="#topics">选题与标题</a><a href="#radar">趋势雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
+  <a href="#brief">30 秒复盘</a><a href="#actions">下周动作</a><a href="#review">上期复盘</a><a href="#hits">爆款证据</a><a href="#shows">新节目</a><a href="#topics">选题与标题</a><a href="#radar">投流识别</a><a href="#en">英文雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
 </nav></div>
 
 <section id="brief" class="brief">
@@ -261,8 +292,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
   <div class="stat growthstat"><b>+16.8w</b><span>长尾冠军</span><small>光大证券国际 单条周增量</small></div></div>
   <div class="verdict">
     <span class="label">本周判断</span>
-    <h3>本周中文区 5 条爆款,新发内容里没有爆款被标疑似投流。最大的是阿豬《最後警告! 拆解AI巨頭隱藏的違約風險》,7 天 25.9 万、6328 个赞,正是上周说粤语区还空着的 AI 泡沫题,一周后被填上。Finance730 只有 1 条过线(许桢讲英国,11.8 万),是近 8 周最少的一周;光大《一Pair傾》EP3 没有新集,第二周还涨了 35%,到 65.2 万。</h3>
-    <p>AI 泡沫这个题本周换了角度,从「资本开支撑不撑得住」转到「债务会不会违约」:阿豬 25.9 万、张志云垃圾债那条 18.6 万,中文区 5 条爆款里 3 条是这个题。粤语财经号(Raga、etnet、AASTOCKS)仍然只在行情节目里带一节,都在 1.4–1.8 万。</p>
+    <h3>AI 泡沫已经从一个空位变成一条赛道:一周内两个中文号拿到爆款。下一步要换角度,不要做第三个「违约警告」。</h3><ul class="sowhat"><li><b>选题</b><span>AI 泡沫的「违约 / 垃圾债」角度已被阿豬(25.9 万)和张志云(18.6 万)占住。要做就换层:英文区刚起来的「AI 网络安全恐慌」,或者直接落到观众手上的科技股、强积金。</span></li><li><b>节目</b><span>人物访谈是券商号目前唯一可复制的涨粉手段:光大《一Pair傾》这周没有新集,靠 EP3 的长尾仍涨粉 1300。嘉宾选圈外人,标题讲他输过的钱。</span></li><li><b>运营</b><span>楼市、民生题拿的是评论,不是赞(公屋豪宅 210 条、小心港樓 242 条),适合做社区互动。Finance730 本周只有 1 条爆款,是对手的弱周。</span></li></ul>
   </div>
 </section>
 
@@ -297,9 +327,35 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
   </article></div>
 </section>
 
+<section id="review">
+  <h2>上期判断复盘<span class="cnt">说过的话要回头对账</span></h2>
+  <p class="secdesc">上一期给出的判断和建议,用本周数据逐条验证。成立的继续用,不成立的明确撤回——周报的可信度来自这里。</p>
+  <div class="rvlist">
+  <div class="rv"><span class="rvst ok">成立</span>
+    <div><h4>W42:AI 泡沫题粤语区还空着,要落到「我的工作、我的钱」</h4><p>【已核实】一周后阿豬《最後警告! 拆解AI巨頭隱藏的違約風險》7 天 25.9 万、6328 个赞,是本周中文区第一。【推断】空位真实存在,窗口只有一周左右;下次发现空位要当周就排。</p></div></div>
+  <div class="rv"><span class="rvst ok">成立</span>
+    <div><h4>W42:人物访谈是券商号唯一的涨粉开关</h4><p>【已核实】本周没有《一Pair傾》新集,EP3 第二周从 48.4 万涨到 65.2 万,光大订阅仍 +1300(40.7k → 42.0k)。【推断】不只是上线那周带粉,长尾也在带。</p></div></div>
+  <div class="rv"><span class="rvst wait">待看</span>
+    <div><h4>W42:剥花生 EP2 掉量是因为标题落在项目上、没落在人上</h4><p>【未核实】要靠 EP3 验证,但数据里没有 EP3。EP2 第二周涨到 8.7 万(+61%),仍只有 EP1 的约七分之一。</p></div></div>
+  <div class="rv"><span class="rvst part">部分成立</span>
+    <div><h4>W41/W42:能稳定拿量的是「危机」型大题,不是「贴近钱包」那半边</h4><p>【已核实】施永青上下集:法国骚乱 6.92 万 &gt; 财富分配 6.07 万,方向一致但差距很小。【已核实】本周拿到量的是 AI 违约警告(25.9 万、18.6 万),也是危机型。【推断】「危机」这条可以继续用;上下集谁赢差距在缩小,别作为剪辑硬规则。</p></div></div></div>
+</section>
+
 <section id="signals">
-  <h2>关键变化<span class="cnt">支撑本周判断的 6 条信号</span></h2>
-  <div class="tgrid"><div class="tcard"><div class="tnum">1</div><div><h4>阿豬 AI 违约风险 7 天 25.9 万,上周的空档被填上</h4><p>【已核实】10/19《最後警告! 拆解AI巨頭隱藏的違約風險》12 分钟,25.9 万播放、6328 个赞、75 条评论,赞率 24.4。【已核实】评论数是他 5 条入库里最少的一条(其余 160–208 条),每千播 0.29,是本周 5 条爆款里最低。【推断】赞多评论少,更像「看完同意」的内容而不是「看完想吵」,而且 75 条是 7 天的数字,可能还在累积。</p></div></div><div class="tcard"><div class="tnum">2</div><div><h4>张志云一周两条爆款,垃圾债那条 18.6 万是他的纪录</h4><p>【已核实】10/19 垃圾债那条 18.6 万、1765 个赞、123 条评论,在 data/ 里他的 14 条中最高;10/23 GPU 折旧那条 8.3 万、1278 个赞、112 条评论。【已核实】订阅 287k → 289k,这个数字前面 10 个采集周一直是 287k。【已核实】两条标题都以「【警告】」开头、以「手上的錢怎麼辦?」收尾。【推断】他把别人的宏观新闻统一落到「我的钱」,这个模板两周都有量。</p></div></div><div class="tcard"><div class="tnum">3</div><div><h4>光大 EP3 第二周 65.2 万,订阅 +1300</h4><p>【已核实】48.4 万 → 65.2 万(+35%),三集里最高(EP1 60.2 万、EP2 56.7 万停在各自最后入库)。光大订阅 40.7k → 42.0k;常规《每週HOT Talk》EP75 4.7 万、924 个赞、23 条评论,差 76 个赞够线;EP74 3.2 万 → 3.5 万。【未核实】本周没有 EP4,是否排期不知道。</p></div></div><div class="tcard"><div class="tnum">4</div><div><h4>Finance730 只有 1 条爆款,近 8 周最少</h4><p>【已核实】10/19 之后上传 6 条,只有许桢讲英国那条(10/21,11.8 万、1686 个赞、144 条评论)过线。最近 8 周它的爆款数是 2、1、5、3、2、4、2、1,本周 1 条是并列最低;本周最高播放 11.8 万,也是 8 周里最低(此前最低 13.6 万)。【已核实】2 条差一口气:施永青、李浩德讲法国骚乱 6.9 万差 77 个赞,施永青讲财富分配 6.1 万差 320 个赞。【推断】上周赢的是本地出丑懒人包,本周没有同类题。</p></div></div><div class="tcard"><div class="tnum">5</div><div><h4>许桢连续六周赞数过千,英国那条评论是单人节目纪录</h4><p>【已核实】10/15 欧洲末日 15.4 万、2194 个赞、38 条评论;10/21 英国繁华散尽 11.8 万、1686 个赞、144 条评论,每千播 1.22。按标题含「許楨」的条目算,他单人节目(标题无嘉宾名)的评论此前最高 115 条(8/5)。【已核实】从 W38 起每周都有至少一条赞数过千,共 6 周(上期写「连续四周」,按 data/ 重数 W38–W42 应是五周,本周是第六周)。【推断】同一个「欧洲危机」系列连发两周,第二条评论是第一条的 3.8 倍,题材延伸比换题更能拉评论。</p></div></div><div class="tcard"><div class="tnum">6</div><div><h4>熊丽萍自己台 3.6 万回到爆款线,上 AASTOCKS 的那条赞率还是低三倍多</h4><p>【已核实】10/24《股動萍台》3.6 万、1679 个赞、82 条评论,赞率 46.8。上周 2.45 万的那条涨到 2.8 万(+13%)。自己台 15 周 15 条里 10 条过爆款线。【已核实】同一周在 AASTOCKS 的那条 1.62 万 → 2.6 万(+60%),339 个赞,赞率 13.1,自己台同期 50.3。【推断】「自己台 vs 机构台」的差距连续第三周成立,而且机构台的增量比自己台还大,说明机构台的流量更多来自推荐。</p></div></div><div class="tcard"><div class="tnum">7</div><div><h4>Raga 一周 7 条入库,条数纪录;但最高只有 3.2 万</h4><p>【已核实】7 条都在 10/19–10/24 发布,此前单周最多 5 条(W40)。最高那条是《4點痴線財經》第二节 3.2 万、242 条评论;其余 1.3–2.8 万,评论 1–46 条。《A股解密》AI 短剧 2.8 万、319 个赞、25 条评论。【推断】产出翻倍,没有一条过线。周五到周日发布的统计可能未发酵完,下期复查。</p></div></div><div class="tcard"><div class="tnum">8</div><div><h4>上周三条爆款第二周继续涨 39%–75%</h4><p>【已核实】All-In CoreWeave 65.7 万 → 91.2 万(+39%);All-In Billy Evans 20.3 万 → 35.6 万(+75%),1700 条评论;RainIsHere Gen Z 失业 11.3 万 → 18.2 万(+60%),3097 个赞;The Compound 11.1 万 → 15.8 万(+42%)。【已核实】同期 Finance730 公关灾难懒人包 21.7 万 → 22.3 万,只涨 3%。【推断】AI 失业、AI 泡沫的长尾比本地出丑题长;懒人包类第一周基本吃满。</p></div></div><div class="tcard"><div class="tnum">9</div><div><h4>疑似投流 2 条:老虎证券赞率 0.5,etnet 港元定存短讯评论为空</h4><p>【已核实】老虎证券《三條件選股法》4.97 万播放、25 个赞、1 条评论,赞率 0.5,是 data/ 里播放过 3 万的内容中赞率第四低(前三名:富途牛牛 2 条、致富 1 条,都在 0.1 以下)。【已核实】etnet 港元定存比拼 2 分钟短讯 1.5 万播放、52 个赞,评论数据为空(同频道陶冬那条数据中心债券也是空)。【推断】老虎那条符合投流形态;etnet 两条评论为空,可能是关闭评论而不是没人评,「评论/千播 &lt;0.5」这条规则对关闭评论的视频会误判,先记着,再出现一次考虑把「评论为空」从判定里剔除。</p></div></div></div>
+  <h2>关键变化<span class="cnt">支撑本周判断的 5 条信号</span></h2>
+  <div class="tgrid"><div class="tcard"><div class="tnum">1</div><div><h4>阿豬 AI 违约风险 7 天 25.9 万,上周的空档被填上</h4><p>【已核实】10/19《最後警告! 拆解AI巨頭隱藏的違約風險》12 分钟,25.9 万播放、6328 个赞、75 条评论,赞率 24.4。【已核实】评论数是他 5 条入库里最少的一条(其余 160–208 条),每千播 0.29,是本周 5 条爆款里最低。【推断】赞多评论少,更像「看完同意」的内容而不是「看完想吵」,而且 75 条是 7 天的数字,可能还在累积。</p></div></div><div class="tcard"><div class="tnum">2</div><div><h4>张志云一周两条爆款,垃圾债那条 18.6 万是他的纪录</h4><p>【已核实】10/19 垃圾债那条 18.6 万、1765 个赞、123 条评论,在 data/ 里他的 14 条中最高;10/23 GPU 折旧那条 8.3 万、1278 个赞、112 条评论。【已核实】订阅 287k → 289k,这个数字前面 10 个采集周一直是 287k。【已核实】两条标题都以「【警告】」开头、以「手上的錢怎麼辦?」收尾。【推断】他把别人的宏观新闻统一落到「我的钱」,这个模板两周都有量。</p></div></div><div class="tcard"><div class="tnum">3</div><div><h4>光大 EP3 第二周 65.2 万,订阅 +1300</h4><p>【已核实】48.4 万 → 65.2 万(+35%),三集里最高(EP1 60.2 万、EP2 56.7 万停在各自最后入库)。光大订阅 40.7k → 42.0k;常规《每週HOT Talk》EP75 4.7 万、924 个赞、23 条评论,差 76 个赞够线;EP74 3.2 万 → 3.5 万。【未核实】本周没有 EP4,是否排期不知道。</p></div></div><div class="tcard"><div class="tnum">4</div><div><h4>Finance730 只有 1 条爆款,近 8 周最少</h4><p>【已核实】10/19 之后上传 6 条,只有许桢讲英国那条(10/21,11.8 万、1686 个赞、144 条评论)过线。最近 8 周它的爆款数是 2、1、5、3、2、4、2、1,本周 1 条是并列最低;本周最高播放 11.8 万,也是 8 周里最低(此前最低 13.6 万)。【已核实】2 条差一口气:施永青、李浩德讲法国骚乱 6.9 万差 77 个赞,施永青讲财富分配 6.1 万差 320 个赞。【推断】上周赢的是本地出丑懒人包,本周没有同类题。</p></div></div><div class="tcard"><div class="tnum">5</div><div><h4>疑似投流 2 条:老虎证券赞率 0.5,etnet 港元定存短讯评论为空</h4><p>【已核实】老虎证券《三條件選股法》4.97 万播放、25 个赞、1 条评论,赞率 0.5,是 data/ 里播放过 3 万的内容中赞率第四低(前三名:富途牛牛 2 条、致富 1 条,都在 0.1 以下)。【已核实】etnet 港元定存比拼 2 分钟短讯 1.5 万播放、52 个赞,评论数据为空(同频道陶冬那条数据中心债券也是空)。【推断】老虎那条符合投流形态;etnet 两条评论为空,可能是关闭评论而不是没人评,「评论/千播 &lt;0.5」这条规则对关闭评论的视频会误判,先记着,再出现一次考虑把「评论为空」从判定里剔除。</p></div></div></div>
+</section>
+
+<section id="shows">
+  <h2>新节目追踪<span class="cnt">2 档</span></h2>
+  <p class="secdesc">同行新开的节目和新形态,逐集跟到稳定为止:第一集爆不算数,看第二、三集守不守得住。</p>
+  <div class="showgrid">
+  <div class="show"><div class="showhead"><h4>《一Pair傾》</h4><span class="chip ghost">光大证券国际</span>
+    <span class="showst">已站稳 · 3/3 过 50 万</span></div>
+    <div class="eps"><span class="ep"><b>EP1 田启文</b>60.2 万</span><span class="ep"><b>EP2 Debby</b>56.7 万</span><span class="ep"><b>EP3 张芯熏</b>65.2 万</span></div><p>【已核实】三集都过 50 万,光大订阅从开播前 34.5k 到 42.0k。【未核实】EP4 不在数据里,EP3 之后已 12 天。【推断】形态已验证,接下来看的是更新节奏:断档两周以上涨粉会不会停。</p></div>
+  <div class="show"><div class="showhead"><h4>《财经剥花生》</h4><span class="chip ghost">Finance730</span>
+    <span class="showst">第二集掉量 · 待看</span></div>
+    <div class="eps"><span class="ep"><b>EP1 澳博</b>62.9 万</span><span class="ep"><b>EP2 11 SKIES</b>8.7 万</span><span class="ep"><b>EP3</b>未入库</span></div><p>【已核实】EP1 讲赌王家族,EP2 讲一个楼盘项目,量差七倍。【未核实】EP3 是没发还是没过 1.2 万门槛。【推断】如果 EP3 也在 10 万以下,这档节目的爆点是「豪门」而不是「剥花生」这个形式。</p></div></div>
 </section>
 
 <section id="hits">
@@ -993,9 +1049,19 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
     </div></div>
 </section>
 
-<section>
-  <h2>英文区预警雷达<span class="cnt">All-In / BG2 / The Compound</span></h2>
-  <p class="secdesc">英文顶流的题材通常领先中文区 3–7 天。每周扫一遍,提前锁定下周粤语选题。</p>
+<section id="en">
+  <h2>英文区选题雷达<span class="cnt">3 档英文 Podcast</span></h2>
+  <p class="secdesc">英文顶流的题材通常领先中文区 3–7 天,节目形态领先更久。上面是本周值得借的趋势和粤语区的接法,下面是原始清单。监测:BG2 Pod / All-In Podcast / The Compound。</p>
+  <div class="ergrid">
+  <div class="er"><div class="erhead"><h4>AI 泡沫的下一层:网络安全恐慌 + 名人泡沫警告</h4><span class="erst">粤语区空位</span></div>
+    <p class="erev">【已核实】All-In 10/23《AI Cyber Panic, Ken Griffin&#x27;s Bubble Warning》49.9 万、1200 条评论;10/21 IBM、Palo Alto 两位 CEO 谈 AI 网络战 18.1 万。【已核实】上一轮「CoreWeave 崩盘」那期已涨到 91.2 万。</p>
+    <p class="erang"><b>粤语区怎么接</b>中文区这周做的是「违约」,还没人做「AI 被用来攻击」和「大佬警告泡沫」。可以用 Ken Griffin 这类名字开场,落到「你的银行账户 / 港股科技股安不安全」。</p></div>
+  <div class="er"><div class="erhead"><h4>争议人物的自述:坐过牢、做错过的人</h4><span class="erst">粤语区空位</span></div>
+    <p class="erev">【已核实】All-In 10/15 Elizabeth Holmes 伴侣 Billy Evans 专访 35.6 万、1700 条评论,是它本期评论最多的一集;10/12 Martin Shkreli 讲「监狱教会我什么」36.7 万。</p>
+    <p class="erang"><b>粤语区怎么接</b>跟《一Pair傾》的「输过的钱」是同一个逻辑,但更进一步:请一个有争议、真的栽过的人讲他怎么输。香港有现成人选(曾输掉身家的老行尊、破产后翻身的老板),比请成功人士更容易爆。</p></div>
+  <div class="er"><div class="erhead"><h4>「数据很好,但没人活得下去」:生活成本焦虑</h4><span class="erst">可迁移</span></div>
+    <p class="erev">【已核实】The Compound 10/23《An Economy So Good No One Can Live In It》5.8 万、216 条评论;10/2《Is Gen Z Completely Cooked?》最后一次入库(W41)时 9.6 万、682 条评论。</p>
+    <p class="erang"><b>粤语区怎么接</b>香港版本是「恒指、GDP 都不差,但打工仔、年轻人觉得更难捱」。正好对上本周楼市民生题评论最密的发现,适合做成拿评论的社区型内容。</p></div></div>
   <div class="rows">
     <div class="row st-hit">
       <span class="chip hit sm">爆款</span>
@@ -1110,7 +1176,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">·</td>
       <td class="num paidnum">·</td>
       <td class="num">·</td>
-      <td class="notecell">【未核实】本周数据里没有任何条目。订阅 109k 没变。过去 8 周里只有 W36、W37 各有 1 条入库。</td></tr><tr>
+      <td class="notecell"></td></tr><tr>
       <td class="dim">直接竞品</td>
       <td><a href="https://www.youtube.com/@everbrightsecuritiesintl" target="_blank" rel="noopener">光大证券国际</a></td>
       <td class="num">4.2w</td>
@@ -1126,7 +1192,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">·</td>
       <td class="num paidnum">·</td>
       <td class="num">·</td>
-      <td class="notecell">【未核实】本周数据里没有任何条目,订阅 38.3k → 39.1k(+800);15 周累计 33.0k → 39.1k,但 15 周里只入库 1 条。订阅在涨而数据几乎为空,很可能采集门槛把它漏了。</td></tr><tr>
+      <td class="notecell"></td></tr><tr>
       <td class="dim">直接竞品</td>
       <td><a href="https://www.youtube.com/@vbrokers_app" target="_blank" rel="noopener">華盛証券</a></td>
       <td class="num">2.8w</td>
@@ -1134,7 +1200,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">·</td>
       <td class="num paidnum">·</td>
       <td class="num">·</td>
-      <td class="notecell">【未核实】本周数据里没有任何条目,15 周里 0 条。</td></tr><tr>
+      <td class="notecell"></td></tr><tr>
       <td class="dim">直接竞品</td>
       <td><a href="https://www.youtube.com/@tigerbrokershk" target="_blank" rel="noopener">老虎证券</a></td>
       <td class="num">2.8w</td>
@@ -1150,7 +1216,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">·</td>
       <td class="num paidnum">·</td>
       <td class="num">·</td>
-      <td class="notecell">【未核实】本周数据里没有任何条目,15 周里共 2 条。</td></tr><tr>
+      <td class="notecell"></td></tr><tr>
       <td class="dim">财经APP</td>
       <td><a href="https://www.youtube.com/@AASTOCKS_AATV" target="_blank" rel="noopener">AASTOCKS</a></td>
       <td class="num">16.6w</td>
@@ -1166,7 +1232,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">·</td>
       <td class="num paidnum">·</td>
       <td class="num">·</td>
-      <td class="notecell">【未核实】本周数据里没有这个频道的任何条目,订阅 2.83M → 2.84M。不能当作「没更新」,可能是没发,也可能是低于门槛或采集漏了。</td></tr><tr>
+      <td class="notecell"></td></tr><tr>
       <td class="dim">财经垂类(主持类)</td>
       <td><a href="https://www.youtube.com/@Finance730hk" target="_blank" rel="noopener">Finance730</a></td>
       <td class="num">27.8w</td>
@@ -1230,7 +1296,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">·</td>
       <td class="num paidnum">·</td>
       <td class="num">·</td>
-      <td class="notecell">【未核实】本周数据里没有任何条目,上次入库是 W40。</td></tr><tr>
+      <td class="notecell"></td></tr><tr>
       <td class="dim">自媒体</td>
       <td><a href="https://www.youtube.com/@GiantCutie-CH" target="_blank" rel="noopener">加密大漂亮</a></td>
       <td class="num">14.4w</td>
@@ -1238,7 +1304,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">·</td>
       <td class="num paidnum">·</td>
       <td class="num">·</td>
-      <td class="notecell">【未核实】本周数据里没有任何条目,15 周里 3 条。</td></tr><tr>
+      <td class="notecell"></td></tr><tr>
       <td class="dim">自媒体</td>
       <td><a href="https://www.youtube.com/@BolooFinance" target="_blank" rel="noopener">菠蘿包工作室 BoLoo</a></td>
       <td class="num">12.7w</td>
@@ -1246,7 +1312,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">·</td>
       <td class="num paidnum">·</td>
       <td class="num">·</td>
-      <td class="notecell">【未核实】本周数据里没有任何条目,上次入库是 W38。</td></tr><tr>
+      <td class="notecell"></td></tr><tr>
       <td class="dim">自媒体</td>
       <td><a href="https://www.youtube.com/@30FinancialFreedomByAge30" target="_blank" rel="noopener">30岁财务自由</a></td>
       <td class="num">12w</td>
@@ -1254,7 +1320,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">·</td>
       <td class="num paidnum">·</td>
       <td class="num">·</td>
-      <td class="notecell">【未核实】本周数据里没有任何条目。</td></tr><tr>
+      <td class="notecell"></td></tr><tr>
       <td class="dim">自媒体</td>
       <td><a href="https://www.youtube.com/@conita3706" target="_blank" rel="noopener">熊麗萍Conita</a></td>
       <td class="num">5.7w</td>
@@ -1270,7 +1336,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">·</td>
       <td class="num paidnum">·</td>
       <td class="num">·</td>
-      <td class="notecell">【未核实】本周数据里没有任何条目,15 周里 0 条。</td></tr><tr>
+      <td class="notecell"></td></tr><tr>
       <td class="dim">自媒体</td>
       <td><a href="https://www.youtube.com/@Money18-oncc" target="_blank" rel="noopener">東網Money18</a></td>
       <td class="num">2.6w</td>
@@ -1278,7 +1344,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">·</td>
       <td class="num paidnum">·</td>
       <td class="num">·</td>
-      <td class="notecell">【未核实】本周数据里没有任何条目,上次入库是 W41。</td></tr><tr>
+      <td class="notecell"></td></tr><tr>
       <td class="dim">英文Podcast顶流</td>
       <td><a href="https://www.youtube.com/@allin" target="_blank" rel="noopener">All-In Podcast</a></td>
       <td class="num">116w</td>
@@ -1302,9 +1368,9 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
       <td class="num">1</td>
       <td class="num paidnum">·</td>
       <td class="num">29.8w</td>
-      <td class="notecell">【已核实】没有新集,上周黄仁勋那期 25.0 万 → 29.8 万(+19%)。订阅 103k → 105k 已在上期体现。</td></tr></tbody>
+      <td class="notecell">【已核实】没有新集,上周黄仁勋那期 25.0 万 → 29.8 万(+19%)。订阅 103k → 105k 已在上期体现。 按你的决定,下期起移出名单。</td></tr></tbody>
   </table></div>
-  <p class="excl">⚠ Chart-reader CUP:频道链接连续十五期 404(@chartreadercup 已失效),需要新链接。</p>
+  
 </section>
 
 <section id="method">

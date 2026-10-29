@@ -115,6 +115,18 @@ build 不会拿它们当「发酵增量」的基线(否则会误报成播放停�
 - `weeks/` — 每期归档页(本地多页版专用,云端版不用这个,靠 build_artifact.py 内嵌历史)
 - `thumb_cache/` — 缩略图下载缓存,按文件名去重,不会重复下载同一张图
 
+## 周报结构(2026-10-29 改版,从 W43 起)
+curation 里新增的字段,旧期没有这些字段时页面照旧渲染:
+- `brief.headline` — 一句结论;`brief.so_what` — 对「选题 / 节目 / 运营」各一句含义。判断区不放【已核实】这类标签,证据放到下面各节。
+- `review` — 上期判断复盘:`{claim, status: 成立|部分成立|不成立|待看, evidence}`,每期逐条对账。
+- `shows` — 新节目追踪:同行新开的节目逐集跟到稳定,`{name, channel, status, eps:[{ep, v}], note}`。
+- `en_radar` — 英文区选题雷达:`{trend, status, evidence, angle}`,`angle` 写粤语区怎么接。
+- `tldr` 控制在 5 条左右;本周没有数据的频道不写 `channel_notes`,汇总一句放 `workflow_note`。
+
+英文区名单在 collect.py 分三类(财经市场 / 商业人物 / 科技 AI),每档最多抓 6 条以控制限流风险。
+2026-10-29 新加的 handle(PBoyle1、AcquiredFM、TheDiaryOfACEO、MyFirstMillionPod、DwarkeshPatel、lexfridman)
+未在云端验证过,首次采集后看日志 `[chan] ... ERROR`,失效的换掉或删掉。Chart-reader CUP、BG2 Pod 已移出。
+
 ## 已验证的行业打法(读数据前先知道这些,免得把常规操作误读成信号)
 
 **访谈节目是「一访多期」,不是「同一个人做了两次」。** 嘉宾到访一次,制作方评估素材里有多少
@@ -150,7 +162,6 @@ EP17/EP18 同理,富途的陆叔也是同样做法。**所以两期之间的数�
 - **历史期次的限制**:W29/W30 是按 2w 门槛采集的,1.5–2w 区间缺失,页面会自己标出来。
 
 ## 已知事项
-- Chart-reader CUP(@chartreadercup)链接 404,待更新 handle
 - 周五至周日发布的视频统计时可能未发酵完,下期复查补录
 - 名单频道见 collect.py 里的 CHANNELS(改名单直接编辑它)
 - 仓库是公开的:`data/`、`curation/`、源码都在里面。内容是 YouTube 公开数据 + 我们自己写的
