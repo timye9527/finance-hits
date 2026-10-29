@@ -5,12 +5,12 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import yt_dlp
 
 CHANNELS = [
+    # 2026-10-29 移除 15 周 0 条入库的 華盛証券、Homily小金;Chart-reader CUP 连续 404 已移除。
     ("直接竞品", "富途牛牛", "futuhk", "粤语"),
     ("直接竞品", "老虎证券", "tigerbrokershk", "粤语"),
     ("直接竞品", "漲樂全球通 ZL Global", "zlglobal_hk", "粤语"),
     ("直接竞品", "光大证券国际", "everbrightsecuritiesintl", "粤语"),
     ("直接竞品", "致富 CHIEF", "ChiefGroup", "粤语"),
-    ("直接竞品", "華盛証券", "vbrokers_app", "粤语"),
     ("财经APP", "AASTOCKS", "AASTOCKS_AATV", "粤语"),
     ("中文财经顶流", "小Lin说", "xiao_lin_shuo", "普通话"),
     ("财经垂类(主持类)", "财自FM", "fmchoyg", "粤语"),
@@ -19,7 +19,6 @@ CHANNELS = [
     ("自媒体", "加密大漂亮", "GiantCutie-CH", "普通话"),
     ("自媒体", "RainIsHere", "RainIsHere", "粤语"),
     ("自媒体", "30岁财务自由", "30FinancialFreedomByAge30", "粤语"),
-    ("自媒体", "Homily小金-投资有道", "homilycharthk1998", "粤语"),
     ("自媒体", "阿豬 Ah Ju", "ahju", "粤语"),
     ("自媒体", "東網Money18", "Money18-oncc", "粤语"),
     ("自媒体", "菠蘿包工作室 BoLoo", "BolooFinance", "粤语"),

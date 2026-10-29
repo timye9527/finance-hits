@@ -121,11 +121,13 @@ curation 里新增的字段,旧期没有这些字段时页面照旧渲染:
 - `review` — 上期判断复盘:`{claim, status: 成立|部分成立|不成立|待看, evidence}`,每期逐条对账。
 - `shows` — 新节目追踪:同行新开的节目逐集跟到稳定,`{name, channel, status, eps:[{ep, v}], note}`。
 - `en_radar` — 英文区选题雷达:`{trend, status, evidence, angle}`,`angle` 写粤语区怎么接。
+- `actions[].do` — 一句话做法,卡片只显示这一句;`why` 折叠在「为什么」里;`vids` 最多 2 条作参考。行动 3 条为宜。
+- `gaps` — 题材空位提醒:`{topic, hot, status, open, move}`,`open=false` 表示空位已被填上(保留一期作对照)。
 - `tldr` 控制在 5 条左右;本周没有数据的频道不写 `channel_notes`,汇总一句放 `workflow_note`。
 
 英文区名单在 collect.py 分三类(财经市场 / 商业人物 / 科技 AI),每档最多抓 6 条以控制限流风险。
 2026-10-29 新加的 handle(PBoyle1、AcquiredFM、TheDiaryOfACEO、MyFirstMillionPod、DwarkeshPatel、lexfridman)
-未在云端验证过,首次采集后看日志 `[chan] ... ERROR`,失效的换掉或删掉。Chart-reader CUP、BG2 Pod 已移出。
+未在云端验证过,首次采集后看日志 `[chan] ... ERROR`,失效的换掉或删掉。Chart-reader CUP、BG2 Pod 已移出;15 周 0 条入库的 華盛証券、Homily小金 已移出。
 
 ## 已验证的行业打法(读数据前先知道这些,免得把常规操作误读成信号)
 

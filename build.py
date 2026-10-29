@@ -454,13 +454,36 @@ def action_sources(action):
     return "".join(links)
 
 actions = cur.get("actions", [])
-actions_html = "".join(f"""
+def action_card(a):
+    # Newer issues: a one-line `do` is the card; the long `why` folds away for whoever
+    # wants to check the reasoning. Older issues without `do` render as before.
+    if a.get("do"):
+        body = (f'<p class="do">{esc(a["do"])}</p>'
+                + (f'<details class="why"><summary>为什么</summary><p>{rich(a.get("why", ""))}</p></details>' if a.get("why") else ""))
+    else:
+        body = f'<p>{esc(a.get("why", ""))}</p>'
+    src = action_sources(a)
+    return f"""
   <article class="action">
     <div class="actionmeta"><span class="priority">{esc(a.get("priority", "建议"))}</span><span>{esc(a.get("role", "运营"))}</span></div>
     <h3>{esc(a.get("title", ""))}</h3>
-    <p>{esc(a.get("why", ""))}</p>
-    {f'<div class="proof"><b>证据</b>{action_sources(a)}</div>' if action_sources(a) else ''}
-  </article>""" for a in actions)
+    {body}
+    {f'<div class="proof"><b>参考</b>{src}</div>' if src else ''}
+  </article>"""
+actions_html = "".join(action_card(a) for a in actions)
+
+# 题材空位提醒: topics already hot elsewhere that no Cantonese channel has done in full
+gaps = cur.get("gaps", [])
+gaps_html = "".join(f"""<tr><td class="kw">{esc(g.get('topic', ''))}</td><td>{esc(g.get('hot', ''))}</td>
+  <td><span class="gapst {'open' if g.get('open', True) else 'closed'}">{esc(g.get('status', ''))}</span></td><td>{esc(g.get('move', ''))}</td></tr>""" for g in gaps)
+gaps_section = f"""
+<section id="gaps">
+  <h2>题材空位提醒<span class="cnt">别处已热、粤语区还没人整集做</span></h2>
+  <div class="tblwrap"><table>
+    <thead><tr><th>题材</th><th>哪里已经热</th><th>粤语区</th><th>建议</th></tr></thead>
+    <tbody>{gaps_html}</tbody>
+  </table></div>
+</section>""" if gaps else ""
 
 hero_html = "".join(video_card(v, rank=i + 1, hero=(i == 0)) for i, v in enumerate(hits_this))
 mid_html = "".join(compact_row(v) for v in sort_v(mid_this))
@@ -579,7 +602,7 @@ action_jump = '<a href="#actions">下周动作</a>' if actions else ""
 actions_section = f"""
 <section id="actions">
   <h2>下周行动板<span class="cnt">把洞察直接交给选题、包装与剪辑</span></h2>
-  <p class="secdesc">每条建议都附了本周证据。周会先决定做不做，再讨论由谁落地；避免把时间耗在复述榜单。</p>
+  <p class="secdesc">每条一句话说做什么;理由点「为什么」展开。周会只决定做不做、谁来做。</p>
   <div class="actiongrid">{actions_html}</div>
 </section>""" if actions else ""
 
@@ -672,6 +695,13 @@ h2 .cnt {{ color: var(--muted); font-weight: 400; font-size: 15px; margin-left: 
 .sowhat {{ list-style: none; padding: 0; margin-top: 12px; display: grid; gap: 7px; }}
 .sowhat li {{ display: flex; gap: 10px; align-items: baseline; color: #dceaff; font-size: 14.5px; line-height: 1.5; }}
 .sowhat b {{ flex: 0 0 auto; font-size: 12px; color: #10243e; background: #bcd9ff; border-radius: 999px; padding: 1px 9px; }}
+.action p.do {{ color: var(--ink); font-size: 14.5px; line-height: 1.55; }}
+.action details.why {{ margin-top: 8px; font-size: 13px; color: var(--muted); }}
+.action details.why summary {{ cursor: pointer; font-weight: 650; }}
+.action details.why p {{ margin-top: 6px; color: var(--ink2); font-size: 13px; }}
+.gapst {{ font-size: 12px; font-weight: 800; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }}
+.gapst.open {{ color: var(--c-good); background: color-mix(in srgb, var(--c-good) 12%, transparent); }}
+.gapst.closed {{ color: var(--muted); background: color-mix(in srgb, var(--muted) 14%, transparent); }}
 /* review */
 .rvlist {{ display: grid; gap: 10px; }}
 .rv {{ display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }}
@@ -702,7 +732,7 @@ h2 .cnt {{ color: var(--muted); font-weight: 400; font-size: 15px; margin-left: 
 .erang b {{ color: var(--c-mid); margin-right: 8px; font-size: 12px; }}
 /* action board */
 .actiongrid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }}
-.action {{ display: flex; flex-direction: column; min-height: 220px; background: var(--surface); border: 1px solid var(--border);
+.action {{ display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border);
            border-top: 3px solid var(--c-hit); border-radius: 14px; padding: 16px 18px; }}
 .actionmeta {{ display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; }}
 .priority {{ color: var(--c-hit); background: var(--hit-bg); font-weight: 800; border-radius: 999px; padding: 2px 8px; }}
@@ -864,7 +894,7 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
 </header>
 
 <div class="jumpbar"><nav class="jumpnav" aria-label="页面快捷导航">
-  <a href="#brief">30 秒复盘</a>{action_jump}{'<a href="#review">上期复盘</a>' if review else ''}<a href="#hits">爆款证据</a>{'<a href="#shows">新节目</a>' if shows else ''}<a href="#topics">选题与标题</a><a href="#radar">投流识别</a><a href="#en">英文雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
+  <a href="#brief">30 秒复盘</a>{action_jump}{'<a href="#gaps">题材空位</a>' if gaps else ''}{'<a href="#review">上期复盘</a>' if review else ''}<a href="#hits">爆款证据</a>{'<a href="#shows">新节目</a>' if shows else ''}<a href="#topics">选题与标题</a><a href="#radar">投流识别</a><a href="#en">英文雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
 </nav></div>
 
 <section id="brief" class="brief">
@@ -878,6 +908,7 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
 </section>
 
 {actions_section}
+{gaps_section}
 {review_section}
 
 <section id="signals">

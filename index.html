@@ -87,6 +87,13 @@ h2 .cnt { color: var(--muted); font-weight: 400; font-size: 15px; margin-left: 8
 .sowhat { list-style: none; padding: 0; margin-top: 12px; display: grid; gap: 7px; }
 .sowhat li { display: flex; gap: 10px; align-items: baseline; color: #dceaff; font-size: 14.5px; line-height: 1.5; }
 .sowhat b { flex: 0 0 auto; font-size: 12px; color: #10243e; background: #bcd9ff; border-radius: 999px; padding: 1px 9px; }
+.action p.do { color: var(--ink); font-size: 14.5px; line-height: 1.55; }
+.action details.why { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.action details.why summary { cursor: pointer; font-weight: 650; }
+.action details.why p { margin-top: 6px; color: var(--ink2); font-size: 13px; }
+.gapst { font-size: 12px; font-weight: 800; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+.gapst.open { color: var(--c-good); background: color-mix(in srgb, var(--c-good) 12%, transparent); }
+.gapst.closed { color: var(--muted); background: color-mix(in srgb, var(--muted) 14%, transparent); }
 /* review */
 .rvlist { display: grid; gap: 10px; }
 .rv { display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }
@@ -117,7 +124,7 @@ h2 .cnt { color: var(--muted); font-weight: 400; font-size: 15px; margin-left: 8
 .erang b { color: var(--c-mid); margin-right: 8px; font-size: 12px; }
 /* action board */
 .actiongrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
-.action { display: flex; flex-direction: column; min-height: 220px; background: var(--surface); border: 1px solid var(--border);
+.action { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border);
            border-top: 3px solid var(--c-hit); border-radius: 14px; padding: 16px 18px; }
 .actionmeta { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; }
 .priority { color: var(--c-hit); background: var(--hit-bg); font-weight: 800; border-radius: 999px; padding: 2px 8px; }
@@ -279,7 +286,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
 </header>
 
 <div class="jumpbar"><nav class="jumpnav" aria-label="页面快捷导航">
-  <a href="#brief">30 秒复盘</a><a href="#actions">下周动作</a><a href="#review">上期复盘</a><a href="#hits">爆款证据</a><a href="#shows">新节目</a><a href="#topics">选题与标题</a><a href="#radar">投流识别</a><a href="#en">英文雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
+  <a href="#brief">30 秒复盘</a><a href="#actions">下周动作</a><a href="#gaps">题材空位</a><a href="#review">上期复盘</a><a href="#hits">爆款证据</a><a href="#shows">新节目</a><a href="#topics">选题与标题</a><a href="#radar">投流识别</a><a href="#en">英文雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
 </nav></div>
 
 <section id="brief" class="brief">
@@ -299,32 +306,38 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
 
 <section id="actions">
   <h2>下周行动板<span class="cnt">把洞察直接交给选题、包装与剪辑</span></h2>
-  <p class="secdesc">每条建议都附了本周证据。周会先决定做不做，再讨论由谁落地；避免把时间耗在复述榜单。</p>
+  <p class="secdesc">每条一句话说做什么;理由点「为什么」展开。周会只决定做不做、谁来做。</p>
   <div class="actiongrid">
   <article class="action">
     <div class="actionmeta"><span class="priority">优先</span><span>选题</span></div>
-    <h3>AI 泡沫粤语区的空档一周就被填上,下一个窗口要换角度</h3>
-    <p>【已核实】上周的空档是「粤语区没有一条整集讲 AI 泡沫」。10/19 阿豬《最後警告! 拆解AI巨頭隱藏的違約風險》12 分钟,7 天 25.9 万播放、6328 个赞,赞率 24.4,是他 5 条入库里第二高(最高 9/13 的 27.5 万)。【已核实】同一天张志云《債市已經開始逃命!千億訂單巨頭竟淪為垃圾債?》18.6 万、123 条评论,是他 14 条入库里最高;10/23《2027年美股AI第二塊骨牌會倒在哪裏?GPU折舊比光纖更可怕!》8.3 万、112 条评论。【已核实】中文区 5 条爆款里 3 条是这个题。【已核实】粤语财经号仍是行情节目里的一节:Raga 10/23 第一节(美 AI 企业债务风险)1.7 万,etnet 陶冬《數據中心債券會違約嗎?》1.4 万,评论数据为空;Raga《美股Vin化爐》AI 信贷危机那集 1.7 万。【推断】空档的窗口大约一周,跟 FRAMEWORK 里「几周量级」一致。「违约、垃圾债」这个角度现在已有两个频道占了;再做同一角度会是第三个,要么换观众(落到个人持仓,像 RainIsHere 上周的做法),要么换层(英文区同期的 AI 网络安全恐慌 49.9 万,中文区整集还没有,只看标题,未核实全站)。</p>
-    <div class="proof"><b>证据</b><a href="https://www.youtube.com/watch?v=dHj-vxDCw3g" target="_blank" rel="noopener">阿豬 Ah Ju · 25.9w</a><a href="https://www.youtube.com/watch?v=yWN_3hEmOzg" target="_blank" rel="noopener">张志云Papa · 18.6w</a><a href="https://www.youtube.com/watch?v=kqvKdhehgL8" target="_blank" rel="noopener">张志云Papa · 8.3w</a><a href="https://www.youtube.com/watch?v=FGO0YozU190" target="_blank" rel="noopener">RagaFinance財經台 · 1.7w</a><a href="https://www.youtube.com/watch?v=bmSAlFOhQ8E" target="_blank" rel="noopener">etnet經濟通 · 1.4w</a><a href="https://www.youtube.com/watch?v=6czo-C3FU7I" target="_blank" rel="noopener">All-In Podcast · 49.9w</a></div>
+    <h3>AI 泡沫换个角度做,别做第三个「违约警告」</h3>
+    <p class="do">下周二选一:讲 AI 被用来攻击(网络安全恐慌),或者直接落到观众手上的科技股、强积金。</p><details class="why"><summary>为什么</summary><p>【已核实】上周的空档是「粤语区没有一条整集讲 AI 泡沫」。10/19 阿豬《最後警告! 拆解AI巨頭隱藏的違約風險》12 分钟,7 天 25.9 万播放、6328 个赞,赞率 24.4,是他 5 条入库里第二高(最高 9/13 的 27.5 万)。【已核实】同一天张志云《債市已經開始逃命!千億訂單巨頭竟淪為垃圾債?》18.6 万、123 条评论,是他 14 条入库里最高;10/23《2027年美股AI第二塊骨牌會倒在哪裏?GPU折舊比光纖更可怕!》8.3 万、112 条评论。【已核实】中文区 5 条爆款里 3 条是这个题。【已核实】粤语财经号仍是行情节目里的一节:Raga 10/23 第一节(美 AI 企业债务风险)1.7 万,etnet 陶冬《數據中心債券會違約嗎?》1.4 万,评论数据为空;Raga《美股Vin化爐》AI 信贷危机那集 1.7 万。【推断】空档的窗口大约一周,跟 FRAMEWORK 里「几周量级」一致。「违约、垃圾债」这个角度现在已有两个频道占了;再做同一角度会是第三个,要么换观众(落到个人持仓,像 RainIsHere 上周的做法),要么换层(英文区同期的 AI 网络安全恐慌 49.9 万,中文区整集还没有,只看标题,未核实全站)。</p></details>
+    <div class="proof"><b>参考</b><a href="https://www.youtube.com/watch?v=dHj-vxDCw3g" target="_blank" rel="noopener">阿豬 Ah Ju · 25.9w</a><a href="https://www.youtube.com/watch?v=6czo-C3FU7I" target="_blank" rel="noopener">All-In Podcast · 49.9w</a></div>
   </article>
   <article class="action">
-    <div class="actionmeta"><span class="priority">优先</span><span>节目 / 嘉宾</span></div>
-    <h3>《一Pair傾》EP3 第二周 +35%,没有新集订阅仍 +1300</h3>
-    <p>【已核实】EP3 上周 48.4 万 → 本周 65.2 万(+35%),5509 → 7485 个赞,306 → 391 条评论。三集里 EP3 第二周涨幅最大(EP1 475083 → 601963,+27%;EP2 506760 → 567198,+12%;EP1、EP2 的数字停在它们各自最后一次入库)。【已核实】光大订阅 40.7k → 42.0k,一周 +1300,是 15 周里第三大的单周增量(前两名:W42 +2600、W40 +2100);上周同样的位置 EP2 之后那周只涨了 300。15 周累计 32.0k → 42.0k。【已核实】数据里没有 EP4:EP1 9/22、EP2 9/30、EP3 10/14,间隔 8 天、14 天,到 10/26 已 12 天。【未核实】EP4 是否已排期、是否因拍摄原因延后,数据里看不出来。【推断】上周说「访谈一回来涨粉也回来」,本周补了一半证据:访谈的长尾本身就能带订阅,不是只在上线那一周。</p>
-    <div class="proof"><b>证据</b><a href="https://www.youtube.com/watch?v=QKWM6iWDGi0" target="_blank" rel="noopener">光大证券国际 · 65.2w</a><a href="https://www.youtube.com/watch?v=4sjvsiid8jA" target="_blank" rel="noopener">光大证券国际 · 4.7w</a><a href="https://www.youtube.com/watch?v=jhf7NDs1ZwQ" target="_blank" rel="noopener">光大证券国际 · 3.5w</a></div>
+    <div class="actionmeta"><span class="priority">优先</span><span>节目</span></div>
+    <h3>人物访谈:请圈外人,标题讲他输过的钱</h3>
+    <p class="do">照光大《一Pair傾》的做法排嘉宾;它三集都过 50 万,这周没有新集也在涨粉。</p><details class="why"><summary>为什么</summary><p>【已核实】EP3 上周 48.4 万 → 本周 65.2 万(+35%),5509 → 7485 个赞,306 → 391 条评论。三集里 EP3 第二周涨幅最大(EP1 475083 → 601963,+27%;EP2 506760 → 567198,+12%;EP1、EP2 的数字停在它们各自最后一次入库)。【已核实】光大订阅 40.7k → 42.0k,一周 +1300,是 15 周里第三大的单周增量(前两名:W42 +2600、W40 +2100);上周同样的位置 EP2 之后那周只涨了 300。15 周累计 32.0k → 42.0k。【已核实】数据里没有 EP4:EP1 9/22、EP2 9/30、EP3 10/14,间隔 8 天、14 天,到 10/26 已 12 天。【未核实】EP4 是否已排期、是否因拍摄原因延后,数据里看不出来。【推断】上周说「访谈一回来涨粉也回来」,本周补了一半证据:访谈的长尾本身就能带订阅,不是只在上线那一周。</p></details>
+    <div class="proof"><b>参考</b><a href="https://www.youtube.com/watch?v=QKWM6iWDGi0" target="_blank" rel="noopener">光大证券国际 · 65.2w</a></div>
   </article>
   <article class="action">
-    <div class="actionmeta"><span class="priority">测试</span><span>标题</span></div>
-    <h3>剥花生 EP2 第二周 +61%,EP3 数据里没有,标题测试还没法验</h3>
-    <p>【已核实】《财经剥花生》EP2(11 SKIES)5.41 万 → 8.7 万(+61%),509 个赞、48 条评论,仍然只有赞数没过线(差 491)。【已核实】上周建议「下一期把人名放进标题前半句」,要验证需要 EP3;EP1 发在 10/9、EP2 在 10/16,按周五节奏 EP3 该是 10/23,但 data/ 里没有这条。【未核实】EP3 是没发,还是发了但播放低于入库门槛,或采集漏了。需要有人手动看一眼 Finance730 频道。【已核实】EP1、上期的施永青内房那集(上期被标疑似投流的)都发在 10/12 之前,本期采集起点是 10/12,它们不在本期数据里,第二周之后的增量算不了,也就没法回答上周留的「是否误标」。【推断】先不下结论。</p>
-    <div class="proof"><b>证据</b><a href="https://www.youtube.com/watch?v=zHXx4hVeJjw" target="_blank" rel="noopener">Finance730 · 8.7w</a></div>
-  </article>
-  <article class="action">
-    <div class="actionmeta"><span class="priority">常规</span><span>选题 / 社区</span></div>
-    <h3>楼市、民生题评论最密:公屋豪宅 210 条、小心港樓 242 条</h3>
-    <p>【已核实】Finance730《公屋豪宅一街之隔!買樓變交智商稅?》(前规划署署长凌嘉勤做嘉宾,81 分钟)8.5 万播放、850 个赞、210 条评论,每千播 2.46 条。【已核实】Raga《4點痴線財經》10/23 第二节(睇位与分注、小心港樓)3.2 万、674 个赞、242 条评论,每千播 7.54,是 Raga 38 条入库里评论第二多(第一是 8/7 沈大師那期 432 条),也是 223 条 2 万播放以上中文内容里每千播评论第四高。【已核实】AASTOCKS 林一鳴楼市见底那集 2.0 万、44 条评论,每千播 2.2。【推断】跟之前的结论一致:楼市、民生题的价值在评论,不在赞;这三条都不是爆款,但适合当社区运营的素材。Finance730 民生那条是 81 分钟的播客,评论多不代表短视频也能复制。</p>
-    <div class="proof"><b>证据</b><a href="https://www.youtube.com/watch?v=mxALcmbnthI" target="_blank" rel="noopener">Finance730 · 8.5w</a><a href="https://www.youtube.com/watch?v=DETWL4hsBUQ" target="_blank" rel="noopener">RagaFinance財經台 · 3.2w</a><a href="https://www.youtube.com/watch?v=2M_vEAo--VQ" target="_blank" rel="noopener">AASTOCKS · 2w</a></div>
+    <div class="actionmeta"><span class="priority">常规</span><span>运营</span></div>
+    <h3>楼市、民生题用来拿评论,不拿播放</h3>
+    <p class="do">这类内容评论多、赞少,考核看评论数,配合置顶问题做社区互动。</p><details class="why"><summary>为什么</summary><p>【已核实】Finance730《公屋豪宅一街之隔!買樓變交智商稅?》(前规划署署长凌嘉勤做嘉宾,81 分钟)8.5 万播放、850 个赞、210 条评论,每千播 2.46 条。【已核实】Raga《4點痴線財經》10/23 第二节(睇位与分注、小心港樓)3.2 万、674 个赞、242 条评论,每千播 7.54,是 Raga 38 条入库里评论第二多(第一是 8/7 沈大師那期 432 条),也是 223 条 2 万播放以上中文内容里每千播评论第四高。【已核实】AASTOCKS 林一鳴楼市见底那集 2.0 万、44 条评论,每千播 2.2。【推断】跟之前的结论一致:楼市、民生题的价值在评论,不在赞;这三条都不是爆款,但适合当社区运营的素材。Finance730 民生那条是 81 分钟的播客,评论多不代表短视频也能复制。</p></details>
+    <div class="proof"><b>参考</b><a href="https://www.youtube.com/watch?v=mxALcmbnthI" target="_blank" rel="noopener">Finance730 · 8.5w</a><a href="https://www.youtube.com/watch?v=DETWL4hsBUQ" target="_blank" rel="noopener">RagaFinance財經台 · 3.2w</a></div>
   </article></div>
+</section>
+
+<section id="gaps">
+  <h2>题材空位提醒<span class="cnt">别处已热、粤语区还没人整集做</span></h2>
+  <div class="tblwrap"><table>
+    <thead><tr><th>题材</th><th>哪里已经热</th><th>粤语区</th><th>建议</th></tr></thead>
+    <tbody><tr><td class="kw">AI 网络安全恐慌</td><td>All-In 49.9 万、1200 条评论</td>
+  <td><span class="gapst open">空位 · 第 1 周</span></td><td>本周可做,窗口大约一周</td></tr><tr><td class="kw">争议人物自述(栽过的人)</td><td>All-In 两期 35.6 万、36.7 万</td>
+  <td><span class="gapst open">空位</span></td><td>适合人物访谈线</td></tr><tr><td class="kw">生活成本焦虑:「数据好但活不下去」</td><td>The Compound 5.8 万、216 条评论</td>
+  <td><span class="gapst open">空位</span></td><td>做成拿评论的民生题</td></tr><tr><td class="kw">AI 泡沫:违约 / 垃圾债</td><td>All-In、张志云 18.6 万</td>
+  <td><span class="gapst closed">已填上 · 阿豬 25.9 万</span></td><td>不再追这个角度</td></tr></tbody>
+  </table></div>
 </section>
 
 <section id="review">
