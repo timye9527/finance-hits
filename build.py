@@ -645,6 +645,8 @@ a {{ color: inherit; }}
 a:focus-visible, summary:focus-visible {{ outline: 3px solid color-mix(in srgb, var(--c-hit) 45%, transparent); outline-offset: 3px; border-radius: 4px; }}
 .wrap {{ max-width: 1100px; margin: 0 auto; padding: 28px 20px 80px; }}
 header.top {{ padding: 34px 0 10px; }}
+.ownlink {{ margin-left: 12px; font-weight: 600; letter-spacing: 0; font-size: 12.5px; color: var(--ink2); text-decoration: none; border-bottom: 1px dashed var(--muted); }}
+.ownlink:hover {{ color: var(--c-hit); }}
 .kicker {{ color: var(--c-hit); font-weight: 700; letter-spacing: .12em; font-size: 13px; }}
 h1 {{ font-size: 34px; line-height: 1.25; margin: 6px 0 10px; }}
 .sub {{ color: var(--ink2); max-width: 72ch; }}
@@ -881,7 +883,7 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
 <div class="wrap">
 
 <header class="top">
-  <div class="kicker">粤语财经 YOUTUBE 情报站</div>
+  <div class="kicker">粤语财经 YOUTUBE 情报站<a class="ownlink" href="https://claude.ai/artifact/6tRcCLTcfiPC7T4rDnLLcL" target="_blank" rel="noopener">自家频道体检(内部)→</a></div>
   <h1>爆款周报 · {esc(cur.get("label", WEEK))}</h1>
   <p class="sub">统计窗口 {esc(cur.get("range", ""))}(上周 {esc(cur.get("prev_range", ""))} 做对照)。榜单以粤语频道为主,普通话账号打标对照,英文 Podcast 顶流单列为选题预警雷达。</p>
   <div class="badges">
