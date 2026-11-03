@@ -122,6 +122,7 @@ curation 里新增的字段,旧期没有这些字段时页面照旧渲染:
 - `shows` — 新节目追踪:同行新开的节目逐集跟到稳定,`{name, channel, status, eps:[{ep, v}], note}`。
 - `en_radar` — 英文区选题雷达:`{trend, status, evidence, angle}`,`angle` 写粤语区怎么接。
 - `actions[].do` — 一句话做法,卡片只显示这一句;`why` 折叠在「为什么」里;`vids` 最多 2 条作参考。行动 3 条为宜。
+- `formats` — 三类节目怎么借(W44 起替代行动板):`[{tag, name, seen:[证据], moves:[做法], vids}]`,按 直播 / 访谈 / 短片·动画 各一张。`brief.so_what` 的 `to` 也按这三类写。
 - `gaps` — 题材空位提醒:`{topic, hot, status, open, move}`,`open=false` 表示空位已被填上(保留一期作对照)。
 - `tldr` 控制在 5 条左右;本周没有数据的频道不写 `channel_notes`,汇总一句放 `workflow_note`。
 

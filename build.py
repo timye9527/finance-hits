@@ -472,6 +472,26 @@ def action_card(a):
   </article>"""
 actions_html = "".join(action_card(a) for a in actions)
 
+# 按节目形态借鉴: what competitors' live / interview / short-video formats did this week,
+# and what a team running each format can take from it
+formats = cur.get("formats", [])
+def _fmt_card(f):
+    seen = "".join(f"<li>{rich(x)}</li>" for x in f.get("seen", []))
+    moves = "".join(f"<li>{esc(x)}</li>" for x in f.get("moves", []))
+    src = action_sources(f)
+    return f"""
+  <article class="fmt"><div class="fmthead"><span class="fmttag">{esc(f.get('tag', ''))}</span><h3>{esc(f.get('name', ''))}</h3></div>
+    <h4>本周看到</h4><ul class="seen">{seen}</ul>
+    <h4>可以借的做法</h4><ul class="moves">{moves}</ul>
+    {f'<div class="proof"><b>参考</b>{src}</div>' if src else ''}
+  </article>"""
+formats_section = f"""
+<section id="formats">
+  <h2>三类节目怎么借<span class="cnt">直播 · 访谈 · 短片/动画</span></h2>
+  <p class="secdesc">按节目形态拆本周竞品:每类先看别人做了什么、数据怎样,再落到可以照做的动作。</p>
+  <div class="fmtgrid">{''.join(_fmt_card(f) for f in formats)}</div>
+</section>""" if formats else ""
+
 # 题材空位提醒: topics already hot elsewhere that no Cantonese channel has done in full
 gaps = cur.get("gaps", [])
 gaps_html = "".join(f"""<tr><td class="kw">{esc(g.get('topic', ''))}</td><td>{esc(g.get('hot', ''))}</td>
@@ -704,6 +724,16 @@ h2 .cnt {{ color: var(--muted); font-weight: 400; font-size: 15px; margin-left: 
 .gapst {{ font-size: 12px; font-weight: 800; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }}
 .gapst.open {{ color: var(--c-good); background: color-mix(in srgb, var(--c-good) 12%, transparent); }}
 .gapst.closed {{ color: var(--muted); background: color-mix(in srgb, var(--muted) 14%, transparent); }}
+.fmtgrid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }}
+.fmt {{ min-width: 0; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--c-hit); border-radius: 14px; padding: 16px 18px; }}
+.fmthead {{ display: flex; align-items: baseline; gap: 8px; }}
+.fmttag {{ font-size: 12px; font-weight: 800; color: var(--c-hit); background: var(--hit-bg); border-radius: 999px; padding: 2px 9px; }}
+.fmt h3 {{ font-size: 16px; line-height: 1.4; }}
+.fmt h4 {{ font-size: 12px; color: var(--muted); letter-spacing: .06em; margin: 12px 0 4px; }}
+.fmt ul {{ margin: 0; padding-left: 1.1em; display: grid; gap: 5px; font-size: 13.5px; }}
+.fmt ul.seen {{ color: var(--ink2); }}
+.fmt ul.moves li {{ font-weight: 600; }}
+@media (max-width: 900px) {{ .fmtgrid {{ grid-template-columns: 1fr; }} }}
 /* review */
 .rvlist {{ display: grid; gap: 10px; }}
 .rv {{ display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }}
@@ -896,7 +926,7 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
 </header>
 
 <div class="jumpbar"><nav class="jumpnav" aria-label="页面快捷导航">
-  <a href="#brief">30 秒复盘</a>{action_jump}{'<a href="#gaps">题材空位</a>' if gaps else ''}{'<a href="#review">上期复盘</a>' if review else ''}<a href="#hits">爆款证据</a>{'<a href="#shows">新节目</a>' if shows else ''}<a href="#topics">选题与标题</a><a href="#radar">投流识别</a><a href="#en">英文雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
+  <a href="#brief">30 秒复盘</a>{'<a href="#formats">三类节目</a>' if formats else ''}{action_jump}{'<a href="#gaps">题材空位</a>' if gaps else ''}{'<a href="#review">上期复盘</a>' if review else ''}<a href="#hits">爆款证据</a>{'<a href="#shows">新节目</a>' if shows else ''}<a href="#topics">选题与标题</a><a href="#radar">投流识别</a><a href="#en">英文雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
 </nav></div>
 
 <section id="brief" class="brief">
@@ -909,6 +939,7 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
   </div>
 </section>
 
+{formats_section}
 {actions_section}
 {gaps_section}
 {review_section}

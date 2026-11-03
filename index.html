@@ -96,6 +96,16 @@ h2 .cnt { color: var(--muted); font-weight: 400; font-size: 15px; margin-left: 8
 .gapst { font-size: 12px; font-weight: 800; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
 .gapst.open { color: var(--c-good); background: color-mix(in srgb, var(--c-good) 12%, transparent); }
 .gapst.closed { color: var(--muted); background: color-mix(in srgb, var(--muted) 14%, transparent); }
+.fmtgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.fmt { min-width: 0; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--c-hit); border-radius: 14px; padding: 16px 18px; }
+.fmthead { display: flex; align-items: baseline; gap: 8px; }
+.fmttag { font-size: 12px; font-weight: 800; color: var(--c-hit); background: var(--hit-bg); border-radius: 999px; padding: 2px 9px; }
+.fmt h3 { font-size: 16px; line-height: 1.4; }
+.fmt h4 { font-size: 12px; color: var(--muted); letter-spacing: .06em; margin: 12px 0 4px; }
+.fmt ul { margin: 0; padding-left: 1.1em; display: grid; gap: 5px; font-size: 13.5px; }
+.fmt ul.seen { color: var(--ink2); }
+.fmt ul.moves li { font-weight: 600; }
+@media (max-width: 900px) { .fmtgrid { grid-template-columns: 1fr; } }
 /* review */
 .rvlist { display: grid; gap: 10px; }
 .rv { display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }
@@ -288,7 +298,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
 </header>
 
 <div class="jumpbar"><nav class="jumpnav" aria-label="页面快捷导航">
-  <a href="#brief">30 秒复盘</a><a href="#actions">下周动作</a><a href="#gaps">题材空位</a><a href="#review">上期复盘</a><a href="#hits">爆款证据</a><a href="#shows">新节目</a><a href="#topics">选题与标题</a><a href="#radar">投流识别</a><a href="#en">英文雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
+  <a href="#brief">30 秒复盘</a><a href="#formats">三类节目</a><a href="#gaps">题材空位</a><a href="#review">上期复盘</a><a href="#hits">爆款证据</a><a href="#shows">新节目</a><a href="#topics">选题与标题</a><a href="#radar">投流识别</a><a href="#en">英文雷达</a><a href="#channels">频道体检</a><a href="#method">口径说明</a>
 </nav></div>
 
 <section id="brief" class="brief">
@@ -301,34 +311,32 @@ footer { margin-top: 40px; color: var(--muted); font-size: 12.5px; }
   <div class="stat growthstat"><b>+5.6w</b><span>长尾冠军</span><small>Finance730 单条周增量</small></div></div>
   <div class="verdict">
     <span class="label">本周判断</span>
-    <h3>美股一跌,观众要的不再是警告,是安慰:张志云讲「两次输光身家」拿到他的纪录 24.1 万。「输过的钱」第三次被验证,可以当打法用了。</h3><ul class="sowhat"><li><b>选题</b><span>市场下跌那周,别再发警告型标题,改讲「套牢了怎么办」,用一个真实输光的故事开头。</span></li><li><b>节目</b><span>光大《一Pair傾》18 天没有新集,涨粉马上回到每周三百左右。访谈要稳定更新,断档的代价这周看得很清楚。</span></li><li><b>运营</b><span>宏福苑问责、外劳抢饭碗这类本地民生题,评论是普通财经题的好几倍,适合拿来做社区互动和置顶讨论。</span></li></ul>
+    <h3>跌市周观众要的是安慰,不是警告。三类节目各有一个可以照抄的做法:直播切段上传、访谈先讲输过的钱、短片讲一件事而不是讲行情。</h3><ul class="sowhat"><li><b>直播</b><span>别只留整场回放。Raga 把每场直播切成 15–30 分钟的主题段上传,单段就有一两万播放。</span></li><li><b>访谈</b><span>嘉宾两期先发讲人生、讲输过的钱那一期;访谈要固定节奏,光大断档 18 天,涨粉马上掉回每周三百。</span></li><li><b>短片</b><span>6–8 分钟短片讲一件本地事或一个品牌的兴衰,比讲本周行情观点多拿一个数量级的播放和评论。</span></li></ul>
   </div>
 </section>
 
 
-<section id="actions">
-  <h2>下周行动板<span class="cnt">把洞察直接交给选题、包装与剪辑</span></h2>
-  <p class="secdesc">每条一句话说做什么;理由点「为什么」展开。周会只决定做不做、谁来做。</p>
-  <div class="actiongrid">
-  <article class="action">
-    <div class="actionmeta"><span class="priority">优先</span><span>选题</span></div>
-    <h3>跌市周做「套牢了怎么办」,用真实输钱故事开头</h3>
-    <p class="do">下次大跌后 48 小时内出一条:先讲一个输光过的人,再讲普通人现在该做什么。</p><details class="why"><summary>为什么</summary><p>【已核实】张志云 10/30《美股暴跌,你心慌了嗎?如果你現在正在套牢,請先把這支影片看完!》24.1 万播放、3637 个赞、365 条评论,是他在我们数据里的最高(此前 19.5 万)。简介开头讲一个名校 MBA 两次「身家清零」,第二次连老婆的积蓄也赔进去。【已核实】他前两周的爆款都是「警告」型(垃圾债 19.5 万、AI 骨牌 9.8 万)。【推断】跌下来之后,观众从「会不会跌」转成「跌了怎么办」。「输过的钱」此前在光大 Debby(56.7 万)、RainIsHere 都验证过,这是第三个独立频道。</p></details>
-    <div class="proof"><b>参考</b><a href="https://www.youtube.com/watch?v=ngPe1Xp1zKE" target="_blank" rel="noopener">张志云Papa · 24.1w</a></div>
+<section id="formats">
+  <h2>三类节目怎么借<span class="cnt">直播 · 访谈 · 短片/动画</span></h2>
+  <p class="secdesc">按节目形态拆本周竞品:每类先看别人做了什么、数据怎样,再落到可以照做的动作。</p>
+  <div class="fmtgrid">
+  <article class="fmt"><div class="fmthead"><span class="fmttag">直播</span><h3>切段上传,问答单独成段</h3></div>
+    <h4>本周看到</h4><ul class="seen"><li>【已核实】Raga 把直播按「第一节 / 第二节」切开上传到「影片」页,本周 16 条入库,单段 1.2–2.9 万。《4點痴線財經》10/27 第一节 2.1 万、赞率 36.2。</li><li>【已核实】评论最多的是问答和本地题段落:《美股Vin化爐》10/26 2.9 万、189 条评论;《文錦期權譜》1.3 万、85 条评论。</li><li>【已核实】Raga 新开《今日FB live》,把 Facebook 直播切段也放上 YouTube,10/27 那段 2.6 万。</li></ul>
+    <h4>可以借的做法</h4><ul class="moves"><li>直播当天剪 1–2 段 15–30 分钟的主题段,标题写成一个问题,如「港股16000點?」。</li><li>固定一个观众问答环节,单独成段上传,用来拉评论。</li></ul>
+    <div class="proof"><b>参考</b><a href="https://www.youtube.com/watch?v=Mm5MgvIAtDk" target="_blank" rel="noopener">RagaFinance財經台 · 2.6w</a><a href="https://www.youtube.com/watch?v=mLVvt9R7zJQ" target="_blank" rel="noopener">RagaFinance財經台 · 2.9w</a></div>
   </article>
-  <article class="action">
-    <div class="actionmeta"><span class="priority">优先</span><span>节目</span></div>
-    <h3>访谈线固定节奏,宁可短也别断</h3>
-    <p class="do">人物访谈至少两周一集;嘉宾排不上时,用同一次录影剪出的第二期补位。</p><details class="why"><summary>为什么</summary><p>【已核实】光大《一Pair傾》EP3 在 10/14,之后到 11/1 没有新集(18 天)。订阅 42.0k → 42.3k,一周 +300;有新集或新集长尾的几周是 +1300 到 +2600。【已核实】它本周常规《每週HOT Talk》2.91 万、12 条评论。【推断】涨粉跟着访谈走,这个关系已经连续五周对得上。</p></details>
-    <div class="proof"><b>参考</b><a href="https://www.youtube.com/watch?v=ZpW8I_nX2OE" target="_blank" rel="noopener">光大证券国际 · 2.9w</a></div>
+  <article class="fmt"><div class="fmthead"><span class="fmttag">访谈</span><h3>先讲输过的钱,节奏不能断</h3></div>
+    <h4>本周看到</h4><ul class="seen"><li>【已核实】张志云用「名校 MBA 两次输光身家」开场,24.1 万、365 条评论,是他的纪录。</li><li>【已核实】光大《一Pair傾》三集都过 50 万,但 EP3 后 18 天没有新集,订阅一周只涨 300;新集上线那周和下一周是 1300–2600。</li><li>【已核实】AASTOCKS 的访问「足本版」也有人看:溫鋼城 4.1 万、林一鳴 3.4 万,都在 30 分钟以上。</li></ul>
+    <h4>可以借的做法</h4><ul class="moves"><li>同一位嘉宾录两期,先发讲人生、讲输过的钱那期,标题落在人身上。</li><li>至少两周一集;跌市周加一期「套牢了怎么办」。</li></ul>
+    <div class="proof"><b>参考</b><a href="https://www.youtube.com/watch?v=ngPe1Xp1zKE" target="_blank" rel="noopener">张志云Papa · 24.1w</a><a href="https://www.youtube.com/watch?v=etYZVRIZY40" target="_blank" rel="noopener">AASTOCKS · 4.1w</a></div>
   </article>
-  <article class="action">
-    <div class="actionmeta"><span class="priority">常规</span><span>运营</span></div>
-    <h3>本地民生题用来拉评论</h3>
-    <p class="do">挑一条本地民生热点做短懒人包,片尾抛一个二选一的问题,置顶自己的评论引导讨论。</p><details class="why"><summary>为什么</summary><p>【已核实】Finance730 本周:外劳 10.5 万、293 条评论(每千播 2.8);宏福苑问责 8.6 万、203 条;宏福苑报告记者会 5.3 万、175 条。同频道财经题如泡泡玛特 9.0 万只有 70 条。【推断】民生题的价值在评论,不在赞,考核要看评论数。</p></details>
-    <div class="proof"><b>参考</b><a href="https://www.youtube.com/watch?v=y3ANNleQf2A" target="_blank" rel="noopener">Finance730 · 10.5w</a><a href="https://www.youtube.com/watch?v=cVIzBcGMyDg" target="_blank" rel="noopener">Finance730 · 8.6w</a></div>
+  <article class="fmt"><div class="fmthead"><span class="fmttag">短片 / 动画</span><h3>讲一件事或一个品牌,不讲行情</h3></div>
+    <h4>本周看到</h4><ul class="seen"><li>【已核实】Finance730 的 6–8 分钟懒人包:外劳 10.5 万、293 条评论;宏福苑问责 8.6 万、203 条;泡泡玛特收益腰斩 9.0 万。</li><li>【已核实】同频道 10/23 讲大市的懒人包「一片睇清恒指暴瀉原因」6.2 万、20 条评论,评论密度约是外劳那条的九分之一。</li><li>【推断】拿量的短片都有一个主角(一群人、一个品牌、一宗事件),观众是来看故事的结局。</li></ul>
+    <h4>可以借的做法</h4><ul class="moves"><li>选题从「本周市况」换成「一件本地事、一个品牌、一个人的钱」,每周从题材空位表里挑一个。</li><li>片长 6–8 分钟,片尾抛一个二选一的问题拉评论。</li></ul>
+    <div class="proof"><b>参考</b><a href="https://www.youtube.com/watch?v=y3ANNleQf2A" target="_blank" rel="noopener">Finance730 · 10.5w</a><a href="https://www.youtube.com/watch?v=u4w8W4M9LFk" target="_blank" rel="noopener">Finance730 · 9w</a></div>
   </article></div>
 </section>
+
 
 <section id="gaps">
   <h2>题材空位提醒<span class="cnt">别处已热、粤语区还没人整集做</span></h2>
