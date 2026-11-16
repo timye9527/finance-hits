@@ -1,0 +1,323 @@
+<title>FUN傾股海 節目策劃</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@600;900&family=Noto+Sans+HK:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F5F7F6; --surface:#FFFFFF; --ink:#18211E; --muted:#5B6863; --line:#D9E0DD;
+  --accent:#0F6B52; --accent-soft:#E2F0EA; --amber:#B76E0E; --amber-soft:#FBF0DE;
+  --red:#B23A2E; --red-soft:#F8E4E1; --blue:#2F5C8F; --blue-soft:#E3ECF6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#111715; --surface:#18201D; --ink:#E5ECE9; --muted:#9AA9A3; --line:#2C3833;
+    --accent:#4FC39A; --accent-soft:#17352B; --amber:#E2A24B; --amber-soft:#3A2C17;
+    --red:#EE7F72; --red-soft:#3D2220; --blue:#83AEE0; --blue-soft:#1C2B3D;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#111715; --surface:#18201D; --ink:#E5ECE9; --muted:#9AA9A3; --line:#2C3833;
+  --accent:#4FC39A; --accent-soft:#17352B; --amber:#E2A24B; --amber-soft:#3A2C17;
+  --red:#EE7F72; --red-soft:#3D2220; --blue:#83AEE0; --blue-soft:#1C2B3D;
+}
+body{background:var(--bg);color:var(--ink);font:16px/1.75 "Noto Sans HK","PingFang HK","PingFang SC",system-ui,sans-serif;padding-inline:16px;padding-block:32px 64px}
+.wrap{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-family:"Noto Serif HK","Songti SC",serif;text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:clamp(30px,6vw,44px);font-weight:900}
+h2{font-size:24px;font-weight:900;display:flex;gap:12px;align-items:baseline}
+h2 .n{font:500 13px/1 "IBM Plex Mono",monospace;color:var(--accent);letter-spacing:.06em}
+h3{font-size:18px;font-weight:600}
+p{margin:0}
+section{display:flex;flex-direction:column;gap:16px}
+.eyebrow{font:500 12px/1.4 "IBM Plex Mono",monospace;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.dek{font-size:18px;color:var(--muted);max-width:62ch}
+header{display:flex;flex-direction:column;gap:14px;border-bottom:2px solid var(--ink);padding-bottom:24px}
+.howto{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.howto b{color:var(--accent)}
+.howto ol{margin:6px 0 0;padding-left:20px}
+.verdict{background:var(--accent);color:#fff;border-radius:12px;padding:22px 22px;display:flex;flex-direction:column;gap:10px}
+:root[data-theme="dark"] .verdict{color:#0B1512}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .verdict{color:#0B1512}}
+.verdict .big{font:900 22px/1.45 "Noto Serif HK",serif}
+.verdict ul{margin:0;padding-left:20px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-weight:700;color:var(--muted);font-size:13px;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+.ok{background:var(--accent-soft);color:var(--accent)}
+.warn{background:var(--amber-soft);color:var(--amber)}
+.no{background:var(--red-soft);color:var(--red)}
+.info{background:var(--blue-soft);color:var(--blue)}
+.ev{font-size:13px;color:var(--muted);border-left:3px solid var(--line);padding-left:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.card .k{font:500 12px/1 "IBM Plex Mono",monospace;color:var(--accent);letter-spacing:.06em}
+.ep{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;grid-template-columns:86px 1fr;gap:6px 16px}
+.ep .date{font:500 13px/1.4 "IBM Plex Mono",monospace;color:var(--muted)}
+.ep .no{grid-row:span 6;font:900 34px/1 "Noto Serif HK",serif;color:var(--accent);background:none;padding:0}
+.ep h3{font-size:19px}
+.ep dl{margin:0;display:grid;grid-template-columns:72px 1fr;gap:4px 10px;font-size:14.5px}
+.ep dt{color:var(--muted);font-weight:700}
+.ep dd{margin:0}
+@media (max-width:520px){.ep{grid-template-columns:1fr}.ep .no{grid-row:auto}.ep dl{grid-template-columns:1fr}.ep dt{margin-top:6px}}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}
+.flow span.s{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+.flow span.s.h{border-color:var(--amber);background:var(--amber-soft)}
+.flow .arr{color:var(--muted)}
+ul.tight{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.ask{border:2px solid var(--amber);border-radius:12px;padding:18px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.mono{font-family:"IBM Plex Mono",monospace;font-size:13px}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+a{color:var(--accent)}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Finance 930 · 新節目策劃 · v2 · 2026-11-12</div>
+  <h1>《FUN傾股海》<br>每周一單錢事，傾到你明</h1>
+  <p class="dek">把三条路（AI 娱乐、AI 快剪热点八卦、金融趣味创意）放在一起比，定下方向、形式、对标、差异点、AI 怎么参与、前 4 期怎么排、合规怎么过。</p>
+  <div class="howto">
+    <b>怎么用这一页</b>
+    <ol>
+      <li>先看第 1 节的结论（1 分钟），它回答「节目走哪条路」。</li>
+      <li>剪辑伙伴看第 3、6、7 节（固定环节、制作形式、单期模板）。</li>
+      <li>排期和判据在第 8 节，每期上线后照着对答案。</li>
+      <li>最后的黄框是要 Tim 拍板的两件事。标签 <span class="tag ok">已核实</span> <span class="tag warn">部分证据</span> <span class="tag no">未核实</span> 是结论可信度。</li>
+    </ol>
+  </div>
+</header>
+
+<section>
+  <h2><span class="n">01</span>结论先说</h2>
+  <div class="verdict">
+    <div class="big">走「第二条路的题目 + 第三条路的讲法」：用热点和八卦当入口，讲一个有主角、有数字、有结局的钱的故事，再用三个固定的「FUN 环节」把它讲得通俗好笑。</div>
+    <ul>
+      <li>第一条路（AI 音乐 / AI MV）不做：版权和品牌两头都过不了。</li>
+      <li>第二条路的问题不在题目，在讲法。热点八卦本身天花板高，AI 快剪做得不通俗、没有人味，我们补这两样。</li>
+      <li>第三条路（金融趣味）单独做太慢热，把它变成每期固定的环节，让「FUN」成为节目的辨识度。</li>
+      <li>制作走「AI 辅助」：AI 做后台的研究、骨架、图卡和工序，真人声音和判断留在前台。</li>
+      <li>正片里不讲买卖、不讲开户；品牌只在片尾赞助位出现。</li>
+    </ul>
+  </div>
+  <p class="ev">这份是 11/03 新节目提案、11/05 第二季补充、11/10 制作定位报告三份的合并定稿。三份里有一处互相矛盾：11/10 建议真人出镜，11/05 建议不露脸、用授权声音。这里统一为：<b>起步不露脸、真人粤语声音</b>，以后找到合适的人再加半出镜（见第 6 节）。</p>
+</section>
+
+<section>
+  <h2><span class="n">02</span>三条路怎么选</h2>
+  <div class="tbl"><table>
+    <tr><th>路线</th><th>能拿到什么</th><th>卡在哪里</th><th>判断</th></tr>
+    <tr><td><b>① 娱乐向</b><br>AI 音乐、AI 合成形象做 MV</td><td>播放可能很爆（Tim 观察到的）</td><td>用别人的歌词和旋律是侵权；和财经、和方德冠名都接不上；观众不是我们要的人</td><td><span class="tag no">不做</span></td></tr>
+    <tr><td><b>② 热点 / 八卦向</b><br>AI 整理剧本、快剪泛财经热点</td><td>题材天花板最高：人物、公司兴衰、市场奇闻</td><td>AI 快剪号讲得书面、没观点、没人味，所以不通俗；追纯新闻会 48 小时过期；八卦容易踩诽谤</td><td><span class="tag ok">取它的题目</span></td></tr>
+    <tr><td><b>③ 金融趣味 / 创意向</b><br>不追热点，讲好玩的金融</td><td>常青、可长尾、最安全；能形成自己的风格</td><td>单独做起量慢，选题全靠创意，难稳定周更</td><td><span class="tag ok">取它的讲法</span></td></tr>
+  </table></div>
+  <div class="grid">
+    <div class="card"><div class="k">证据 1</div><p>粤语爆款库里，<b>人物命运 / 故事类</b>中位 6.67 万、最高 132.5 万；<b>观点复述类</b>（美债、利率、AI 资本开支）中位 2.32 万、最高 6.7 万。</p><span class="tag ok">已核实</span></div>
+    <div class="card"><div class="k">证据 2</div><p>同一个 Finance730：<b>富豪 / 企业兴衰</b>短片 20–66 万；它自己的<b>宏观、关税、AI 新闻回顾</b>只有 1.5–4.3 万。热点快剪恰好是它最低的一档。</p><span class="tag ok">已核实</span></div>
+    <div class="card"><div class="k">证据 3</div><p>我们自己：財經浩談短片（观点复述）中位跌到 433；FUN趣恆升 中位 3.8 万。有人、有故事的东西在我们频道也是赢的。</p><span class="tag ok">已核实</span></div>
+  </div>
+  <p class="ev">爆款库只收 1.2 万播放以上的片，绝对值偏高，比较的是同一口径下谁高谁低。AI 音乐 MV 和 AI 快剪号的播放数据来自 Tim 的观察，我没有抓样本 <span class="tag no">未核实</span>。</p>
+</section>
+
+<section>
+  <h2><span class="n">03</span>节目定义</h2>
+  <div class="tbl"><table>
+    <tr><th>项目</th><th>定稿</th></tr>
+    <tr><td>名字</td><td><b>《FUN傾股海》保留。</b>和《FUN趣恆升》是一个家族，「傾」够港味。加一句固定 slogan 补口语味：<b>「錢嘅故事，傾到你明」</b>（备选「傾股唔傾計」）。旧集有前主持，新一季封面换视觉、编号从 EP1 重新开始，写「第二季」。</td></tr>
+    <tr><td>一句话</td><td>每周一期、10 分钟，讲清一个和香港人荷包有关的钱的故事。</td></tr>
+    <tr><td>每期必须有</td><td>一个主角（人 / 公司 / 品牌 / 机构）；一个让人「哇」的数字；起承转合；最后一分钟「同你有咩關係」。</td></tr>
+    <tr><td>标题格式</td><td><span class="mono">主角 + 惊人数字！悬念？｜FUN傾股海 EP1</span>。力度比阿豬收一档，用问号和悬念，不用「血洗」「崩盤」。</td></tr>
+    <tr><td>发布</td><td>周日 20:00（避开周五 FUN趣恆升），配一条 50 秒内的竖屏预告。</td></tr>
+  </table></div>
+
+  <h3>三个固定的「FUN 环节」：让它通俗，也让它认得出</h3>
+  <div class="grid">
+    <div class="card"><div class="k">开场 · 估一估</div><h3>先让观众猜数字</h3><p>「你估 LABUBU 最貴賣過幾多錢？留言估下。」答案在片中揭晓，置顶评论由频道号公布。<br><b>解决的问题：</b>我们频道评论和频道号发言长期几乎为 0。</p></div>
+    <div class="card"><div class="k">中段 · 換算機</div><h3>大数字换成生活单位</h3><p>几亿、几百亿没人有感觉。换成「幾多個菠蘿油」「幾多年公屋租」「幾多程港鐵」。<br><b>解决的问题：</b>通俗化。AI 换算很快，人只核对单价来源。</p></div>
+    <div class="card"><div class="k">收尾 · 傾完</div><h3>一句话结论 + 同你有咩關係</h3><p>讲影响、讲教训，不讲操作。宇航员角色在这里出来吐槽或提问，下期预告也放这里。<br><b>解决的问题：</b>结尾有记忆点，系列感更强。</p></div>
+  </div>
+  <p class="ev">三个环节都是我按「通俗化 + 辨识度」设计的，还没上线测过 <span class="tag warn">待验证</span>。前 4 期每期都保留，第 4 期复盘时看评论数和中段留存决定去留。宇航员角色沿用动画线现成 IP，要先确认动画伙伴能接 <span class="tag no">未核实</span>。</p>
+</section>
+
+<section>
+  <h2><span class="n">04</span>重点参考的账号</h2>
+  <div class="tbl"><table>
+    <tr><th>账号</th><th>参考什么</th><th>不学什么</th><th>关键数字</th></tr>
+    <tr><td><b>Finance730《財經剝花生》/ 懶人包</b><br>主对标</td><td>同市场、同片长（约 9.5 分钟）；题材选富豪、企业兴衰、市井奇闻</td><td>新闻回顾类题目；完整免责写「主持為持牌人」，我们没有这个条件</td><td class="num">剝花生 EP1 澳博 78.9 万<br>懶人包中位 8.7 万</td></tr>
+    <tr><td><b>阿豬 Ah Ju</b></td><td>问题型选题、标题、30 秒开头钩子</td><td>个人观点驱动；我们是故事驱动</td><td class="num">中位 18.1 万</td></tr>
+    <tr><td><b>小Lin说</b></td><td>「一个问题 + 一个主角 + 一本账」的结构；一张贯穿全片的图</td><td>22 刀/分钟的精细动画；她的人设</td><td class="num">王健林 132.5 万</td></tr>
+    <tr><td><b>硬核的半佛仙人 / 巫师财经</b></td><td>不露脸靠<b>声音和口头风格</b>建立人设；「名人背后的钱」切口；半佛的吐槽式幽默最接近我们要的 FUN</td><td>过度玩梗、对真人公司下定性</td><td class="num">半佛 瑞幸 747 万<br>（2020 年报道）</td></tr>
+    <tr><td><b>Company Man / MagnatesMedia</b></td><td>标题公式：「某某的衰落，發生咗咩事？」「一間你未聽過但無處不在嘅公司」</td><td>英文素材剪辑的版权做法</td><td class="num">第三方统计，未逐条核对</td></tr>
+  </table></div>
+  <p class="ev">Finance730、阿豬、小Lin说为 YouTube 抓取实数 <span class="tag ok">已核实</span>；半佛、巫师来自旧媒体报道，只说明量级 <span class="tag warn">部分证据</span>；英文账号来自第三方统计站 <span class="tag no">未核实</span>。</p>
+</section>
+
+<section>
+  <h2><span class="n">05</span>差异点：内容和制作</h2>
+  <div class="tbl"><table>
+    <tr><th>和谁比</th><th>他们的样子</th><th>我们的差异（内容）</th><th>我们的差异（制作）</th></tr>
+    <tr><td>Finance730</td><td>新闻感、节奏快、信息密</td><td>每期一个「換算機」，把数字落到港人生活；结尾一定讲「同你有咩關係」</td><td>固定角色 + 5 套模板图卡，系列视觉一眼认得出</td></tr>
+    <tr><td>阿豬</td><td>一个人的判断，观点和预测多</td><td>不给预测、不讲买卖，讲来龙去脉和机制，晚一周发也不过期</td><td>不依赖主持人档期，声音 + 画面可批量排产</td></tr>
+    <tr><td>小Lin说</td><td>普通话、15–30 分钟、精细动画</td><td>粤语、10 分钟、只讲一件事；题目优先香港人认识的主角</td><td>画面降级：真人声音 + 图卡 + AI 插画，一个下午能出</td></tr>
+    <tr><td>AI 快剪热点号</td><td>AI 稿、AI 配音、素材堆叠，没观点</td><td>每个数字有来源、有判断、有笑点，可信</td><td>AI 只在后台；前台是真人声音，稿子过合规</td></tr>
+  </table></div>
+  <p>一句话：<b>别人在比谁更快，我们比谁讲得更明白、更好笑、更可信。</b>可信这一条是方德冠名的频道天然该占的位置。</p>
+</section>
+
+<section>
+  <h2><span class="n">06</span>制作形式：AI 参与到哪一步</h2>
+  <div class="tbl"><table>
+    <tr><th>形式</th><th>做法</th><th>好处</th><th>问题</th><th>判断</th></tr>
+    <tr><td><b>全 AI</b></td><td>AI 写稿、AI 粤语配音或数字人、AI 画面</td><td>最便宜，能日更</td><td>粤语合成仍容易穿帮；财经最吃信任；逼真合成人物要做平台标注，模板化内容有变现风险；虚拟人和开户放一起合规风险最高</td><td><span class="tag no">不做主力</span></td></tr>
+    <tr><td><b>AI 辅助</b></td><td>人定题、人核数、真人声音；AI 做研究、骨架、图卡、插画、字幕、粗剪、标题备选</td><td>一个下午能出片，质量可控，能积累模板</td><td>前 4 期要花时间磨模板，每期 1.5–2 天</td><td><span class="tag ok">采用</span></td></tr>
+    <tr><td><b>纯人工</b></td><td>人写、人画、人剪</td><td>质量最高</td><td>一个下午做不完，周更撑不住</td><td><span class="tag warn">只用于关键段落</span></td></tr>
+  </table></div>
+
+  <h3>流程里谁做什么（橙色是人必须守的关口）</h3>
+  <div class="flow">
+    <span class="s">AI：选题雷达 15 个候选</span><span class="arr">→</span>
+    <span class="s h">Tim：挑 1 个，写一句话观点</span><span class="arr">→</span>
+    <span class="s">AI：研究包，每个数字附来源</span><span class="arr">→</span>
+    <span class="s h">编导：逐个点开来源核数</span><span class="arr">→</span>
+    <span class="s">AI：10 分钟骨架 + 10 个标题</span><span class="arr">→</span>
+    <span class="s h">改成粤语口语、加笑点</span><span class="arr">→</span>
+    <span class="s h">方德合规审稿</span><span class="arr">→</span>
+    <span class="s h">真人配音</span><span class="arr">→</span>
+    <span class="s">AI：图卡填数、插画、字幕、粗剪</span><span class="arr">→</span>
+    <span class="s h">剪辑定节奏、Tim 只卡三处</span>
+  </div>
+  <p class="ev">Tim 只卡三处：开头 30 秒、核心结论那一段、标题和封面。其余交给剪辑判断，避免 Tim 变成瓶颈。</p>
+
+  <h3>AI 的份量怎么一步步加</h3>
+  <div class="tbl"><table>
+    <tr><th>阶段</th><th>AI 新增做什么</th><th>目标</th><th>进入下一阶段的条件</th></tr>
+    <tr><td class="num"><b>起步</b><br>EP1–4</td><td>研究包、脚本骨架、标题备选、字幕</td><td>定下 5 套图卡模板、角色造型、換算機样式；每期 1.5–2 天</td><td>模板定型；4 期实验记录写完</td></tr>
+    <tr><td class="num"><b>提速</b><br>EP5–8</td><td>脚本自动拆成分镜清单；图卡按模板自动填数；AI 插画统一风格；AI 挑 3 个竖屏预告候选</td><td>压到一个下午出片</td><td>连续 4 期按时上线，没有出现事实错误</td></tr>
+    <tr><td class="num"><b>数据驱动</b><br>EP9+</td><td>用我们自己 8 期结果校准选题卡打分；封面 A/B；常青题库存</td><td>选题命中率提高，长尾变多</td><td>—</td></tr>
+  </table></div>
+  <p class="ev">方向是 <b>AI 往后台走，不往前台走</b>。AI 粤语配音只在合规点头、平台标注做好之后，拿 1–2 期做对照测试，而且不挂开户。分镜清单和自动出图可以改用 ~/faceless-desk 已跑通的管线（scenes 清单 → 出图 → 渲染），但它目前是普通话流程，要改造 <span class="tag warn">部分证据</span>。各环节能省多少时间是经验估计，前 4 期实测校准 <span class="tag no">未核实</span>。</p>
+</section>
+
+<section>
+  <h2><span class="n">07</span>10 分钟单期模板</h2>
+  <div class="tbl"><table>
+    <tr><th>时间</th><th>段落</th><th>写法</th><th>画面</th></tr>
+    <tr><td class="num">0:00–0:30</td><td>钩子 + 估一估</td><td>结局先行：抛那个数字和最大的悬念，请观众留言估</td><td>大数字卡 + 角色</td></tr>
+    <tr><td class="num">0:30–1:00</td><td>问题</td><td>这件事为什么奇怪，预告要回答的三个问题</td><td>贯穿图第一次出现</td></tr>
+    <tr><td class="num">1:00–5:00</td><td>三幕时间线</td><td>起 → 转 → 崩（或翻身），中间放一次換算機</td><td>时间线卡、AI 插画</td></tr>
+    <tr><td class="num">5:00–7:30</td><td>机制</td><td>为什么会这样。这是我们比新闻多给的东西</td><td>对比卡、走势卡</td></tr>
+    <tr><td class="num">7:30–9:00</td><td>同你有咩關係</td><td>对普通人的影响和教训，不讲买卖</td><td>少切，建立信任</td></tr>
+    <tr><td class="num">9:00–10:00</td><td>傾完 + 下期</td><td>一句话结论，公布估一估答案，预告下期</td><td>贯穿图完整版</td></tr>
+    <tr><td class="num">片尾 10 秒</td><td>赞助时段</td><td>和正片隔开，标明赞助；声明字卡 3 秒</td><td>固定模板</td></tr>
+  </table></div>
+  <p class="ev">稿件约 2,500–2,800 字粤语口语（按 11/10 实测阿豬约 300 字/分钟反推）。画面目标每 4–6 秒一次视觉变化，靠换景别、弹图卡、放大字，不靠每次做新动画。</p>
+</section>
+
+<section>
+  <h2><span class="n">08</span>前 4 期排期（暂定）</h2>
+  <p>4 期各试一个选题池，看我们频道的观众买哪一种。日期按 EP1 两周内出样片推算，谁负责 EP1 定下后再锁。</p>
+
+  <div class="ep">
+    <div class="no">EP1</div>
+    <div class="date">11/29 周日 · 热点钱事（路线②入口 × FUN 讲法）</div>
+    <h3>泡泡瑪特：LABUBU 點解由神壇跌落嚟？</h3>
+    <dl>
+      <dt>为什么</dt><dd>本地人都认识的品牌，有起有落，有财报数字。Finance730 同类题 9.0 万。</dd>
+      <dt>FUN 环节</dt><dd>估一估「一隻 LABUBU 最貴炒到幾多」；換算機换成菠蘿油。</dd>
+      <dt>假设</dt><dd>本地品牌 + 一个数字，首周 ≥ 5,000（旧短片中位的 10 倍）。</dd>
+      <dt>合规</dt><dd>泡泡瑪特是港股上市公司：只讲品牌和炒卖现象，不讲股票买不买、不给股价判断。价格和财报数字全部待核。</dd>
+    </dl>
+  </div>
+  <div class="ep">
+    <div class="no">EP2</div>
+    <div class="date">12/06 周日 · 生活经济学（路线③）</div>
+    <h3>菠蘿油二十年貴咗幾多？你人工追唔追到？</h3>
+    <dl>
+      <dt>为什么</dt><dd>没有热点也能讲，最通俗，数据来自统计处，合规全绿。</dd>
+      <dt>FUN 环节</dt><dd>估一估二十年前一个菠蘿油几钱；整期就是一个換算機。</dd>
+      <dt>假设</dt><dd>常青题首周 ≥ 3,000，且第 30 天 / 第 7 天播放比 &gt; 1.3（有长尾，我们频道至今没有过）。</dd>
+      <dt>合规</dt><dd>讲通胀和收入，不讲「点样跑赢通胀」的具体产品。</dd>
+    </dl>
+  </div>
+  <div class="ep">
+    <div class="no">EP3</div>
+    <div class="date">12/13 周日 · 市场奇闻 · 本地历史（路线② + ③）</div>
+    <h3>1973 年全香港炒股：一場股災點樣燒光一代人積蓄？</h3>
+    <dl>
+      <dt>为什么</dt><dd>本地、有戏剧性、历史题不怕过期，诽谤风险低。</dd>
+      <dt>FUN 环节</dt><dd>估一估恒指当年由几多跌到几多；換算成当年的人工。</dd>
+      <dt>假设</dt><dd>历史奇闻能带出长辈回忆，评论 ≥ 30 条（是现在的几十倍）。</dd>
+      <dt>合规</dt><dd>旧照片和电视片段不用，全部插画重绘；史实只引正式出版物和统计数据。</dd>
+    </dl>
+  </div>
+  <div class="ep">
+    <div class="no">EP4</div>
+    <div class="date">12/20 周日 · 机构揭秘（路线③创意）</div>
+    <h3>大行目標價係點樣「砌」出嚟？</h3>
+    <dl>
+      <dt>为什么</dt><dd>常青、有信息差，最能体现「讲得明白」。</dd>
+      <dt>FUN 环节</dt><dd>用一间虚构茶餐厅「旺記」从头砌一次估值；角色扮演分析师。</dd>
+      <dt>假设</dt><dd>教育题拉订阅最好：每千播新增订阅是 4 期里最高。</dd>
+      <dt>合规</dt><dd>只讲方法，例子全用虚构公司，不碰任何真实个股的目标价。</dd>
+    </dl>
+  </div>
+
+  <div class="tbl"><table>
+    <tr><th>4 期之后看什么</th><th>读数</th><th>动作</th></tr>
+    <tr><td>过线</td><td>4 期首周中位 ≥ 3,000，或任一期 ≥ 1 万</td><td>继续第 5–8 期，预算押在赢的那个选题池</td></tr>
+    <tr><td>原因层</td><td>Studio 点击率 ≥ 4%，平均观看百分比 ≥ 35%</td><td>点击率低改封面标题；留存低改开头 30 秒</td></tr>
+    <tr><td>没起来</td><td>4 期首周中位 &lt; 1,000</td><td>先换选题池，不先换形式</td></tr>
+  </table></div>
+  <p class="ev">点击率、观看时长、新增订阅只在 YouTube Studio 里，每周一导出一次 CSV 是硬前提，否则第 2 行判断不了。</p>
+</section>
+
+<section>
+  <h2><span class="n">09</span>怎么让数据越来越好</h2>
+  <ul class="tight">
+    <li><b>系列感：</b>统一标题后缀、封面模板、播放列表，让算法和观众认出这是同一档节目。</li>
+    <li><b>竖屏预告只做一件事：</b>在最紧张处截断，挂「相關影片」到正片；看正片的「Shorts 动态」来源，不看预告自己的播放。</li>
+    <li><b>片尾画面：</b>放下一期和常青题，不放开户卡；和《FUN趣恆升》互相放入口，同一个 FUN 家族。</li>
+    <li><b>库存：</b>任何时候库里有 2 期常青题，淡周或赶不及就发库存，周更不断。</li>
+    <li><b>评论区：</b>估一估的答案由频道号置顶公布，顺手回复前 10 条评论。</li>
+    <li><b>每期一条假设：</b>周一跑 finance930-ops 时单独成组，填实验记录表，Tim 只写「结论」一列。</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">10</span>合规：怎么解决</h2>
+  <div class="grid">
+    <div class="card"><span class="tag ok">绿 · 可做</span><p>事件经过、历史复盘、概念科普、公开数据、机制解释。</p></div>
+    <div class="card"><span class="tag warn">黄 · 措辞要审</span><p>市场情景分析，写成「市場擔心 X / 有觀點認為 Y」并注明来源；涉及上市公司的品牌故事。</p></div>
+    <div class="card"><span class="tag no">红 · 不做</span><p>具体证券的买卖、目标价、入场时点，「揸 / 沽 / 撈」这类指令。</p></div>
+  </div>
+  <div class="tbl"><table>
+    <tr><th>风险</th><th>对应路线</th><th>我们的做法</th></tr>
+    <tr><td>内容像在给买卖建议</td><td>②热点</td><td>守红黄绿线；正片里零开户话术，开户只在片尾赞助时段和描述栏，标明赞助，后台勾选「含付费推广」</td></tr>
+    <tr><td>诽谤 / 名誉</td><td>②八卦</td><td>负面情节只用法庭文件、交易所和监管公告、主流媒体，并在稿里写明来源；不对未定案的事下定性</td></tr>
+    <tr><td>版权 / 肖像</td><td>①②</td><td>不用别人的歌、电视片段、新闻图、他人视频；音乐只用 YouTube 音频库或买断授权；不用 AI 生成在世真人的写实形象</td></tr>
+    <tr><td>AI 披露</td><td>全部</td><td>逼真的合成人物或合成声音要勾 YouTube 合成内容标注；插画风格画面一般不需要，具体条款上线前再核一次</td></tr>
+    <tr><td>署名和人设</td><td>全部</td><td>沿用「撰稿：叶荣添 Richard（Finance 930 编辑部）」，不编任何资历头衔</td></tr>
+    <tr><td>事实错误</td><td>全部</td><td>稿件附来源清单归档；出错在简介置顶写更正</td></tr>
+  </table></div>
+  <p><b>固定节奏：</b>周三把稿件和声明送方德合规（或其指定持牌人），周四回复。自己写稿的最大好处是每一句都能事先过审，这是请 KOL 做不到的。</p>
+  <p class="ev">以上是我按香港持牌制度的一般理解写的框架，不是法律意见 <span class="tag no">未核实</span>。三个要拿去问合规的问题：① 「930 编辑部」自写的故事类内容，在什么边界内不构成就证券提供意见；② 片尾赞助时段的写法和位置；③ 讲上市公司品牌故事（如泡泡瑪特）时措辞的底线。</p>
+</section>
+
+<div class="ask">
+  <h2>要 Tim 拍板的两件事</h2>
+  <ul class="tight">
+    <li><b>声音由谁来？</b>团队里声音好的人（便宜、稳定，但会被档期卡住），或按集付费请一位兼职并签声音授权（可控，但要找人和签约）。我建议先用团队里的人录 EP1 样片，内部听一轮再定。</li>
+    <li><b>正片露不露方德？</b>我建议正片零品牌，只留片尾赞助时段。如果方德要求和《FUN趣恆升》一样冠名，就只在片头放 3 秒冠名字卡，正片里仍不出现开户内容。这一条要和方德对齐。</li>
+  </ul>
+</div>
+
+<footer>
+  依据：~/finance930-ops/content 下 new-show-proposal（11/03、11/05）、haotan-relaunch、new-column-plan、2026-W45；~/finance-hits/studies/fun-bench 的 8 频道抓取与样片分析（11/10）。这次没有新抓数据。<br>
+  这一版没验证的：AI 音乐和 AI 快剪号的真实数据、三个 FUN 环节的效果、宇航员角色能否接、各环节省时、YouTube 条款细节、全部合规意见。
+</footer>
+
+</div>

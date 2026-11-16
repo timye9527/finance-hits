@@ -1,0 +1,241 @@
+<title>EP1 黃仁勳離場</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@600;900&family=Noto+Sans+HK:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F5F7F6; --surface:#FFFFFF; --ink:#18211E; --muted:#5B6863; --line:#D9E0DD;
+  --accent:#0F6B52; --accent-soft:#E2F0EA; --amber:#B76E0E; --amber-soft:#FBF0DE;
+  --red:#B23A2E; --red-soft:#F8E4E1; --blue:#2F5C8F; --blue-soft:#E3ECF6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#111715; --surface:#18201D; --ink:#E5ECE9; --muted:#9AA9A3; --line:#2C3833;
+    --accent:#4FC39A; --accent-soft:#17352B; --amber:#E2A24B; --amber-soft:#3A2C17;
+    --red:#EE7F72; --red-soft:#3D2220; --blue:#83AEE0; --blue-soft:#1C2B3D;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#111715; --surface:#18201D; --ink:#E5ECE9; --muted:#9AA9A3; --line:#2C3833;
+  --accent:#4FC39A; --accent-soft:#17352B; --amber:#E2A24B; --amber-soft:#3A2C17;
+  --red:#EE7F72; --red-soft:#3D2220; --blue:#83AEE0; --blue-soft:#1C2B3D;
+}
+body{background:var(--bg);color:var(--ink);font:16px/1.75 "Noto Sans HK","PingFang HK","PingFang SC",system-ui,sans-serif;padding-inline:16px;padding-block:32px 64px}
+.wrap{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-family:"Noto Serif HK","Songti SC",serif;text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:clamp(30px,6vw,44px);font-weight:900}
+h2{font-size:24px;font-weight:900;display:flex;gap:12px;align-items:baseline}
+h2 .n{font:500 13px/1 "IBM Plex Mono",monospace;color:var(--accent);letter-spacing:.06em}
+h3{font-size:18px;font-weight:600}
+p{margin:0}
+section{display:flex;flex-direction:column;gap:16px}
+.eyebrow{font:500 12px/1.4 "IBM Plex Mono",monospace;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.dek{font-size:18px;color:var(--muted);max-width:62ch}
+header{display:flex;flex-direction:column;gap:14px;border-bottom:2px solid var(--ink);padding-bottom:24px}
+.howto{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.howto b{color:var(--accent)}
+.howto ol{margin:6px 0 0;padding-left:20px}
+.verdict{background:var(--accent);color:#fff;border-radius:12px;padding:22px 22px;display:flex;flex-direction:column;gap:10px}
+:root[data-theme="dark"] .verdict{color:#0B1512}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .verdict{color:#0B1512}}
+.verdict .big{font:900 22px/1.45 "Noto Serif HK",serif}
+.verdict ul{margin:0;padding-left:20px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-weight:700;color:var(--muted);font-size:13px;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+.ok{background:var(--accent-soft);color:var(--accent)}
+.warn{background:var(--amber-soft);color:var(--amber)}
+.no{background:var(--red-soft);color:var(--red)}
+.info{background:var(--blue-soft);color:var(--blue)}
+.ev{font-size:13px;color:var(--muted);border-left:3px solid var(--line);padding-left:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.card .k{font:500 12px/1 "IBM Plex Mono",monospace;color:var(--accent);letter-spacing:.06em}
+.ep{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;grid-template-columns:86px 1fr;gap:6px 16px}
+.ep .date{font:500 13px/1.4 "IBM Plex Mono",monospace;color:var(--muted)}
+.ep .no{grid-row:span 6;font:900 34px/1 "Noto Serif HK",serif;color:var(--accent);background:none;padding:0}
+.ep h3{font-size:19px}
+.ep dl{margin:0;display:grid;grid-template-columns:72px 1fr;gap:4px 10px;font-size:14.5px}
+.ep dt{color:var(--muted);font-weight:700}
+.ep dd{margin:0}
+@media (max-width:520px){.ep{grid-template-columns:1fr}.ep .no{grid-row:auto}.ep dl{grid-template-columns:1fr}.ep dt{margin-top:6px}}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}
+.flow span.s{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+.flow span.s.h{border-color:var(--amber);background:var(--amber-soft)}
+.flow .arr{color:var(--muted)}
+ul.tight{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.ask{border:2px solid var(--amber);border-radius:12px;padding:18px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.mono{font-family:"IBM Plex Mono",monospace;font-size:13px}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+a{color:var(--accent)}
+</style>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">FUN傾股海 · 第二季 EP1 · 角度调研 · 2026-11-13</div>
+  <h1>33 年嘅信任，一個禮拜清零：<br>黃仁勳離場教識我哋咩？</h1>
+  <p class="dek">同一件事，这个周末会有很多人讲。这一页比较五种剧本走向的差异和预计效果，选一条，并给出 10 分钟的分场草案、素材清单和合规底线。</p>
+  <div class="howto">
+    <b>怎么用这一页</b>
+    <ol>
+      <li>先看第 1 节结论（1 分钟）：选哪条走向、为什么、几号发。</li>
+      <li>第 2 节是同行已经拍了什么，第 3 节是五种走向的比较，用来说服自己「为什么不拍别的」。</li>
+      <li>编导写稿看第 4–6 节：主线故事、分场草案、要核的数字。</li>
+      <li>标签 <span class="tag ok">已核实</span> <span class="tag warn">部分证据</span> <span class="tag no">未核实/推断</span> 是可信度。</li>
+    </ol>
+  </div>
+</header>
+
+<section>
+  <h2><span class="n">01</span>结论先说</h2>
+  <div class="verdict">
+    <div class="big">主线拍「分岔路」：同样是 CEO 因私德突然离场，Intel 之后一年跑输大市 17 个百分点，麦当劳反而跑赢。英伟达会走哪一条？用 33 年的浪潮史做铺垫，用「信仰」开场，把「会不会被劲敌瓜分」留作结尾的开放题。</div>
+    <ul>
+      <li><b>为什么是这条：</b>同行几乎都在讲八卦、间谍、政治和「谁接班」，讲历史前例和关键人物风险的，在我们抓到的约 100 条里只有零星几条。这条最有差异，守则最硬，合规最绿。</li>
+      <li><b>为什么不只拍「教训」或「陨落」：</b>两样都要先下结论。我们把两种结局都摆出来，告诉观众该看哪几个信号，结局留给观众判断。这样调性稳，也不会被下周的新闻打脸。</li>
+      <li><b>建议 11/22 周日发，不抢这个周末。</b>英伟达 11/17 公布季度业绩，这是没有黄仁勋之后的第一份成绩单。周末那批回望片拿不到这个数据，我们拿得到，片子会更新、更完整。</li>
+      <li><b>本期守则：</b>守則 #1「唔好將一間公司信成一個人：睇接班、睇制度、睇護城河。」</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">02</span>同行已经拍了什么</h2>
+  <p>11/13 按「黃仁勳 辭職」「黄仁勋 辞职」「黃仁勳 下台」「Jensen Huang resigns」在 YouTube 按上传时间各抓 30 条，去重后约 100 条，几乎全是 11/12–13 两天内的。</p>
+  <div class="tbl"><table>
+    <tr><th>角度</th><th>代表片</th><th>播放</th><th>占比</th></tr>
+    <tr><td><b>八卦 / 婚外情细节</b></td><td>Finance730《黃仁勳即時辭職！再爆偷食副總裁人妻…》（粤语）</td><td class="num">9.5 万</td><td rowspan="2"><span class="tag no">约一半，已饱和</span></td></tr>
+    <tr><td><b>间谍 / 政治阴谋</b></td><td>东森《連告別聲明都沒有！…》；万维、新唐人、方菲、陶傑等</td><td class="num">1.7–25.8 万</td></tr>
+    <tr><td><b>谁接班</b></td><td>利世民《黃仁勳辭職後嘅 Nvidia．Trump 建議由 Tim Cook 頂上》（粤语）；言究院</td><td class="num">3.0–6.0 万</td><td><span class="tag warn">有人做</span></td></tr>
+    <tr><td><b>股票怎么办</b></td><td>Zac美股笔记《英伟达是我第一大持仓，现在该怎么办》；Jo Bhakdi《Is Nvidia a bargain?》；一綺聊股</td><td class="num">1.6–6.9 万</td><td><span class="tag warn">有人做，且是我们的红线</span></td></tr>
+    <tr><td><b>供应链 / 台股影响</b></td><td>林漢偉、寶傑點兵、華視</td><td class="num">0.9–8.7 万</td><td><span class="tag warn">台湾视角为主</span></td></tr>
+    <tr><td><b>突发快讯</b></td><td>Terry Chen 泰瑞、芒向編輯部、言究院</td><td class="num">4.8–58.0 万</td><td><span class="tag no">48 小时就过期</span></td></tr>
+    <tr><td><b>治理 / 董事会 / 前例</b></td><td>课代表立正《没有他就没有英伟达，命运却握在董事会手里》（普通话）</td><td class="num">1.6 万</td><td><span class="tag ok">几乎空着</span></td></tr>
+    <tr><td><b>33 年浪潮史</b></td><td>这两天还没看到成片，Tim 判断这个周末会大量出现</td><td class="num">—</td><td><span class="tag warn">即将拥挤</span></td></tr>
+  </table></div>
+  <p class="ev">播放为 11/13 抓取时的实时数，片子才上线一两天，数字还会涨 <span class="tag ok">已核实</span>。「占比」是我按标题人工归类的，没有逐条看内容 <span class="tag warn">部分证据</span>。英文主流媒体（CNN 153 万、BBC 54 万）都是新闻报道，不是我们的竞争对象。</p>
+</section>
+
+<section>
+  <h2><span class="n">03</span>五种剧本走向，比一比</h2>
+  <div class="tbl"><table>
+    <tr><th>走向</th><th>一句话</th><th>差异度</th><th>能留下的守则</th><th>合规</th><th>预计效果</th><th>判断</th></tr>
+    <tr><td><b>A 始末复盘</b></td><td>一周内发生了什么，谁爆的料</td><td><span class="tag no">低</span></td><td>几乎没有</td><td><span class="tag no">高风险</span>：私生活、未定案指控</td><td>点击高，但 Finance730 已拿 9.5 万，我们晚一周再讲就是剩饭</td><td><span class="tag no">不做</span></td></tr>
+    <tr><td><b>B 33 年传奇</b></td><td>Denny's 餐厅起家，每次都踩中浪潮</td><td><span class="tag warn">中→低</span>（周末会撞）</td><td>弱：「老黃好勁」</td><td><span class="tag ok">绿</span></td><td>常青、能长尾，但同质化以后很难被推荐</td><td><span class="tag warn">只当骨架</span></td></tr>
+    <tr><td><b>C 劲敌瓜分</b></td><td>AMD、博通、Google 自研芯片会不会趁机分食</td><td><span class="tag warn">中</span></td><td>中：护城河是什么</td><td><span class="tag warn">黄偏红</span>：容易变成预测个股</td><td>悬念强、点击好；但 11/17 业绩可能直接打脸</td><td><span class="tag warn">留作结尾开放题</span></td></tr>
+    <tr><td><b>D 分岔路（前例对照）</b></td><td>Intel 和麦当劳，同样的事，两种结局</td><td><span class="tag ok">高</span></td><td><b>强</b>：看接班、看制度</td><td><span class="tag ok">绿</span>：历史 + 公开数据</td><td>偏理性，点击要靠标题包装；但不怕晚发，能长尾</td><td><span class="tag ok">主线</span></td></tr>
+    <tr><td><b>E 信仰崩塌</b></td><td>把一家公司当成一个人来信，有多危险</td><td><span class="tag ok">高</span></td><td><b>最强</b>：直接对应「活得更久」</td><td><span class="tag warn">黄</span>：容易滑向「持股点算」</td><td>评论最多，最贴调性；单独撑 10 分钟偏虚</td><td><span class="tag ok">开场钩子</span></td></tr>
+  </table></div>
+  <p class="ev">「预计效果」是我根据同行这两天的分布和 finance-hits 爆款库的规律做的推断，不是测量 <span class="tag no">推断</span>。上线后用第 7 节的判据对答案。</p>
+
+  <h3>为什么不在「教训」和「陨落」里二选一</h3>
+  <div class="grid">
+    <div class="card"><div class="k">只讲教训</div><p>容易变成说教，而且等于预设「他错了，公司没事」。如果之后英伟达真的走弱，这期就显得天真。</p></div>
+    <div class="card"><div class="k">只讲陨落</div><p>等于预测一只股票会跌，合规过不了；也违背「对人公道」，带着幸灾乐祸的味道。</p></div>
+    <div class="card"><div class="k">讲分岔路</div><p>把两条路的历史结局摆出来，告诉观众分岔点在哪几个信号上。观众带走的是判断方法，下次换一家公司也能用。</p></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">04</span>主线故事：三样素材</h2>
+
+  <h3>① 浪潮史：英伟达每次踩中浪潮，都不是运气</h3>
+  <div class="tbl"><table>
+    <tr><th>年份</th><th>发生了什么</th><th>剧本里怎么用</th></tr>
+    <tr><td class="num">1993</td><td>黄仁勋和两位工程师在 Denny's 餐厅商量创业</td><td>开头画面：一张餐厅卡座</td></tr>
+    <tr><td class="num">1995–97</td><td>第一款芯片 NV1 失败，公司差点倒闭，靠 RIVA 128 救回来。黄仁勋常说公司「離倒閉只有 30 日」</td><td>伏笔：这家公司本来就是从濒死里活过来的</td></tr>
+    <tr><td class="num">1999</td><td>上市；推出 GeForce 256，自称第一颗 GPU</td><td>第一个浪潮：电脑游戏</td></tr>
+    <tr><td class="num">2006</td><td>推出 CUDA，让显卡能做通用计算。华尔街多年看不懂这笔投入</td><td><b>全片关键：</b>浪潮还没来之前，先押注十年</td></tr>
+    <tr><td class="num">2012</td><td>AlexNet 用两块英伟达游戏显卡训练，深度学习起飞</td><td>浪潮找上门，因为只有它准备好了</td></tr>
+    <tr><td class="num">2016</td><td>黄仁勋把第一台 DGX-1 亲手送到 OpenAI</td><td>人和公司绑得最紧的一幕</td></tr>
+    <tr><td class="num">2022–26</td><td>ChatGPT 之后成为 AI 芯片霸主，约占先进 AI 芯片九成；2026-10-06 市值高见 5.78 万亿美元</td><td>顶峰</td></tr>
+  </table></div>
+  <p class="ev">2026 年的数字来自 Al Jazeera、Motley Fool 报道 <span class="tag ok">已核实</span>；1993–2022 是广为人知的公司史，要由编导逐条找原始出处（公司年报、访谈原话）再用 <span class="tag warn">待核出处</span>。「30 日」那句要找到他本人原话的出处。</p>
+
+  <h3>② 一个礼拜：只讲官方确认的部分</h3>
+  <div class="tbl"><table>
+    <tr><th>日期</th><th>官方 / 可公开确认的事实</th></tr>
+    <tr><td class="num">11/09 周日</td><td>黄仁勋发电邮向员工道歉；英伟达宣布调查他是否成为外国情报活动的目标</td></tr>
+    <tr><td class="num">11/12 周四</td><td>董事会宣布他辞去总裁、CEO、董事，即时生效。CFO Colette Kress 任临时 CEO，前 Synopsys CEO Harvey Jones 任公司首位董事长；正式 CEO 从内部和外部物色</td></tr>
+    <tr><td class="num">11/12 收市</td><td>股价盘中最多跌约 14%，收市跌 4.34%；市值收在 4 万亿美元上方</td></tr>
+    <tr><td class="num">11/12–13</td><td>至少 6 家券商下调评级或目标价；Bernstein 分析师 Stacy Rasgon：「Jensen is Nvidia」</td></tr>
+    <tr><td class="num">11/17 周二</td><td>季度业绩，第一份没有黄仁勋的成绩单。公司此前给的收入指引约 1,080 亿美元</td></tr>
+  </table></div>
+  <p class="ev">来源：英伟达公告与 SEC 8-K、PBS、CNBC、Yahoo Finance <span class="tag ok">已核实</span>。<b>私生活和间谍相关的指控一律不展开</b>：片里只说一句「涉及私人關係同相關調查嘅報道」，然后跳到董事会的决定。英伟达自己说过「没有证据显示他知情协助北京或公司机密外泄」，如果要提调查，要连这句一起提。</p>
+
+  <h3>③ 分岔路：同样的事，两种结局</h3>
+  <div class="tbl"><table>
+    <tr><th>前例</th><th>离场原因</th><th>接班安排</th><th>当天股价</th><th>一年后</th></tr>
+    <tr><td><b>Intel</b> 2018-06</td><td>CEO Krzanich 与员工的过往关系违反公司政策</td><td>CFO 暂代，空窗约 7 个月</td><td class="num">−2.4%</td><td class="num">−8.7%，同期标普 +8.5%</td></tr>
+    <tr><td><b>麦当劳</b> 2019-11</td><td>CEO Easterbrook 与员工的关系违反公司政策</td><td><b>同日宣布正式接班人</b>（美国区总裁 Kempczinski）</td><td class="num">−2.7%</td><td class="num">+14.7%（含股息），同期标普 +11.9%</td></tr>
+    <tr><td><b>HP</b> 2010-08</td><td>CEO Hurd 涉不当开支调查</td><td>CFO 暂代</td><td class="num">−7.4%</td><td>之后几年多次换帅，表现长期落后 <span class="tag warn">待核数字</span></td></tr>
+    <tr><td><b>苹果</b> 2011</td><td>乔布斯因病离世（性质不同，只作对照）</td><td>Tim Cook 提前多年培养</td><td>—</td><td>之后十年市值增长约十倍 <span class="tag warn">待核数字</span></td></tr>
+    <tr><td><b>英伟达</b> 2026-11</td><td>私人关系与相关调查</td><td><b>CFO 暂代，接班人未定</b></td><td class="num">−4.34%</td><td><b>？</b></td></tr>
+  </table></div>
+  <p>剧本的核心洞察就在最后一行：<b>英伟达目前的安排，形式上更接近 Intel，不是麦当劳。</b>但它的业务基本面和当年的 Intel 也不一样：当年 Intel 本来就在制程上落后，英伟达现在仍是行业龙头。所以答案不是「会不会跌」，而是观众要看哪几个信号。</p>
+  <p class="ev">Intel、麦当劳的数字来自 Yahoo Finance 的对照文章和 Axios、CNBC <span class="tag ok">已核实</span>；HP 当天 −7.4% 来自 CBS News <span class="tag ok">已核实</span>，HP 一年后和苹果十年的数字 <span class="tag warn">待核</span>。英伟达年报自己写过公司「高度依赖」长期任职的高管，接班规划不好会伤害长期表现 <span class="tag ok">已核实（Motley Fool 转引）</span>，这句可以直接用，它是公司自己说的。</p>
+</section>
+
+<section>
+  <h2><span class="n">05</span>10 分钟分场草案</h2>
+  <div class="tbl"><table>
+    <tr><th>时间</th><th>段落</th><th>写什么（口语方向）</th><th>画面</th></tr>
+    <tr><td class="num">0:00–0:30</td><td>钩子 · 信仰</td><td>「有人話：買英偉達，其實係買黃仁勳。11 月 12 號，呢個人一夜之間走咗。」接估一估：「你估當日英偉達市值收市少咗幾多？留言估下。」</td><td>皮衣剪影（插画，不用照片）+ 大数字卡</td></tr>
+    <tr><td class="num">0:30–1:00</td><td>问题</td><td>「今日唔講八卦。我哋講三樣嘢：佢點樣將英偉達變成今日咁；點解市場咁驚；同埋歷史上同類事件，兩種完全唔同嘅結局。」</td><td>贯穿图首次出现：一条分岔路</td></tr>
+    <tr><td class="num">1:00–4:00</td><td>浪潮史</td><td>Denny's → 濒死 30 日 → CUDA 冷板凳十年 → AlexNet → 送 DGX-1 → 5.78 万亿。落点：「佢每次都踩中浪潮，因為浪未嚟佢已經企喺度。所以市場習慣咗：英偉達 = 黃仁勳。」</td><td>时间线卡、AI 插画</td></tr>
+    <tr><td class="num">4:00–5:00</td><td>一个礼拜</td><td>只讲官方事实和董事会的决定，一句带过原因。換算機：收市跌 4.34%，约 1,800 亿美元，换成菠萝油大约 700 亿个。引 Rasgon「Jensen is Nvidia」。</td><td>日期卡、換算機动画</td></tr>
+    <tr><td class="num">5:00–7:30</td><td>分岔路</td><td>Intel 那条路 vs 麦当劳那条路，分岔点在「接班人有没有准备好」。再放苹果做对照：人走了，制度和培养的人还在。最后一行放英伟达：「而家佢嘅安排，似邊一條？」</td><td>两栏对比卡，分岔路图逐步填满</td></tr>
+    <tr><td class="num">7:30–9:00</td><td>同你有咩關係 · 信仰</td><td>「信一個人冇錯，但唔好將一間公司信成一個人。」给三个信号：正式接班人什么时候定、是谁；11/17 业绩和下季指引；大客户和核心团队有没有走。补一句：「最危險唔係信錯，係信到借錢、用槓桿去信。」</td><td>三格信号卡，近景少切</td></tr>
+    <tr><td class="num">9:00–10:00</td><td>开放题 + 守则</td><td>开放题：「冇咗老黃，AMD、博通、Google 自己整嘅芯片，會唔會趁機瓜分佢？你覺得英偉達會行 Intel 條路，定麥當勞條路？留言話我知。」公布估一估答案。念出守則 #1。</td><td>守则字卡 #1、分岔路完整版</td></tr>
+  </table></div>
+  <p class="ev">如果 11/22 发：4:00–5:00 后面加 30 秒「11/17 第一份成绩单」，只讲公司公布的数字和 Kress 在电话会上说了什么，不评价股价。开放题问的是公司的路，不是股价会不会升，措辞交合规定稿。</p>
+
+  <h3>标题和封面备选</h3>
+  <div class="tbl"><table>
+    <tr><th>标题</th><th>思路</th></tr>
+    <tr><td><b>同一種醜聞，兩種結局：冇咗黃仁勳，英偉達會變 Intel 定麥當勞？｜FUN傾股海 EP1</b></td><td>推荐。悬念在「两种结局」，和同行的八卦标题完全不同</td></tr>
+    <tr><td>33 年嘅信任，一個禮拜清零：黃仁勳離場教識我哋咩？｜FUN傾股海 EP1</td><td>Tim 原题，调性最好；点击力度弱一点，可以做 A/B 测试</td></tr>
+    <tr><td>英偉達 = 黃仁勳？市值少咗 1,800 億美元之後｜FUN傾股海 EP1</td><td>数字型，最接近爆款公式；数字要核</td></tr>
+  </table></div>
+  <p>封面：左边皮衣剪影，右边一条分岔路，两个路牌写「Intel」「麥當勞」，加一个大问号。不用黄仁勋真人照片。</p>
+</section>
+
+<section>
+  <h2><span class="n">06</span>上线前要做的</h2>
+  <div class="tbl"><table>
+    <tr><th>事项</th><th>谁</th><th>什么时候</th></tr>
+    <tr><td>浪潮史每一条找到原始出处，尤其「30 日」原话、CUDA 年份、AlexNet 用的显卡型号</td><td>编导（AI 先出来源清单）</td><td>11/16 前</td></tr>
+    <tr><td>核 11/12 前一日收市市值，算准换算機数字；HP 一年后、苹果十年数字</td><td>编导</td><td>11/16 前</td></tr>
+    <tr><td>11/17 业绩出来后补 30 秒，只用公司公布的数字</td><td>编导</td><td>11/18</td></tr>
+    <tr><td>稿件送方德合规：重点是私人关系的那一句、开放题的措辞、「杠杆」那一句</td><td>编导 → 合规</td><td>11/18 送，11/19 回复</td></tr>
+    <tr><td>配音、插画（皮衣剪影、分岔路、Denny's 卡座）、剪辑</td><td>配音 · 剪辑</td><td>11/19–21</td></tr>
+    <tr><td>竖屏预告：截在「兩種完全唔同嘅結局」那一句</td><td>剪辑</td><td>11/22</td></tr>
+  </table></div>
+  <div class="grid">
+    <div class="card"><span class="tag no">本期红线</span><p>不说「抵佢」或任何道德评判；不复述私生活和间谍指控的细节；不讲英伟达股票买不买、值多少；不引用分析师目标价；不用他的照片或视频片段。</p></div>
+    <div class="card"><span class="tag warn">本期黄线</span><p>「似 Intel 條路」是对公司处境的描述，不是预测，要写成「形式上似」；杠杆那一句只讲一般原则，不点名任何产品。</p></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">07</span>上线后怎么对答案</h2>
+  <div class="tbl"><table>
+    <tr><th>假设</th><th>读数</th><th>成立的标准</th></tr>
+    <tr><td>晚一周发，用分岔路角度仍有人看</td><td>首周播放</td><td>≥ 5,000（旧短片中位的 10 倍）</td></tr>
+    <tr><td>估一估和开放题能带出讨论</td><td>评论数</td><td>≥ 30 条，且有人真的在答「Intel 定麥當勞」</td></tr>
+    <tr><td>不讲八卦也能留住人</td><td>Studio 平均观看百分比</td><td>≥ 35%；看 4:00 前后有没有掉崖</td></tr>
+    <tr><td>常青角度有长尾</td><td>第 30 天 / 第 7 天播放</td><td>&gt; 1.3。正式 CEO 公布那天可能再被搜索带起来</td></tr>
+  </table></div>
+</section>
+
+<footer>
+  来源：<a href="https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition">英伟达公告</a> · <a href="https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvidiaannouncesceotransiti.htm">SEC 8-K</a> · <a href="https://www.pbs.org/newshour/nation/what-we-know-after-jensen-huangs-resignation-as-nvidias-ceo">PBS</a> · <a href="https://www.cnbc.com/2026/11/12/nvidia-nvda-jensen-huang-second-affair.html">CNBC 股价</a> · <a href="https://www.cnbc.com/2026/11/12/jensen-huang-nvidia-affair-ceo.html">CNBC 分析师</a> · <a href="https://www.aljazeera.com/news/2026/11/12/why-did-nvidia-ceo-jensen-huang-resign-and-who-is-colette-kress">Al Jazeera</a> · <a href="https://fool.com/investing/2026/11/10/nvidia-stock-has-wiped-out-usd1-7-trillion-in-value-since-october-what-could-happen-if-jensen-huang-steps-down">Motley Fool</a> · <a href="https://finance.yahoo.com/markets/stocks/articles/nvidia-board-reportedly-preparing-oust-233419551.html">Yahoo（Intel／麦当劳对照）</a> · <a href="https://www.axios.com/2018/06/21/intel-ceo-resigns-brian-krzanich-robert-swan">Axios（Intel 2018）</a> · <a href="https://www.cnbc.com/2019/11/04/mcdonalds-stock-falls-after-firing-ceo-and-announcing-successor.html">CNBC（麦当劳 2019）</a> · <a href="https://www.cbsnews.com/news/investors-dump-hp-shares-after-ceo-shakeup/">CBS（HP 2010）</a> · <a href="https://finance.yahoo.com/markets/stocks/articles/nvidia-reports-earnings-tuesday-without-164548681.html">Yahoo（11/17 业绩）</a><br>
+  同行片单：YouTube 搜索 11/13 抓取，原始结果在会话草稿区，没有存进仓库。<br>
+  没验证的：1993–2022 公司史的原始出处；HP、苹果的长期数字；换算機用的市值基数（按约 4.1 万亿美元估算）；五种走向的预计效果（推断）。
+</footer>
+
+</div>
