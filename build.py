@@ -69,7 +69,10 @@ def classify(v):
     # is a different animal even when its rates look thin, so 1k likes clears the flag.
     paid_floor = 4 if vc >= 500000 else 7 if vc >= 100000 else 8 if vc >= 30000 else 6
     cpk = cc / max(vc, 1) * 1000
-    if lc < 1000 and ((vc >= 15000 and lpk(v) < paid_floor and cpk < 0.5) or (vc >= 30000 and cc <= 5)):
+    # 2026-11-16: entertainment-leaning recaps (懒人包, 娱乐访谈) run low like rates with normal
+    # comment density (0.3–0.5 per 1k) and kept getting flagged. Bought reach on this panel sits
+    # at <=0.2 comments per 1k; "<=5 comments" alone also caught normal-like-rate interviews.
+    if lc < 1000 and ((vc >= 15000 and lpk(v) < paid_floor and cpk < 0.2) or (vc >= 30000 and cc <= 5 and lpk(v) < 8)):
         return "paid"
     if vc >= 30000 and lc >= 1000 and cc >= 20:
         return "hit"
@@ -999,7 +1002,7 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
 
 <section>
   <h2>投流观察席<span class="cnt">{len(paid_all)} 条</span></h2>
-  <p class="secdesc">高播放但赞率与评论密度同时断崖(赞/千播低于分档红线且评论/千播 &lt;0.5),或 3w 以上评论 ≤5;点赞绝对数满 1,000 的一律不标注——这个盘里被标过的内容点赞都在 53 到 334 之间,上千个赞是另一回事。这是由公开数据形态推出的信号,无法外部核实;这些内容的数字不作选题参考。</p>
+  <p class="secdesc">高播放但赞率与评论密度同时断崖(赞/千播低于分档红线且评论/千播 &lt;0.2),或 3w 以上评论 ≤5 且赞率低于 8;点赞绝对数满 1,000 的一律不标注——这个盘里被标过的内容点赞都在 53 到 334 之间,上千个赞是另一回事。这是由公开数据形态推出的信号,无法外部核实;这些内容的数字不作选题参考。</p>
   <div class="rows">{paid_html}</div>
 </section>
 
@@ -1039,7 +1042,7 @@ footer {{ margin-top: 40px; color: var(--muted); font-size: 12.5px; }}
   <h2>口径说明</h2>
   <div class="method">
     <h4>爆款判定</h4>
-    <p>播放 ≥ 30,000 且 评论 ≥ 20 且 点赞 ≥ 1,000,三项同时满足。{paid_example}辅助指标「赞/千播」采用分档红线:常规量级 &lt;8、10w 以上 &lt;7、50w 以上 &lt;4 且评论/千播 &lt;0.5 才判疑似投流;评论 ≤5 仍是全量级强信号。单看赞率会把懒人包、长访谈这类天然低赞率但评论正常的内容误判成买量;所有「疑似投流」都是公开数据推断,无法外部核实。这样可避免把百万级自然破圈后的互动稀释误判成买量。</p>
+    <p>播放 ≥ 30,000 且 评论 ≥ 20 且 点赞 ≥ 1,000,三项同时满足。{paid_example}辅助指标「赞/千播」采用分档红线:常规量级 &lt;8、10w 以上 &lt;7、50w 以上 &lt;4 且评论/千播 &lt;0.2 才判疑似投流;评论 ≤5 且赞率低于 8 也会标注；娱乐向的懒人包和访谈赞率天然偏低，评论密度正常就不标。单看赞率会把懒人包、长访谈这类天然低赞率但评论正常的内容误判成买量;所有「疑似投流」都是公开数据推断,无法外部核实。这样可避免把百万级自然破圈后的互动稀释误判成买量。</p>
     <h4>采集口径</h4>
     <p>每频道取最新 40 条常规视频(不含 Shorts),先以播放 ≥1.2w 预筛,再抓取完整互动数据。周五至周日发布的视频可能尚未发酵完,下一期复查补录。采集与维护步骤保留在项目说明中,不占用周报阅读路径。</p>
   </div>
